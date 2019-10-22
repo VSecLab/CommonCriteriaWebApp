@@ -26,16 +26,23 @@ angular.module('crudApp').factory('UserService',
                 setFcoEvaluatorNotes:  setFcoEvaluatorNotes,
                 getFcoEvaluatorNotes:  getFcoEvaluatorNotes,
 
-                createUser: createUser,
-                readListClass: readListClass,
-                getListFclass: getListFclass,
-                removeElementFclass: removeElementFclass,
+                createFcoSelected: createFcoSelected,
+                readListFco: readListFco,
+                getListFco: getListFco,
+                removeElementFco: removeElementFco,
 
                setFfBehaviour: setFfBehaviour,
                getFfBehaviour: getFfBehaviour,
 
+               setFfUserNotes: setFfUserNotes,
+               getFfUserNotes: getFfUserNotes,
+
                setFcoUserNotes: setFcoUserNotes,
                getFcoUserNotes: getFcoUserNotes,
+
+               getIdf: getIdf,
+               getIdfclass: getIdfclass,
+               getIdfamily: getIdfamily,
 
 
             };
@@ -67,12 +74,9 @@ angular.module('crudApp').factory('UserService',
              function getFci(){
                 return $localStorage.fcintroductions;
               }
-
-
              function getListFcInformativeNotes(){
                        return $localStorage.fcinformationsnotes;
              }
-
              function getListFfamily(){
                        return $localStorage.ffamily;
                     }
@@ -81,7 +85,7 @@ angular.module('crudApp').factory('UserService',
                          return $localStorage.fcomponent;
                      }
               function getListFco(){
-                         return $localStorage.fcomponent;
+                         return $localStorage.listfco;
                      }
 
              function getListFcodipendencies(){
@@ -92,7 +96,7 @@ angular.module('crudApp').factory('UserService',
              }
 
              function getListFclass(){
-                         return   $localStorage.listFclass;
+                         return   $localStorage.listFco;
              }
 
              function getFfBehaviour(){
@@ -102,6 +106,19 @@ angular.module('crudApp').factory('UserService',
              function getFcoUserNotes(){
                          return $localStorage.fcousernotes;
                           }
+             function getIdf(){
+                        return $localStorage.fcodipendencies[0].idf;
+              }
+              function getIdfclass() {
+                        return $localStorage.fcintroductions[0].idf;
+              }
+
+               function getIdfamily() {
+                             return $localStorage.ffusernotes[0].idf;
+                            }
+               function getFfUserNotes() {
+                            return $localStorage.ffusernotes;
+               }
 
             function setUser (id) {
                 console.log('Fetching User with id :'+id);
@@ -170,7 +187,6 @@ angular.module('crudApp').factory('UserService',
                             },
                         function (errResponse) {
                             console.error('Error while loading fcomponent with id :'+Name);
-
                             deferred.reject(errResponse);
                             }
                        );
@@ -236,13 +252,15 @@ angular.module('crudApp').factory('UserService',
                  }
 
 
-          function createUser(user) {
-                          console.log('Creating User');
+//------------- Permette di aggiungere Requirements alla lista dei preferiti ---------------
+
+          function createFcoSelected(fco) {
+                          console.log('Creating fco');
                           var deferred = $q.defer();
-                          $http.post(urls.USER_SERVICE_API + 'fclass/', user)
+                          $http.post(urls.USER_SERVICE_API + 'fco/', fco)
                               .then(
                                   function (response) {
-                                      readListClass();
+                                      readListFco();
                                       deferred.resolve(response.data);
 
                                   },
@@ -254,31 +272,33 @@ angular.module('crudApp').factory('UserService',
                           return deferred.promise;
                   }
 
-          function readListClass(){
+//------------- Permette di legge Requirements e metterli nei preferiti ---------------
+
+          function readListFco(){
             console.log('Fetching readListFclass');
                     var deferred = $q.defer();
-                    $http.get(urls.USER_SERVICE_API + 'fclass/')
+                    $http.get(urls.USER_SERVICE_API + 'fco/')
                                .then(
                                   function (response) {
-                                  console.log('Fetched successfully listFclass with id :');
-                                  $localStorage.listFclass = response.data;
+                                  console.log('Fetched successfully listFco with id :');
+                                  $localStorage.listfco = response.data;
                                   deferred.resolve(response.data);
                                              },
                                   function (errResponse) {
-                                  console.error('Error while loading listFclass with id :');
+                                  console.error('Error while loading listFco with id :');
                                   deferred.reject(errResponse);
                                            }
                                    );
                         return deferred.promise;
           }
-
-           function removeElementFclass(id) {
+//------------- Permette di rimuovere Requirements dai preferiti ---------------
+           function removeElementFco(id) {
                 console.log('Rimuovi elemento con: '+id);
                 var deferred = $q.defer();
-                $http.delete(urls.USER_SERVICE_API + 'fclass/' + id)
+                $http.delete(urls.USER_SERVICE_API + 'fco/' + id)
                     .then(
                         function (response) {
-                            readListClass();
+                            readListFco();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
@@ -307,6 +327,25 @@ angular.module('crudApp').factory('UserService',
                                    return deferred.promise;
 
            }
+
+      function setFfUserNotes(id){
+             console.log('Fetching ffusernotes with id :'+ id);
+                                var deferred = $q.defer();
+                                $http.get(urls.USER_SERVICE_API + 'ffusernotes/' + id)
+                                           .then(
+                                              function (response) {
+                                              console.log('Fetched successfullyffusernotes with id :'+ id);
+                                              $localStorage.ffusernotes = response.data;
+                                              deferred.resolve(response.data);
+                                                         },
+                                              function (errResponse) {
+                                              console.error('Error while loading ffusernotes with id :'+ id );
+                                              deferred.reject(errResponse);
+                                                       }
+                                               );
+                                    return deferred.promise;
+
+            }
 
 
         }

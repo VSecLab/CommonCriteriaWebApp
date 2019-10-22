@@ -10,8 +10,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="listfclass")
-public class ListFClass implements Serializable {
+@Table(name="listfco")
+
+public class ListFco implements Serializable {
 
 
     private static final long serialVersionUID = 2916704200290943399L;

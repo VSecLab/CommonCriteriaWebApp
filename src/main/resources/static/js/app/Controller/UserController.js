@@ -8,7 +8,7 @@ angular.module('crudApp').controller('UserController',
         self.users=[];
         self.fcintroduction = {};
         self.fcintroductions =[];
-        self.listFclass =[];
+
         self.ffamily = [];
         self.fcomponent = [];
         self.getFfamily = getFfamily;
@@ -18,7 +18,7 @@ angular.module('crudApp').controller('UserController',
         self.getAllClass = getAllClass;
         self.getAllUsers = getAllUsers;
         self.selectUser = selectUser;
-        self.add = add;
+
         self.done = false;
 
         self.successMessage = '';
@@ -33,24 +33,32 @@ angular.module('crudApp').controller('UserController',
         self.getListFcodipendencies = getListFcodipendencies;
 
 
-        self.showFcoDescription = showFcoDescription;
+
+
         self.fcoevaluatornotes = [];
         self.getFcoEvaluatorNotes = getFcoEvaluatorNotes;
         self.fcousernotes = [];
         self.getFcoUserNotes = getFcoUserNotes;
 
-
-        self.setListFclass= setListFclass;
-        self.getListFclass = getListFclass;
-        self.removeFclass =removeFclass;
+        self.addFco = addFco;
+        self.setListFco= setListFco;
+        self.getListFco = getListFco;
+        self.removeFco =removeFco;
+        self.listfco =[];
         self.downloadpdf = downloadpdf;
 
         self.listffbehaviour = [];
-        self.showFfBehaviour = showFfBehaviour;
+        self.ffusernotes = [];
+        self.showFfamilyStructure = showFfamilyStructure;
         self.getListFfBehaivour = getListFfBehaivour;
+        self.getListFfUserNotes = getListFfUserNotes;
 
 
+        self.getIdfclass = getIdfclass;
+        self.getIdf = getIdf;
+        self.getIdfamily = getIdfamily;
 
+//----------------------- Ritorna nella view per visualizzare gli elementi-----------------
         function getAllUsers(){
                   return UserService.getAllUsers();
         }
@@ -73,11 +81,14 @@ angular.module('crudApp').controller('UserController',
          function getListFcodipendencies() {
              return UserService.getListFcodipendencies();
            }
+         function getIdf(){
+            return UserService.getIdf();
+         }
          function getFcoEvaluatorNotes() {
                      return UserService.getFcoEvaluatorNotes();
                    }
-         function getListFclass(){
-                    return UserService.getListFclass();
+         function getListFco(){
+                    return UserService.getListFco();
          }
          function getListFfBehaivour(){
                     return UserService.getFfBehaviour();
@@ -87,6 +98,18 @@ angular.module('crudApp').controller('UserController',
                     return UserService.getFcoUserNotes();
          }
 
+         function getIdfclass(){
+                    return UserService.getIdfclass();
+         }
+
+         function getIdfamily(){
+                    return UserService.getIdfamily();
+         }
+         function getListFfUserNotes(){
+                    return UserService.getFfUserNotes();
+         }
+
+//------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response---------------
         function selectUser(id) {
             self.successMessage='';
             self.errorMessage='';
@@ -120,13 +143,10 @@ angular.module('crudApp').controller('UserController',
        }
 
 
-
+//------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response, fa riferimento alla drop list nella view edit---------------
             function searchRequirements(Name){
 
-              if (typeof (Name) == "undefined" || Name == "") {
-                            $window.alert("INSERIRE ID");
-                            return;
-                        }
+
               UserService.setFcomponent(Name).then(
                function () {
                  $window.location.href = 'http://localhost:8080/#/fcomponent';
@@ -138,26 +158,21 @@ angular.module('crudApp').controller('UserController',
               );
               }
 
-
+//------------- Passa id dell equirementes al Service e cambia view dopo aver ricevuto il response, fa riferimento alla view fcocomponent---------------
             function showDipendenze(id){
 
             UserService.setFcodipendencies(id).then(
                   function () {
-                    $window.location.href = 'http://localhost:8080/#/fcomponent/fcodependencies';
+                    $window.location.href = 'http://localhost:8080/#/fcomponent/fcodescription';
                     console.log('ID '+ id + " è stato cliccato setFcodipendencies");
                        },
                   function (errResponse) {
-                     $window.alert('NON PRESENTA DIPENDENZE: ' +id);
+               $window.location.href = 'http://localhost:8080/#/fcomponent/fcodescription';
                      console.error('Error setFcodipendencies ' + id + ', Error :' + errResponse.data);
 
                      }
                 );
-
-            }
-
-            function showFcoDescription(id){
-
-            UserService.setFcoEvaluatorNotes(id).then(
+                UserService.setFcoEvaluatorNotes(id).then(
                   function () {
 
                     console.log('ID '+ id + " è stato cliccato setFcoDescription");
@@ -171,7 +186,7 @@ angular.module('crudApp').controller('UserController',
                 );
             UserService.setFcoUserNotes(id).then(
                   function () {
-                    $window.location.href = 'http://localhost:8080/#/fcomponent/fcodescription';
+
                     console.log('ID '+ id + " è stato cliccato setFcoDescription");
 
                        },
@@ -182,12 +197,16 @@ angular.module('crudApp').controller('UserController',
                      }
                 );
 
+
+
             }
 
-            function add(user) {
+//------------- Permette di aggiungere Requirements alla lista dei preferiti ---------------
 
-                        console.log('Creazione Preferiti');
-                        UserService.createUser(user)
+            function addFco(fco) {
+
+                        console.log('Creazione fco elements');
+                        UserService.createFcoSelected(fco)
                             .then(
                                 function () {
 
@@ -204,13 +223,13 @@ angular.module('crudApp').controller('UserController',
                                 }
                             );
                     }
-
-            function setListFclass(){
-                   console.log('Get Preferiti');
-                        UserService.readListClass()
+//------------- Legge i preferiti dal database---------------
+            function setListFco(){
+                   console.log('Get Selected Elements');
+                        UserService.readListFco()
                             .then(
                                 function () {
-                                 $window.location.href = 'http://localhost:8080/#/preferiti';
+                                 $window.location.href = 'http://localhost:8080/#/selectedelements';
 
                                     console.log('Cliccato setListFclass');
 
@@ -225,10 +244,10 @@ angular.module('crudApp').controller('UserController',
                             );
 
             }
-
-            function removeFclass(id){
+//------------- Permette di rimuovere ul elemento dai preferiti---------------
+            function removeFco(id){
               console.log('Rimuovi dai preferiti:  '+id);
-                        UserService.removeElementFclass(id)
+                        UserService.removeElementFco(id)
                             .then(
                                 function(){
                                     console.log('ID '+id + ' removed successfully');
@@ -239,7 +258,7 @@ angular.module('crudApp').controller('UserController',
                             );
 
             }
-
+//------------- Permette di scaricare il pdf della view SHOW  ---------------
             function downloadpdf(){
             console.log('Scarica PDF');
                  html2canvas(document.getElementById('exportthis'), {
@@ -252,12 +271,12 @@ angular.module('crudApp').controller('UserController',
                                     width: 500,
                     }]
                 };
-                pdfMake.createPdf(docDefinition).download("preferiti.pdf");
+                pdfMake.createPdf(docDefinition).download("requirements.pdf");
             }
         });
      }
-
-             function showFfBehaviour(id){
+//------------- Passa id dell'ffamily al Serivice per la richiesta di ffbehaivour e ffusernotes---------------
+             function showFfamilyStructure(id){
 
                UserService.setFfBehaviour(id).then(
                                function () {
@@ -268,9 +287,17 @@ angular.module('crudApp').controller('UserController',
 
                                   }
                              );
+               UserService.setFfUserNotes(id).then(
+                               function () {
+                                 console.log('ID '+ id + " è stato cliccato setFfUserNotes");
+                                    },
+                               function (errResponse) {
+                                  console.error('Error setFfUserNotes ' + id + ', Error :' + errResponse.data);
+
+                                  }
+                             );
 
              }
-
 
 
 

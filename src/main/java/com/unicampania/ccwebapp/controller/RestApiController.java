@@ -46,13 +46,16 @@ public class RestApiController {
 	FcoEvaluatorNotesRepository fcoEvaluatorNotesRepository;
 
 	@Autowired
-	ListFClassRepository listFClassRepository;
+	ListFcoRepository listFClassRepository;
 
 	@Autowired
 	FfBehaviourRepository ffBehaviourRepository;
 
 	@Autowired
 	FcoUserNotesRepository fcoUserNotesRepository;
+
+	@Autowired
+	FfUserNotesRepository ffUserNotesRepository;
 
 	// -------------------Retrieve Fclass---------------------------------------------
 
@@ -131,9 +134,11 @@ public class RestApiController {
 		logger.info("Fetching fcodipendencies with id {}", id);
 		List<FcoDependencies> fcodependencies = fcoDipendenciesRepository.fcodipendenciesQuery(id);
 		if ( fcodependencies.isEmpty() ) {
-			logger.error("fcodependencies with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("fcodependencies with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			FcoDependencies c = new FcoDependencies();
+			c.setFcomponent("NO DEPENDECE");
+			c.setIdf(id);
+			fcodependencies.add(c);
+			return new ResponseEntity<List<FcoDependencies>>( fcodependencies , HttpStatus.OK);
 		}
 		return new ResponseEntity<List<FcoDependencies>>( fcodependencies , HttpStatus.OK);
 	}
@@ -190,44 +195,60 @@ public class RestApiController {
 		}
 		return new ResponseEntity<List<FfBehaviour>>(ffbehaviour , HttpStatus.OK);
 	}
-	// -------------------Creazione, lettura ed elimina elemento listFclass (preferiti)-------------------------------------------
 
-	@RequestMapping(value = "/fclass/", method = RequestMethod.POST)
-	public ResponseEntity<?> createUser(@RequestBody ListFClass user, UriComponentsBuilder ucBuilder) {
-		logger.info("Creating ListFclass : {}", user);
+	// -------------------Ritorna gli elementi di FfUserNotes ------------------------------------------
 
-		List<ListFClass> listfclass = listFClassRepository.listFclassQuery();
+	@RequestMapping(value = "/ffusernotes/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getFfUserBotes(@PathVariable("id") String id) {
+
+		logger.info("Fetching ffusernotes with id {}", id);
+		List<FfUserNotes> ffusernotes = ffUserNotesRepository.ffusernotesQuery(id);
+		if ( ffusernotes.isEmpty() ) {
+			logger.error("ffusernotes with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("ffusernotes with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<FfUserNotes>>(ffusernotes , HttpStatus.OK);
+	}
+	// -------------------Creazione, lettura ed elimina elemento listFclass (Selected Elements)-------------------------------------------
+
+	@RequestMapping(value = "/fco/", method = RequestMethod.POST)
+	public ResponseEntity<?> createFco(@RequestBody ListFco f, UriComponentsBuilder ucBuilder) {
+		logger.info("Creating ListFclass : {}", f);
+
+		List<ListFco> listfclass = listFClassRepository.listFclassQuery();
 		for (int i = 0; i < listfclass.size(); i++) {
-			if (listfclass.get(i).getId().equals(user.getId())) {
-				logger.error("Già presente in listFclass, {} already exist", user.getId());
+			if (listfclass.get(i).getId().equals(f.getId())) {
+				logger.error("Già presente in listFclass, {} already exist", f.getId());
 				return new ResponseEntity<CustomErrorType>(new CustomErrorType("Unable to create. A User with name " +
-						user.getName() + " already exist."),HttpStatus.CONFLICT);
+						f.getName() + " already exist."),HttpStatus.CONFLICT);
 			}
 		}
 
-		listFClassRepository.save(user);
+		listFClassRepository.save(f);
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 	}
 
-
-	@RequestMapping(value = "/fclass/", method = RequestMethod.GET)
+	// -------------------lettura elementi listFco (Selected Elements)-----------------------
+	@RequestMapping(value = "/fco/", method = RequestMethod.GET)
 	public ResponseEntity<?> getListClass() {
 
 		logger.info("Fetching listclass with id");
-		List<ListFClass> listfclass = listFClassRepository.listFclassQuery();
-		if ( listfclass.isEmpty() ) {
+		List<ListFco> listfco = listFClassRepository.listFclassQuery();
+		if ( listfco.isEmpty() ) {
 			logger.error("listfclass not found.");
 			return new ResponseEntity<CustomErrorType>(new CustomErrorType("listfclass not found"), HttpStatus.OK);
 		}
-		return new ResponseEntity<List<ListFClass>>( listfclass, HttpStatus.OK);
+		return new ResponseEntity<List<ListFco>>( listfco, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/fclass/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletelistFaclass(@PathVariable("id") String id) {
+// -------------------elimina elemento listFclass (Selected Elements)-----------------------
+	@RequestMapping(value = "/fco/{id:.+}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deletelistFco(@PathVariable("id") String id) {
 
 		logger.info("Fetching & Deleting User with id {}", id);
 
-		ListFClass listFClass = listFClassRepository.findOne(id);
+		ListFco listFClass = listFClassRepository.findOne(id);
 		if (listFClass  == null) {
 			logger.error("Unable to delete. User with id {} not found.", id);
 			return new ResponseEntity<CustomErrorType>(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
@@ -235,7 +256,7 @@ public class RestApiController {
 		}
 
 		listFClassRepository.delete(id);
-		return new ResponseEntity<ListFClass>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<ListFco>(HttpStatus.NO_CONTENT);
 	}
 
 

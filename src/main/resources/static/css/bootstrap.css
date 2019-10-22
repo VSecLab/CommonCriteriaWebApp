@@ -1288,6 +1288,7 @@ p {
 @media (min-width: 768px) {
   .lead {
     font-size: 21px;
+    font-weight: bold;
   }
 }
 small,
@@ -4207,12 +4208,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-nav {
-  margin: 7.5px -15px;
+  margin: 7.5px -10px;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  color: #ddd;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {

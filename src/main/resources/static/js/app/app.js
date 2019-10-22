@@ -24,6 +24,32 @@ app.config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
+            .state('edit', {
+                            url: '/edit',
+                            templateUrl: 'partials/edit',
+                            controller:'UserController',
+                            controllerAs:'ctrl',
+
+                        })
+            .state('Contactus', {
+                            url: '/Contactus',
+                            templateUrl: 'partials/Contactus',
+
+
+                        })
+            .state('show', {
+                            url: '/show',
+                            templateUrl: 'partials/show',
+                            controller:'UserController',
+                            controllerAs:'ctrl',
+
+                        })
+            .state('keycc', {
+                            url: '/keycc',
+                            templateUrl: 'partials/keycc',
+
+
+                        })
              .state('fclassstructure', {
                 url: '/fclassstructure',
                 templateUrl: 'partials/fclassstructure',
@@ -38,14 +64,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                             controllerAs:'ctrl',
 
                         })
-
-             .state('fcodependencies', {
-                              url: '/fcomponent/fcodependencies',
-                              templateUrl: 'partials/fcodependencies',
-                              controller:'UserController',
-                              controllerAs:'ctrl',
-
-                         })
               .state('fcodescription', {
                               url: '/fcomponent/fcodescription',
                               templateUrl: 'partials/fcodescription',
@@ -53,9 +71,9 @@ app.config(['$stateProvider', '$urlRouterProvider',
                               controllerAs:'ctrl',
 
                          })
-              .state('preferiti', {
-                              url: '/preferiti',
-                              templateUrl: 'partials/preferiti',
+              .state('selectedelements', {
+                              url: '/selectedelements',
+                              templateUrl: 'partials/selectedelements',
                               controller:'UserController',
                               controllerAs:'ctrl',
 
@@ -69,5 +87,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                          });
 
         $urlRouterProvider.otherwise('/');
+
     }]);
 
