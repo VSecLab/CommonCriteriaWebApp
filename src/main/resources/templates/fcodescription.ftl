@@ -24,25 +24,58 @@
 			</div>
 		</div>
 
+		     <!-- Default panel contents -->
+                <div class="panel-heading"><span class="lead">HIERARCHICALS</span></div>
+        		<div class="panel-body">
+        			<div class="table-responsive">
+        		        <table class="table table-hover">
+        		            <thead>
+        		            <tr>
+        		                <th>ID</th>
+        		                <th width="100"></th>
+        		                <th width="100"></th>
+        		            </tr>
+        		            </thead>
+        		            <tbody>
+        		            <tr ng-repeat="f in ctrl.getListFcoHierarchicals()">
+        		                <td>{{f.fcomponent}}</td>
+        		            </tr>
+        		            </tbody>
+        		        </table>
+        			</div>
+        		</div>
+
+
+
+
 
        <!-- Default panel contents -->
   <div class="panel-heading"><span class="lead">EVALUATOR NOTES</span></div>
 		<div class="panel-body">
 			<div class="table-responsive">
 		        <table class="table table-hover">
-		            <thead>
-		            <tr>
 
-                   	   <th>PARA</th>
-
-                   	   <th width="100"></th>
-                   	   <th width="100"></th>
-		            </tr>
-		            </thead>
 		            <tbody>
 		            <tr ng-repeat="f in ctrl.getFcoEvaluatorNotes()">
 
                       	<td>{{f.para}}</td>
+
+		            </tr>
+		            </tbody>
+		        </table>
+			</div>
+		</div>
+
+       <!-- Default panel contents -->
+  <div class="panel-heading"><span class="lead">MANAGEMENT</span></div>
+		<div class="panel-body">
+			<div class="table-responsive">
+		        <table class="table table-hover">
+
+		            <tbody>
+		            <tr ng-repeat="f in ctrl.getListFcoManagement()">
+
+                      	<td>{{f.text}}</td>
 
 		            </tr>
 		            </tbody>
@@ -55,15 +88,7 @@
         		<div class="panel-body">
         			<div class="table-responsive">
         		        <table class="table table-hover">
-        		            <thead>
-        		            <tr>
 
-                           	   <th>PARA</th>
-
-                           	   <th width="100"></th>
-                           	   <th width="100"></th>
-        		            </tr>
-        		            </thead>
         		            <tbody>
         		            <tr ng-repeat="f in ctrl.getFcoUserNotes()">
 

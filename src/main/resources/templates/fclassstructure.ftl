@@ -9,15 +9,7 @@
               		<div class="panel-body">
               			<div class="table-responsive">
               		        <table class="table table-hover">
-              		            <thead>
-              		            <tr>
 
-              		                <th>PARA</th>
-
-              		                <th width="100"></th>
-              		                <th width="100"></th>
-              		            </tr>
-              		            </thead>
               		            <tbody>
               		            <tr ng-repeat="f in ctrl.getAllClass()">
 
@@ -32,15 +24,7 @@
 		<div class="panel-body">
 			<div class="table-responsive">
 		        <table class="table table-hover">
-		            <thead>
-		            <tr>
 
-		                <th>PARA</th>
-
-		                <th width="100"></th>
-		                <th width="100"></th>
-		            </tr>
-		            </thead>
 		            <tbody>
 		            <tr ng-repeat="f in ctrl.getListFcInformative()">
 

@@ -57,6 +57,12 @@ public class RestApiController {
 	@Autowired
 	FfUserNotesRepository ffUserNotesRepository;
 
+	@Autowired
+	FcoHierarchicalRepository fcoHierarchicalRepository;
+
+	@Autowired
+	FcoManagementRepository fcoManagementRepository;
+
 	// -------------------Retrieve Fclass---------------------------------------------
 
 	@RequestMapping(value = "/user/", method = RequestMethod.GET)
@@ -143,6 +149,41 @@ public class RestApiController {
 		return new ResponseEntity<List<FcoDependencies>>( fcodependencies , HttpStatus.OK);
 	}
 
+	// -------------------Ritorna gli elementi di fcofcohierarchical(Dipendenze)------------------------------------------
+
+	@RequestMapping(value = "/fcohierarchical/{id:.+}", method = RequestMethod.GET)
+	public ResponseEntity<?> getFcoHierarchical(@PathVariable("id") String id) {
+
+		logger.info("Fetching fcohierarchical with id {}", id);
+		List<FcoHierarchical> fcohierarchicals = fcoHierarchicalRepository.fcohierarchicalQuery(id);
+		if ( fcohierarchicals.isEmpty() ) {
+			FcoHierarchical c = new FcoHierarchical();
+			c.setFcomponent("No other components.");
+			c.setIdf(id);
+			fcohierarchicals.add(c);
+			return new ResponseEntity<List<FcoHierarchical>>( fcohierarchicals , HttpStatus.OK);
+		}
+		return new ResponseEntity<List<FcoHierarchical>>( fcohierarchicals , HttpStatus.OK);
+	}
+	// -------------------Ritorna gli elementi di fcomanagment------------------------------------------
+
+	@RequestMapping(value = "/fcomanagement/{id:.+}", method = RequestMethod.GET)
+	public ResponseEntity<?> getFcoManagment(@PathVariable("id") String id) {
+
+		logger.info("Fetching getListFcoManagement with id {}", id);
+		List<FcoManagement> fcomanagement = fcoManagementRepository.fcomanagmentQuery(id);
+		if ( fcomanagement.isEmpty() ) {
+			FcoManagement c = new FcoManagement();
+			c.setText("There are no management activities foreseen");
+			c.setIdf(id);
+			fcomanagement.add(c);
+			return new ResponseEntity<List<FcoManagement>>( fcomanagement , HttpStatus.OK);
+		}
+
+		System.out.println(fcomanagement.toString());
+		return new ResponseEntity<List<FcoManagement>>( fcomanagement , HttpStatus.OK);
+	}
+
 	// -------------------Ritorna gli elementi di  fcoevaluatornotes(Evaluetor Notes)------------------------------------------
 
 	@RequestMapping(value = "/fcoevaluatornotes/{id:.+}", method = RequestMethod.GET)
@@ -171,12 +212,15 @@ public class RestApiController {
 		List<FcoUserNotes> fcousernotes = fcoUserNotesRepository.fcoUserNotesQuery(id);
 		if ( fcousernotes.isEmpty() ) {
 
-			logger.error(" fcousernotes with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType(" fcousernotes with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			FcoUserNotes c = new FcoUserNotes();
+			c.setId("");
+			c.setType("");
+			c.setPara("THERE ARE NO ELEMENTS");
+			c.setIdf(id);
+			fcousernotes.add(c);
+			return new ResponseEntity<List<FcoUserNotes>>( fcousernotes , HttpStatus.OK);
 		}
 
-		System.out.println(fcousernotes.toString());
 		return new ResponseEntity<List<FcoUserNotes>>( fcousernotes , HttpStatus.OK);
 	}
 

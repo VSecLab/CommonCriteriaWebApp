@@ -45,6 +45,12 @@ angular.module('crudApp').factory('UserService',
                getIdfamily: getIdfamily,
 
 
+               setFcoHierarchicals: setFcoHierarchicals,
+               getFcoHierarchicals: getFcoHierarchicals,
+
+               setFcoManagement: setFcoManagement,
+               getFcoManagement: getFcoManagement,
+
             };
 
             return factory;
@@ -118,6 +124,14 @@ angular.module('crudApp').factory('UserService',
                             }
                function getFfUserNotes() {
                             return $localStorage.ffusernotes;
+               }
+
+               function getFcoHierarchicals(){
+                            return $localStorage.fcohierarchicals;
+               }
+
+               function getFcoManagement(){
+                           return $localStorage.fcomanagement;
                }
 
             function setUser (id) {
@@ -211,6 +225,44 @@ angular.module('crudApp').factory('UserService',
                       );
                       return deferred.promise;
              }
+
+            function setFcoHierarchicals(id){
+                  console.log('Fetching setFcoHierarchicals with id :'+ id);
+                  var deferred = $q.defer();
+                  $http.get(urls.USER_SERVICE_API + 'fcohierarchical/' + id)
+                          .then(
+                             function (response) {
+                                  console.log('Fetched successfully setFcoHierarchicals with id :'+ id);
+                                  $localStorage.fcohierarchicals = response.data;
+
+                                  deferred.resolve(response.data);
+                                },
+                             function (errResponse) {
+                                console.error('Error while loading setFcoHierarchicals with id :'+ id );
+                                deferred.reject(errResponse);
+                              }
+                      );
+                      return deferred.promise;
+             }
+//------------- fa un get al client per ottenere getListFcoManagementgment ---------------
+ function  setFcoManagement(id){
+                  console.log('Fetching  setFcoManagement with id :'+ id);
+                  var deferred = $q.defer();
+                  $http.get(urls.USER_SERVICE_API + 'fcomanagement/' + id)
+                          .then(
+                             function (response) {
+                                  console.log('Fetched successfully  setFcoManagement with id :'+ id);
+                                  $localStorage.fcomanagement = response.data;
+                                  deferred.resolve(response.data);
+                                },
+                             function (errResponse) {
+                                console.error('Error while loading  setFcoManagement with id :'+ id );
+                                deferred.reject(errResponse);
+                              }
+                      );
+                      return deferred.promise;
+             }
+
 
              function setFcoEvaluatorNotes(id){
                     console.log('Fetching fcoevaluatornotes with id :'+ id);

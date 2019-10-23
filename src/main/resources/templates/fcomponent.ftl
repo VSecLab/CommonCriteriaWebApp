@@ -3,7 +3,7 @@
 
 
        <!-- Default panel contents -->
-        <div class="panel-heading"><span class="lead">LIST OF FCLASS</span></div>
+        <div class="panel-heading"><span class="lead">COMPONENT</span></div>
 		<div class="panel-body">
 			<div class="table-responsive">
 		        <table class="table table-hover">

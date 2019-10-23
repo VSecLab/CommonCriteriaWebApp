@@ -58,7 +58,14 @@ angular.module('crudApp').controller('UserController',
         self.getIdf = getIdf;
         self.getIdfamily = getIdfamily;
 
-//----------------------- Ritorna nella view per visualizzare gli elementi-----------------
+        self.fcohierarchicals = [];
+        self.getListFcoHierarchicals = getListFcoHierarchicals;
+
+        self.fcomanagement = [];
+        self.getListFcoManagement = getListFcoManagement;
+
+
+//----------------------- Nella view per visualizzare gli elementi-----------------
         function getAllUsers(){
                   return UserService.getAllUsers();
         }
@@ -109,6 +116,13 @@ angular.module('crudApp').controller('UserController',
                     return UserService.getFfUserNotes();
          }
 
+         function getListFcoHierarchicals(){
+                    return UserService.getFcoHierarchicals();
+         }
+
+         function getListFcoManagement(){
+                   return UserService.getFcoManagement();
+         }
 //------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response---------------
         function selectUser(id) {
             self.successMessage='';
@@ -158,7 +172,7 @@ angular.module('crudApp').controller('UserController',
               );
               }
 
-//------------- Passa id dell equirementes al Service e cambia view dopo aver ricevuto il response, fa riferimento alla view fcocomponent---------------
+//------------- Passa id dell equirementes al Service e cambia view dopo aver ricevuto il response, fa riferimento alla view fcocomponent e passa alla view fcodescription--------------
             function showDipendenze(id){
 
             UserService.setFcodipendencies(id).then(
@@ -167,11 +181,33 @@ angular.module('crudApp').controller('UserController',
                     console.log('ID '+ id + " è stato cliccato setFcodipendencies");
                        },
                   function (errResponse) {
-               $window.location.href = 'http://localhost:8080/#/fcomponent/fcodescription';
+                   $window.location.href = 'http://localhost:8080/#/fcomponent/fcodescription';
                      console.error('Error setFcodipendencies ' + id + ', Error :' + errResponse.data);
 
                      }
                 );
+                UserService.setFcoManagement(id).then(
+                                  function () {
+
+                                    console.log('ID '+ id + " è stato cliccato fcomanagement");
+                                       },
+                                  function (errResponse) {
+
+                                     console.error('Error fcomanagement ' + id + ', Error :' + errResponse.data);
+
+                                     }
+                                );
+                UserService.setFcoHierarchicals(id).then(
+                                  function () {
+
+                                  console.log('ID '+ id + " è stato cliccato setFcodipendencies");
+                                       },
+                                  function (errResponse) {
+
+                                  console.error('Error setFcodipendencies ' + id + ', Error :' + errResponse.data);
+
+                                     }
+                                );
                 UserService.setFcoEvaluatorNotes(id).then(
                   function () {
 
@@ -296,7 +332,6 @@ angular.module('crudApp').controller('UserController',
 
                                   }
                              );
-
              }
 
 

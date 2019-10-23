@@ -8,14 +8,7 @@
               		<div class="panel-body">
               			<div class="table-responsive">
               		        <table class="table table-hover">
-              		            <thead>
-              		            <tr>
-              		                <th>PARA</th>
 
-              		                <th width="100"></th>
-              		                <th width="100"></th>
-              		            </tr>
-              		            </thead>
               		            <tbody>
               		            <tr ng-repeat="f in ctrl.getListFfBehaivour()">
 
@@ -32,14 +25,7 @@
               		<div class="panel-body">
               			<div class="table-responsive">
               		        <table class="table table-hover">
-              		            <thead>
-              		            <tr>
-              		                <th>PARA</th>
 
-              		                <th width="100"></th>
-              		                <th width="100"></th>
-              		            </tr>
-              		            </thead>
               		            <tbody>
               		            <tr ng-repeat="f in ctrl.getListFfUserNotes()">
 
@@ -50,5 +36,32 @@
               		        </table>
               			</div>
               		</div>
+        <div class="panel-heading" ><span class="lead">COMPONENT (REQUIREMENTS)</span></div>
+                 		<div class="panel-body">
+                 			<div class="table-responsive">
+                 		        <table class="table table-hover">
+                 		            <thead>
+                 		            <tr>
+                 		                <th>ID</th>
+                 		                <th>NAME</th>
+                 		                <th width="100"></th>
+                 		                <th width="100"></th>
+                 		            </tr>
+                 		            </thead>
+                 		            <tbody>
+                 		            <tr ng-repeat="f in ctrl.getListFcomponent()">
+                 		                <td>{{f.id}}</td>
+                 		                <td>{{f.name}}</td>
+
+                 		                 <td> <button type="button" ng-click="ctrl.showDipendenze(f.id)" class="btn btn-success custom-width">Browse</button></td>
+                 		            </tr>
+                 		            </tbody>
+                 		        </table>
+                 			</div>
+                 		</div>
+
+
+
              </div>
+
 </div>

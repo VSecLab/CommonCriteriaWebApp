@@ -4,7 +4,7 @@
 
       <!-- Colonna con immagine -->
     	 <div class="col-lg-6">
-         	<img src="Images/img1.png" class="img-fluid" alt="picture1">
+         	<img src="Images/edit5.png" class="img-fluid" alt="picture1">
          <p> <strong>CC Part 2 catalogues </strong> the set of functional components
           and organises them in families and classes. <p>
 
