@@ -13,7 +13,7 @@ angular.module('crudApp').controller('UserController',
         self.fcomponent = [];
         self.getFfamily = getFfamily;
         self.searchRequirements = searchRequirements;
-        self.Name ;
+
         self.myText = '';
         self.getAllClass = getAllClass;
         self.getAllUsers = getAllUsers;
@@ -158,16 +158,16 @@ angular.module('crudApp').controller('UserController',
 
 
 //------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response, fa riferimento alla drop list nella view edit---------------
-            function searchRequirements(Name){
+            function searchRequirements(id){
 
 
-              UserService.setFcomponent(Name).then(
+              UserService.setFcomponent(id).then(
                function () {
                  $window.location.href = 'http://localhost:8080/#/fcomponent';
-                 console.log('ID '+ Name + " è stato cliccato setFcomponent");
+                 console.log('ID '+ id + " è stato cliccato setFcomponent");
                    },
                function (errResponse) {
-                   console.error('Error setFcomponent ' + Name + ', Error :' + errResponse.data);
+                   console.error('Error setFcomponent ' + id + ', Error :' + errResponse.data);
                    }
               );
               }
@@ -332,6 +332,15 @@ angular.module('crudApp').controller('UserController',
 
                                   }
                              );
+               UserService.setFcomponentCatalogo(id).then(
+                                              function () {
+                                                console.log('ID '+ id + " è stato cliccato setFcomponentCatalogo");
+                                                   },
+                                              function (errResponse) {
+                                                 console.error('Error setFcomponentCatalogo ' + id + ', Error :' + errResponse.data);
+
+                                                 }
+                                            );
              }
 
 

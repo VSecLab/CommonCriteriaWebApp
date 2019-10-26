@@ -51,6 +51,9 @@ angular.module('crudApp').factory('UserService',
                setFcoManagement: setFcoManagement,
                getFcoManagement: getFcoManagement,
 
+               setFcomponentCatalogo: setFcomponentCatalogo,
+
+
             };
 
             return factory;
@@ -189,24 +192,41 @@ angular.module('crudApp').factory('UserService',
                         return deferred.promise;
                   }
 
-                function setFcomponent(Name){
-                        console.log('Fetching fcomponent with id :'+ Name);
+                function setFcomponent(id){
+                        console.log('Fetching fcomponent with id :'+ id);
                         var deferred = $q.defer();
-                        $http.get(urls.USER_SERVICE_API + 'fcomponent/' + Name)
+                        $http.get(urls.USER_SERVICE_API + 'fcomponent/' + id)
                         .then(
                         function (response) {
-                            console.log('Fetched successfully fcomponent with id :'+Name);
+                            console.log('Fetched successfully fcomponent with id :'+ id);
                             $localStorage.fcomponent = response.data;
                             deferred.resolve(response.data);
                             },
                         function (errResponse) {
-                            console.error('Error while loading fcomponent with id :'+Name);
+                            console.error('Error while loading fcomponent with id :'+ id);
                             deferred.reject(errResponse);
                             }
                        );
                         return deferred.promise;
                   }
-
+//------------- fa un get al client per ottenere i component per il catalogo ---------------
+            function setFcomponentCatalogo(id){
+                        console.log('Fetching fcomponent with id :'+ id);
+                        var deferred = $q.defer();
+                        $http.get(urls.USER_SERVICE_API + 'fcomponents/' + id)
+                        .then(
+                        function (response) {
+                            console.log('Fetched successfully fcomponent with id :'+ id);
+                            $localStorage.fcomponent = response.data;
+                            deferred.resolve(response.data);
+                            },
+                        function (errResponse) {
+                            console.error('Error while loading fcomponent with id :'+ id);
+                            deferred.reject(errResponse);
+                            }
+                       );
+                        return deferred.promise;
+                  }
             function setFcodipendencies(id){
                   console.log('Fetching fcodipendencies with id :'+ id);
                   var deferred = $q.defer();

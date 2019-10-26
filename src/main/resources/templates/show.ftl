@@ -35,7 +35,16 @@
        </table>
 </div>
 
+<div ng-repeat="u in ctrl.getListFco()">
+<ol>
 
+  <p>6.{{$index + 1}}  {{u.id}} {{u.name}}</p>
+  <div ng-if="u.id == f.id">
+  <p> Dependence: {{f.name}}</p>
+
+ </div>
+</ol>
+</div>
 
 
 <br/>

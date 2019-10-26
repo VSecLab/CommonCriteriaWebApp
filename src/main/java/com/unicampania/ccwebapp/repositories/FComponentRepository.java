@@ -12,4 +12,9 @@ public interface FComponentRepository  extends JpaRepository<FComponent, String>
             nativeQuery = true)
     List<FComponent> fcomponentQuery(@Param("id") String id);
 
+    @Query(value = "SELECT * FROM fcomponent WHERE idf = :id",
+            nativeQuery = true)
+    List<FComponent> fcomponentCatalogoQuery(@Param("id") String id);
+
+
 }

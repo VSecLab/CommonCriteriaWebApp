@@ -131,6 +131,19 @@ public class RestApiController {
 		}
 		return new ResponseEntity<List<FComponent>>( fcomponents , HttpStatus.OK);
 	}
+	// -------------------Ritorna gli elementi di fcomponent per catalogo (Requirements)------------------------------------------
+
+	@RequestMapping(value = "/fcomponents/{id:.+}", method = RequestMethod.GET)
+	public ResponseEntity<?> getFcomponents(@PathVariable("id") String id) {
+		logger.info("Fetching User with id {}", id);
+		List<FComponent> fcomponents = fComponentRepository.fcomponentCatalogoQuery(id);
+		if ( fcomponents.isEmpty() ) {
+			logger.error("User with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<FComponent>>( fcomponents , HttpStatus.OK);
+	}
 
 // -------------------Ritorna gli elementi di fcodipendencies(Dipendenze)------------------------------------------
 
