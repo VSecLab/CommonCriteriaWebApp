@@ -53,7 +53,8 @@ angular.module('crudApp').factory('UserService',
 
                setFcomponentCatalogo: setFcomponentCatalogo,
 
-
+               setFelement: setFelement,
+               getFelement: getFelement,
             };
 
             return factory;
@@ -137,6 +138,10 @@ angular.module('crudApp').factory('UserService',
                            return $localStorage.fcomanagement;
                }
 
+               function getFelement(){
+                            return $localStorage.felement;
+               }
+
             function setUser (id) {
                 console.log('Fetching User with id :'+id);
                 var deferred = $q.defer();
@@ -145,6 +150,8 @@ angular.module('crudApp').factory('UserService',
                         function (response) {
                             console.log('Fetched successfully User with id :'+id);
                             $localStorage.fcintroductions = response.data;
+
+
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
@@ -265,7 +272,7 @@ angular.module('crudApp').factory('UserService',
                       return deferred.promise;
              }
 //------------- fa un get al client per ottenere getListFcoManagementgment ---------------
- function  setFcoManagement(id){
+         function  setFcoManagement(id){
                   console.log('Fetching  setFcoManagement with id :'+ id);
                   var deferred = $q.defer();
                   $http.get(urls.USER_SERVICE_API + 'fcomanagement/' + id)
@@ -317,6 +324,24 @@ angular.module('crudApp').factory('UserService',
                                              },
                                   function (errResponse) {
                                   console.error('Error while loading fcousernotes with id :'+ id );
+                                  deferred.reject(errResponse);
+                                           }
+                                   );
+                        return deferred.promise;
+                 }
+
+             function setFelement(id){
+                    console.log('Fetching setFelement with id :'+ id);
+                    var deferred = $q.defer();
+                    $http.get(urls.USER_SERVICE_API + 'felement/' + id)
+                               .then(
+                                  function (response) {
+                                  console.log('Fetched successfully felement with id :'+ id);
+                                  $localStorage.felement = response.data;
+                                  deferred.resolve(response.data);
+                                             },
+                                  function (errResponse) {
+                                  console.error('Error while loading felement with id :'+ id );
                                   deferred.reject(errResponse);
                                            }
                                    );

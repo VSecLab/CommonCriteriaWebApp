@@ -63,6 +63,9 @@ public class RestApiController {
 	@Autowired
 	FcoManagementRepository fcoManagementRepository;
 
+	@Autowired
+	FelementRepository felementRepository;
+
 	// -------------------Retrieve Fclass---------------------------------------------
 
 	@RequestMapping(value = "/user/", method = RequestMethod.GET)
@@ -87,6 +90,8 @@ public class RestApiController {
 			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
+
+        System.out.println(fcintroductions);
 		return new ResponseEntity<List<FcIntroduction>>(fcintroductions, HttpStatus.OK);
 	}
 
@@ -145,6 +150,20 @@ public class RestApiController {
 		return new ResponseEntity<List<FComponent>>( fcomponents , HttpStatus.OK);
 	}
 
+	// -------------------Ritorna gli elementi di felement (nella descrizione dei Requirements)------------------------------------------
+
+	@RequestMapping(value = "/felement/{id:.+}", method = RequestMethod.GET)
+	public ResponseEntity<?> getFelement(@PathVariable("id") String id) {
+		logger.info("Fetching User with id {}", id);
+		List<Felement> felements = felementRepository.felementQuery(id);
+		if ( felements.isEmpty() ) {
+			logger.error("User with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Felement>>( felements , HttpStatus.OK);
+	}
+
 // -------------------Ritorna gli elementi di fcodipendencies(Dipendenze)------------------------------------------
 
 	@RequestMapping(value = "/fcodependencies/{id:.+}", method = RequestMethod.GET)
@@ -193,7 +212,7 @@ public class RestApiController {
 			return new ResponseEntity<List<FcoManagement>>( fcomanagement , HttpStatus.OK);
 		}
 
-		System.out.println(fcomanagement.toString());
+
 		return new ResponseEntity<List<FcoManagement>>( fcomanagement , HttpStatus.OK);
 	}
 

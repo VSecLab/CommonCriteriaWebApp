@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface FfBehaviourRepository extends JpaRepository<FfBehaviour, String> {
 
-    @Query(value = "select * from ffbehaviour where idf = :id",
+    @Query(value = "select * from ffbehaviour where idf = :id GROUP BY(para)",
             nativeQuery = true)
     List<FfBehaviour> ffbehaviourQuery(@Param("id") String id);
 

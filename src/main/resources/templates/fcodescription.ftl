@@ -100,6 +100,27 @@
         			</div>
         		</div>
 
+	    <div class="panel-heading"><span class="lead">FELEMENT</span></div>
+        		<div class="panel-body">
+        			<div class="table-responsive">
+        		        <table class="table table-hover">
+                         <thead>
+        		            <tr>
+        		                <th>ID</th>
+        		                <th width="100"></th>
+        		                <th width="100"></th>
+        		            </tr>
+        		            </thead>
+        		            <tbody>
+        		            <tr ng-repeat="f in ctrl.getFelement()">
+
+                              	<td>{{f.id}}</td>
+
+        		            </tr>
+        		            </tbody>
+        		        </table>
+        			</div>
+        		</div>
 
 
 	</div>

@@ -47,7 +47,7 @@
 		            <tr ng-repeat="u in ctrl.getAllUsers()">
 		                <td>{{u.id}}</td>
 		                <td>{{u.name}}</td>
-		                <td> <button type="button" ng-click="ctrl.selectUser(u.id)" class="btn btn-success custom-width">Browse</button></td>
+		                <td> <button  ng-click="ctrl.selectUser(u.id)" class="btn btn-success custom-width">Browse</button></td>
 
 		            </tr>
 		            </tbody>

@@ -11,6 +11,7 @@ angular.module('crudApp').controller('UserController',
 
         self.ffamily = [];
         self.fcomponent = [];
+        self.felement = [];
         self.getFfamily = getFfamily;
         self.searchRequirements = searchRequirements;
 
@@ -32,8 +33,7 @@ angular.module('crudApp').controller('UserController',
         self.fcodipendencies = [];
         self.getListFcodipendencies = getListFcodipendencies;
 
-
-
+        self.getFelement = getFelement;
 
         self.fcoevaluatornotes = [];
         self.getFcoEvaluatorNotes = getFcoEvaluatorNotes;
@@ -123,14 +123,19 @@ angular.module('crudApp').controller('UserController',
          function getListFcoManagement(){
                    return UserService.getFcoManagement();
          }
+
+         function getFelement(){
+                  return UserService.getFelement();
+         }
 //------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response---------------
         function selectUser(id) {
             self.successMessage='';
             self.errorMessage='';
             UserService.setUser(id).then(
-                function () {
+                function (response) {
                   $window.location.href = 'http://localhost:8080/#/fclassstructure';
                   console.log('ID '+id + " è stato cliccato selectUser");
+                  console.log(" Elementi doppi: " + getAllClass());
 
                 },
                 function (errResponse) {
@@ -172,7 +177,7 @@ angular.module('crudApp').controller('UserController',
               );
               }
 
-//------------- Passa id dell equirementes al Service e cambia view dopo aver ricevuto il response, fa riferimento alla view fcocomponent e passa alla view fcodescription--------------
+//------------- Passa id dell requirementes al Service e cambia view dopo aver ricevuto il response, fa riferimento alla view fcocomponent e passa alla view fcodescription--------------
             function showDipendenze(id){
 
             UserService.setFcodipendencies(id).then(
@@ -233,6 +238,18 @@ angular.module('crudApp').controller('UserController',
                      }
                 );
 
+              UserService.setFelement(id).then(
+                  function () {
+
+                    console.log('ID '+ id + " è stato cliccato setFelement");
+
+                       },
+                  function (errResponse) {
+
+                     console.error('Error setFelement ' + id + ', Error :' + errResponse.data);
+
+                     }
+                );
 
 
             }

@@ -8,9 +8,14 @@
               		<div class="panel-body">
               			<div class="table-responsive">
               		        <table class="table table-hover">
-
+                            <thead>
+        		            <tr>
+        		                <th width="100"></th>
+        		                <th width="100"></th>
+        		            </tr>
+        		            </thead>
               		            <tbody>
-              		            <tr ng-repeat="f in ctrl.getListFfBehaivour()">
+              		            <tr ng-repeat="f in ctrl.getListFfBehaivour() track by $index">
 
               		                <td>{{f.para}}</td>
 
