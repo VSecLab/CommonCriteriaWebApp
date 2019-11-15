@@ -1,7 +1,6 @@
 # README #
 Web Application Sviluppata all'unversità della Campania Luigi vanvitelli, Dipartimento di Ingegneria, dedicato alla gestione dei Security Target Common Criteria
 
-Per poter utilizzare ed avviare l'applicazione occorre:
 
 # How do I get set up? #
 
