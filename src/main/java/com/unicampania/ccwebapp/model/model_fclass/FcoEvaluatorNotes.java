@@ -1,45 +1,37 @@
-package com.unicampania.ccwebapp.model;
-
+package com.unicampania.ccwebapp.model.model_fclass;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
-@ToString
+
 @Entity
-@Table(name="fcomanagement")
-public class FcoManagement {
+@Table(name="fcoevaluatornotes")
+public class FcoEvaluatorNotes implements Serializable {
+
 
     @Getter
     @Setter
-    @Column(name = "num")
-    private String num;
+    @Column(name = "type")
+    private String type;
 
     @Id
+    @Column(name = "id")
     @Getter
     @Setter
-    @Column(name = "id")
     private String id;
 
     @Getter
     @Setter
-    @Column(name = "equal")
-    private String equal;
-
-    @Getter
-    @Setter
-    @Column(name = "text")
-    private String text;
+    @Column(name = "para")
+    private String para;
 
     @Getter
     @Setter
     @Column(name = "idf")
     private String idf;
-
-
 }

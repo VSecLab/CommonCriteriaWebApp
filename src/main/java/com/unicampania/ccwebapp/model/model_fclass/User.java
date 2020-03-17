@@ -1,4 +1,4 @@
-package com.unicampania.ccwebapp.model;
+package com.unicampania.ccwebapp.model.model_fclass;
 
 
 
@@ -28,9 +28,6 @@ public class User implements Serializable{
 	@Setter
 	@Column(name="name")
 	private String name;
-
-
-
 
 
 }

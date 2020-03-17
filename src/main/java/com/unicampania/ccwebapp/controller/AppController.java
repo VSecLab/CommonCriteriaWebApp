@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AppController {
 
+	/* Viene caricata index.ftl quando viene richiesta la root / */
 	@RequestMapping("/")
-	String home(ModelMap modal) {
-		modal.addAttribute("title","Common Criteria Catalogue");
-		return "index";
+	String home(ModelMap modelMap) {
+		modelMap.addAttribute("title","Common Criteria | Catalogue");
+		return "Home";
 	}
 
 	@RequestMapping("/partials/{page}")

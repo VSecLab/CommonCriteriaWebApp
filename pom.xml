@@ -71,6 +71,40 @@
     		<artifactId>commons-lang3</artifactId>
     		<version>3.5</version>
 		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/angular-ui-router -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-ui-router</artifactId>
+			<version>1.0.20</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/angular -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular</artifactId>
+			<version>1.7.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.29</version>
+		</dependency>
+
+
+
+
+
+
 	</dependencies>
 	<build>
 		<plugins>

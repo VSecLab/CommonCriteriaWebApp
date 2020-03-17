@@ -1,18 +1,19 @@
-package com.unicampania.ccwebapp.model;
-
+package com.unicampania.ccwebapp.model.model_fclass;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-
+@ToString
 @Entity
-@Table(name="ffbehaviour")
-public class FfBehaviour implements Serializable {
+@Table(name = "fcousernotes")
+public class FcoUserNotes implements Serializable {
 
 
     @Getter
@@ -35,4 +36,6 @@ public class FfBehaviour implements Serializable {
     @Setter
     @Column(name = "idf")
     private String idf;
+
+
 }

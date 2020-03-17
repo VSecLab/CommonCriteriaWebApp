@@ -1,4 +1,4 @@
-package com.unicampania.ccwebapp.model;
+package com.unicampania.ccwebapp.model.model_fclass;
 
 
 import lombok.Getter;
@@ -9,33 +9,37 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @ToString
 @Entity
-@Table(name="fcintroduction")
-public class FcIntroduction implements Serializable {
-
-
+@Table(name="fcomanagement")
+public class FcoManagement {
 
     @Getter
     @Setter
-    @Column(name = "type")
-    private String type;
+    @Column(name = "num")
+    private String num;
 
     @Id
-    @Column(name = "id")
     @Getter
     @Setter
+    @Column(name = "id")
     private String id;
 
     @Getter
     @Setter
-    @Column(name = "para")
-    private String para;
+    @Column(name = "equal")
+    private String equal;
+
+    @Getter
+    @Setter
+    @Column(name = "text")
+    private String text;
 
     @Getter
     @Setter
     @Column(name = "idf")
     private String idf;
+
+
 }

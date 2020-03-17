@@ -7,6 +7,7 @@
          	<img src="Images/home2.png"   class="center-block" alt="picture1">
     </div>
 
+    <br>
     <p>The&nbsp;<strong>Common Criteria for Information Technology Security Evaluation</strong>
     &nbsp;(referred to as&nbsp;<strong>Common Criteria</strong>&nbsp;or&nbsp;<strong>CC</strong>)
     is an&nbsp;international standard&nbsp;(ISO/IEC&nbsp;15408) for&nbsp;computer security&nbsp;
@@ -14,7 +15,7 @@
 
 
 
-   <p>It is currently in version 3.1 revision 5.</p>
+   <p><em>The current version is 3.1 revision 5.</em></p>
 
     </div>
 </div>

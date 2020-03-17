@@ -1,14 +1,17 @@
-<div class="generic-container"
-                  <div class="panel panel-default">
+<html>
+    <head>
+        <title> Common Criteria | Structure</title>
+        <link rel="shortcut icon" href="Images/favicon1.ico">
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+    </head>
+    <body>
 
   <span class="uppercase" style="color:#ff0000"> <strong>  {{ ctrl.getIdfclass() }} </strong></span>
 
 
-                     <!-- Default panel contents -->
-                      <div class="panel-heading"><span class="lead">INTRODUCTION</span></div>
-              		<div class="panel-body">
-              			<div class="table-responsive">
-              		        <table class="table table-hover">
+                      <h2> INTRODUCTION </h2>
+
+              		        <table>
 
               		            <tbody>
               		            <tr ng-repeat="f in ctrl.getAllClass()">
@@ -18,12 +21,9 @@
               		            </tr>
               		            </tbody>
               		        </table>
-              			</div>
-              		</div>
-  <div class="panel-heading"><span class="lead">EVALUATOR NOTES</span></div>
-		<div class="panel-body">
-			<div class="table-responsive">
-		        <table class="table table-hover">
+
+
+		        <table>
 
 		            <tbody>
 		            <tr ng-repeat="f in ctrl.getListFcInformative()">
@@ -33,12 +33,9 @@
 		            </tr>
 		            </tbody>
 		        </table>
-			</div>
-		</div>
-	    <div class="panel-heading" ><span class="lead">FAMILY</span></div>
-    		<div class="panel-body">
-    			<div class="table-responsive">
-    		        <table class="table table-hover">
+
+<h2> FAMILY</h2>
+    		        <table>
     		            <thead>
     		            <tr>
     		                <th>ID</th>
@@ -56,9 +53,9 @@
     		            </tr>
     		            </tbody>
     		        </table>
-    			</div>
-    		</div>
-    </div>
-</div>
 
+
+
+</body>
+</html>
 

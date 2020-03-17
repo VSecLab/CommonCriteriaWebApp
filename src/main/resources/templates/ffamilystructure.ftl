@@ -1,13 +1,16 @@
-<div class="generic-container"
-                  <div class="panel panel-default">
+<html>
+    <head>
+        <title> Common Criteria | Family Structure</title>
+        <link rel="shortcut icon" href="Images/favicon1.ico">
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+    </head>
+    <body>
 
 <span class="uppercase" style="color:#ff0000"> <strong>  {{ ctrl.getIdfamily() }} </strong></span>
 
-                     <!-- Default panel contents -->
-                    <div class="panel-heading"><span class="lead">BEHAVIOUR</span></div>
-              		<div class="panel-body">
-              			<div class="table-responsive">
-              		        <table class="table table-hover">
+
+
+              		        <table>
                             <thead>
         		            <tr>
         		                <th width="100"></th>
@@ -22,14 +25,11 @@
               		            </tr>
               		            </tbody>
               		        </table>
-              			</div>
-              		</div>
 
-       <!-- Default panel contents -->
-                    <div class="panel-heading"><span class="lead">USER NOTES</span></div>
-              		<div class="panel-body">
-              			<div class="table-responsive">
-              		        <table class="table table-hover">
+
+
+
+              		        <table>
 
               		            <tbody>
               		            <tr ng-repeat="f in ctrl.getListFfUserNotes()">
@@ -39,12 +39,10 @@
               		            </tr>
               		            </tbody>
               		        </table>
-              			</div>
-              		</div>
-        <div class="panel-heading" ><span class="lead">COMPONENT (REQUIREMENTS)</span></div>
-                 		<div class="panel-body">
-                 			<div class="table-responsive">
-                 		        <table class="table table-hover">
+
+       <h2> COMPONENT (REQUIREMENTS) </h2>
+
+                 		        <table>
                  		            <thead>
                  		            <tr>
                  		                <th>ID</th>
@@ -62,11 +60,6 @@
                  		            </tr>
                  		            </tbody>
                  		        </table>
-                 			</div>
-                 		</div>
 
-
-
-             </div>
-
-</div>
+</body>
+</html>

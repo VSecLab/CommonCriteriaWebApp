@@ -1,4 +1,4 @@
-package com.unicampania.ccwebapp.model;
+package com.unicampania.ccwebapp.model.model_fclass;
 
 import lombok.Getter;
 import lombok.Setter;

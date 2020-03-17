@@ -1,6 +1,6 @@
-package com.unicampania.ccwebapp.repositories;
+package com.unicampania.ccwebapp.repositories.repositories_fclass;
 
-import com.unicampania.ccwebapp.model.Ffamily;
+import com.unicampania.ccwebapp.model.model_fclass.Ffamily;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

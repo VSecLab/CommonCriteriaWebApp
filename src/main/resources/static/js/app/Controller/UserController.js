@@ -9,6 +9,8 @@ angular.module('crudApp').controller('UserController',
         self.fcintroduction = {};
         self.fcintroductions =[];
 
+
+
         self.ffamily = [];
         self.fcomponent = [];
         self.felement = [];
@@ -73,6 +75,8 @@ angular.module('crudApp').controller('UserController',
         function getAllClass(){
                     return UserService.getFci();
         }
+
+
 
         function getListFcInformative(){
              return UserService.getListFcInformativeNotes();
@@ -164,7 +168,6 @@ angular.module('crudApp').controller('UserController',
 
 //------------- Passa id dell'Fclass al Service e cambia view dopo aver ricevuto il response, fa riferimento alla drop list nella view edit---------------
             function searchRequirements(id){
-
 
               UserService.setFcomponent(id).then(
                function () {
@@ -281,9 +284,8 @@ angular.module('crudApp').controller('UserController',
                    console.log('Get Selected Elements');
                         UserService.readListFco()
                             .then(
-                                function () {
-                                 $window.location.href = 'http://localhost:8080/#/selectedelements';
-
+                                function (response) {
+                                 $window.location.href = "http://localhost:8080/#/selectedelements";
                                     console.log('Cliccato setListFclass');
 
 
@@ -313,26 +315,30 @@ angular.module('crudApp').controller('UserController',
             }
 //------------- Permette di scaricare il pdf della view SHOW  ---------------
             function downloadpdf(){
-            console.log('Scarica PDF');
-                 html2canvas(document.getElementById('exportthis'), {
-                        onrendered: function (canvas) {
-                             var data = canvas.toDataURL();
-                             var docDefinition = {
-                                 content: [{
+                        $window.alert("ciao");
+                        console.log('Scarica PDF');
+                             html2canvas(document.getElementById('exportthis'), {
+                                    onrendered: function (canvas) {
+                                         var data = canvas.toDataURL();
+                                         var docDefinition = {
+                                             content: [{
 
-                                    image: data,
-                                    width: 500,
-                    }]
-                };
-                pdfMake.createPdf(docDefinition).download("requirements.pdf");
-            }
-        });
-     }
+                                                image: data,
+                                                width: 500,
+                                }]
+                            };
+                            pdfMake.createPdf(docDefinition).download("requirements.pdf");
+                        }
+                    });
+                 }
 //------------- Passa id dell'ffamily al Serivice per la richiesta di ffbehaivour e ffusernotes---------------
              function showFfamilyStructure(id){
+             $window.alert("prova");
+                                 $window.location.href = "http://localhost:8080/#/ffamilystructure";
 
                UserService.setFfBehaviour(id).then(
                                function () {
+
                                  console.log('ID '+ id + " è stato cliccato FfBehaviour");
                                     },
                                function (errResponse) {

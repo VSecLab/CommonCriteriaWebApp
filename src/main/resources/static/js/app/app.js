@@ -3,7 +3,6 @@ var app = angular.module('crudApp',['ui.router','ngStorage']);
 app.constant('urls', {
     BASE: 'http://localhost:8080/SpringBootCRUDApp',
     USER_SERVICE_API : 'http://localhost:8080/SpringBootCRUDApp/api/'
-
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -24,13 +23,15 @@ app.config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
-            .state('edit', {
-                            url: '/edit',
-                            templateUrl: 'partials/edit',
+            .state('editSFR', {
+                            url: '/editSFR',
+                            templateUrl: 'partials/editSFR',
                             controller:'UserController',
                             controllerAs:'ctrl',
 
                         })
+
+
             .state('Contactus', {
                             url: '/Contactus',
                             templateUrl: 'partials/Contactus',
@@ -42,7 +43,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                             templateUrl: 'partials/show',
                             controller:'UserController',
                             controllerAs:'ctrl',
-
                         })
             .state('keycc', {
                             url: '/keycc',
@@ -55,7 +55,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'partials/fclassstructure',
                 controller:'UserController',
                 controllerAs:'ctrl',
-
             })
             .state('fcomponent', {
                             url: '/fcomponent',
@@ -83,7 +82,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                               templateUrl: 'partials/ffamilystructure',
                               controller:'UserController',
                               controllerAs:'ctrl',
-
                          });
 
         $urlRouterProvider.otherwise('/');

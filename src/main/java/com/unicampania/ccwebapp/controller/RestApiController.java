@@ -3,14 +3,18 @@ package com.unicampania.ccwebapp.controller;
 import java.util.List;
 
 
-import com.unicampania.ccwebapp.model.*;
-import com.unicampania.ccwebapp.repositories.*;
+import com.unicampania.ccwebapp.model.model_aclass.AClass;
+import com.unicampania.ccwebapp.model.model_fclass.*;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.AClassRepository;
+import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
+import com.unicampania.ccwebapp.service.AClassService;
 import com.unicampania.ccwebapp.util.CustomErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,32 @@ public class RestApiController {
 	@Autowired
 	UserRepository userRepository; //Service which will do all data retrieval/manipulation work
 
+//---
+	@Autowired
+	AClassService aClassService;
+
+	@RequestMapping(value = "/aclass/", method = RequestMethod.GET)
+	public ResponseEntity<List<AClass>> listAllAClasses() {
+		List<AClass> aClasses = aClassService.findAllAClasses();
+		if (aClasses.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<AClass>>(aClasses, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/aclass/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAClass(@PathVariable("id") String id) {
+		logger.info("Fetching AClass with id {}", id);
+		AClass aClass = aClassService.findById(id);
+		if (aClass == null) {
+			logger.error("AClass with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AClass with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<AClass>(aClass, HttpStatus.OK);
+	}
+
+//---
 	@Autowired
 	FcIntroductionRepository fcIntroductionRepository;
 
@@ -65,6 +95,8 @@ public class RestApiController {
 
 	@Autowired
 	FelementRepository felementRepository;
+
+
 
 	// -------------------Retrieve Fclass---------------------------------------------
 
@@ -384,5 +416,9 @@ public class RestApiController {
 		userRepository.deleteAll();
 		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
+
+
+
+
 
 }

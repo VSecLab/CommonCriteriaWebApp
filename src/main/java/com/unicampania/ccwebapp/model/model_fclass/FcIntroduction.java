@@ -1,4 +1,5 @@
-package com.unicampania.ccwebapp.model;
+package com.unicampania.ccwebapp.model.model_fclass;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +13,9 @@ import java.io.Serializable;
 
 @ToString
 @Entity
-@Table(name = "fcousernotes")
-public class FcoUserNotes implements Serializable {
+@Table(name="fcintroduction")
+public class FcIntroduction implements Serializable {
+
 
 
     @Getter
@@ -36,6 +38,4 @@ public class FcoUserNotes implements Serializable {
     @Setter
     @Column(name = "idf")
     private String idf;
-
-
 }
