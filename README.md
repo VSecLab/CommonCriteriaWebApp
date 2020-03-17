@@ -1,26 +1,86 @@
-# README #
-Web Application Sviluppata all'unversità della Campania Luigi vanvitelli, Dipartimento di Ingegneria, dedicato alla gestione dei Security Target Common Criteria
+Index
+---------------------
+
+ * Introduction
+ * Requirements
+ * Installation
+ * Configuration
+ * Built With
+ * Authors
+ * License
 
 
-# How do I get set up? #
+Introduction
+------------
 
-Scaricare un ambiente di sviluppo inegrato per il linguaggio di programmazione JAVA.
-Nel nostro caso è stato utilizzato IntelliJ IDEA 
+Il progetto, sviluppato all'Università della Campania Luigi Vanvitelli, si occupa della gestione,
+ tramite un'applicazione web, 
+di un database contenente informazioni relative allo
+ standard internazionale ISO/IEC 15408 v3.1 Release 5.
+ 
+Lo standard è suddiviso in 3 parti:
+- Introduction and General Model - [Link](https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf)
+- Security Functional Requirements - [Link](https://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf)
+- Security Assurance Requirements - [Link](https://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf)
 
-E' necessario il database "springbatch" (disponibile all'interno dell'applicazione) configurato con: 
-username: root 
-password: root
+La web application si occupa della gestione dei Security Functional Requirements e dei Security
+ Assurance Requirements.
+ 
+L'applicazione presenta casi d'uso diversi a seconda dell'utilizzatore, ovvero:
+- Developer/Consumer:
+  - Sfoglia Catalogo
+  - Ricerca Requirements
+  - Aggiungi Requirements
+  - Elimina Requirements
+- Evaluator:
+  - Visualizza Anteprima
 
-Scaricare il repository come general project
+Nello specifico, lo scenario _Visualizza Anteprima_, permette il download di un file PDF contenente
+i _Requirements_ selezionati.
 
-Cliccare col tasto destro sul progetto -> configure -> convert to maven project 
 
-Avviare l'applicativo attraverso le opzioni dell'IDE utilizzato oppure dal main 
 
-Aprire sul browser la pagina localhost:8080
+Requirements
+------------
 
-### Who do I talk to? ###
+Per poter utilizzare l'applicazione bisogna avere:
+- un ambiente di sviluppo per il linguaggio di programmazione JAVA
+- una piattaforma costituita da un Apache Server 2.0 e il database MariaDB 
 
-* Lorenzo Diana
-* lorenzo.diana92@gmail.com
 
+
+Installation
+------------
+
+L'installazione prevede il download della repository del progetto oppure 
+clonare il progetto ed aprirlo dell'IDE.
+Successivamente bisogna scaricare il file _springbatch.sql_ ed inserirlo 
+nel server in locale.
+
+Confgiuration
+------------
+ 
+ Per configurare il database bisogna utilizzare le seguenti credenziali:
+ - username: root
+ - password: root
+ 
+Built with
+----------
+
+* [Spring](https://spring.io) - framwork utilizzato per backend e frontend
+* [Hibernate](https://hibernate.org) - framwork che fornisce un servizio di Object-relational mapping
+* [JPA](https://spring.io/projects/spring-data-jpa) - frameowrk utilizzato per la persistenza dei dati
+* [Maven](https://maven.apache.org/) - strumento di gestione delle dipendenze
+
+Authors
+-------
+
+**Lorenzo Diana** - [GitHub](https://github.com/Fiorenzo92), [Mail](mailto:lorenzo.diana92@gmail.com?subject=[GitHub]%20CommonCriteriaWebApplication)
+**Roberto Chello** - [GitHub](https://github.com/robertochello), [Mail](mailto:robertochello@gmail.com?subject=[GitHub]%20CommonCriteriaWebApplication)
+                                                            
+
+
+License
+-------
+
+Questo progetto è sotto licenza Apache 2.0
