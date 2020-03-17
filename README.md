@@ -76,6 +76,7 @@ Authors
 -------
 
 **Lorenzo Diana** - [GitHub](https://github.com/Fiorenzo92), [Mail](mailto:lorenzo.diana92@gmail.com?subject=[GitHub]%20CommonCriteriaWebApplication)
+
 **Roberto Chello** - [GitHub](https://github.com/robertochello), [Mail](mailto:robertochello@gmail.com?subject=[GitHub]%20CommonCriteriaWebApplication)
                                                             
 
