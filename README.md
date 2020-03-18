@@ -84,4 +84,4 @@ Authors
 License
 -------
 
-Questo progetto è sotto licenza Apache 2.0
+Questo progetto è sotto licenza Apache 2.0 - [Licenza](LICENSE.md)
