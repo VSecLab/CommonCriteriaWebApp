@@ -1,13 +1,13 @@
 Index
 ---------------------
 
- * Introduction
- * Requirements
- * Installation
- * Configuration
- * Built With
- * Authors
- * License
+ * [Introduction](#introduction)
+ * [Requirements](#requirements)
+ * [Installation](#installation)
+ * [Configuration](#configuration)
+ * [Built With](#built-with)
+ * [Authors](#authors)
+ * [License](#license)
 
 
 Introduction
@@ -53,11 +53,11 @@ Installation
 ------------
 
 L'installazione prevede il download della repository del progetto oppure 
-clonare il progetto ed aprirlo dell'IDE.
+clonare il progetto ed aprirlo dall'IDE.
 Successivamente bisogna scaricare il file _springbatch.sql_ ed inserirlo 
 nel server in locale.
 
-Confgiuration
+Configuration
 ------------
  
  Per configurare il database bisogna utilizzare le seguenti credenziali:
