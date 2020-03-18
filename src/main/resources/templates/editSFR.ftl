@@ -15,7 +15,7 @@
             upon which to base functional requirements for TOEs.</p>
 
 
-            <h3>Search Assurance Requirements</h3>
+            <h3>Search Functional Requirements</h3>
             <select name="users" ng-model="Name">
                 <option ng-repeat="u in ctrl.getAllUsers()" value="{{u.id}}"">{{u.name}} - {{u.id}}</option>
             </select>
