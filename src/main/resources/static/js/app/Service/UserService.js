@@ -6,9 +6,7 @@ angular.module('crudApp').factory('UserService',
 
             var factory = {
 
-                loadAllAClasses: loadAllAClasses,
-                getAllAClasses: getAllAClasses,
-            //............
+
                 loadAllUsers: loadAllUsers,
                 setUser: setUser,
 
@@ -62,30 +60,6 @@ angular.module('crudApp').factory('UserService',
             };
 
             return factory;
-
-
-            function loadAllAClasses() {
-                console.log("Fetching all aclasses");
-                var deferred = $q.defer();
-                $http.get(urls.USER_SERVICE_API+ 'aclass/')
-                .then(
-                    function (response) {
-                        console.log('Fetched successfully all aclasses');
-                        $localStorage.aclasses = response.data;
-                        deferred.resolve(response);
-                    },
-                    function (errResponse) {
-                        console.error('Error while loading aclasses');
-                        deferred.reject(errResponse);
-                    }
-                );
-                return deferred.promise;
-            }
-
-
-            function getAllAClasses() {
-                return $localStorage.aclasses;
-            }
 
 
 

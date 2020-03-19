@@ -35,28 +35,35 @@ public class RestApiController {
 	@Autowired
 	AClassService aClassService;
 
+	// -------------------Retrieve All AClasses---------------------------------------------
+
 	@RequestMapping(value = "/aclass/", method = RequestMethod.GET)
 	public ResponseEntity<List<AClass>> listAllAClasses() {
 		List<AClass> aClasses = aClassService.findAllAClasses();
 		if (aClasses.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			// You many decide to return HttpStatus.NOT_FOUND
 		}
 		return new ResponseEntity<List<AClass>>(aClasses, HttpStatus.OK);
 	}
+
+
+	// -------------------Retrieve Single AClass------------------------------------------
 
 	@RequestMapping(value = "/aclass/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAClass(@PathVariable("id") String id) {
 		logger.info("Fetching AClass with id {}", id);
 		AClass aClass = aClassService.findById(id);
 		if (aClass == null) {
-			logger.error("AClass with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AClass with id " + id
+			logger.error("User with id {} not found.", id);
+			return new ResponseEntity(new CustomErrorType("User with id " + id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<AClass>(aClass, HttpStatus.OK);
 	}
-
 //---
+
+
 	@Autowired
 	FcIntroductionRepository fcIntroductionRepository;
 

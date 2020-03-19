@@ -19,7 +19,7 @@ public class AComponent implements Serializable {
     @Setter
     @Getter
     @Column(name = "id_acomponent")
-    private String id_acomponent;
+    private String id;
 
     @Id
     @Setter

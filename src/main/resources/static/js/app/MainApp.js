@@ -19,7 +19,8 @@ app.config(function($routeProvider) {
                     function ($q, AClassService) {
                         console.log('Load all AClasses');
                         var deferred = $q.defer();
-                        AClassService.load
+                        AClassService.loadAllAClasses()
+                        .then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }

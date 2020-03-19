@@ -4,61 +4,55 @@ angular.module('crudApp').controller('AClassController',
     ['AClassService', '$scope','$window',
     function(AClassService, $scope, $window ) {
         var self = this;
-        self.aclass = {};
-        self.aclasses = [];
-
+        // AClass
+        self.aClass = {};
+        self.aClasses = [];
         self.getAllAClasses = getAllAClasses;
+        self.selectAClass = selectAClass;
 
+        // Drop list in ediSAR
         self.searchAssuranceRequirements = searchAssuranceRequirements;
 
-        //----
-        self.selectAClass = selectAClass;
-        //----
 
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
+
 
         function getAllAClasses() {
             return AClassService.getAllAClasses();
         }
 
 
-        // Get id of AClass from  Search Assurance Requirements box
         function searchAssuranceRequirements(id){
-            $window.alert("searchAssuranceRequirements");
-            AClassService.setacomponent(id)
+            AClassService.setAComponent(id)
             .then(
                 function () {
-                    $window.alert("setacomponent in controller");
                     $window.location.href = 'http://localhost:8080/#/acomponent';
-                    console.log('ID '+ id + " è stato cliccato setacomponent");
+                    console.log('ID '+ id + " è stato cliccato setAComponent");
                 },
                 function (errResponse) {
-                    console.error('Error setacomponent ' + id_acomponent + ', Error :' + errResponse.data);
+                    console.error('Error setFcomponent ' + id + ', Error :' + errResponse.data);
                 }
             );
         }
 
-
         function selectAClass(id) {
             self.successMessage='';
             self.errorMessage='';
-            $window.location.href = 'http://localhost:8080/#/aclassstructure';
-            /*
-            UserService.setUser(id)
+            AClassService.setAClass(id)
             .then(
                 function (response) {
-                    $window.location.href = 'http://localhost:8080/#/fclassstructure';
-                    console.log('ID '+id + " è stato cliccato selectUser");
-                    console.log(" Elementi doppi: " + getAllClass());
+                    $window.location.href = 'http://localhost:8080/#/aclassstructure';
+                    console.log('ID '+id + " è stato cliccato selectAClass");
                 },
                 function (errResponse) {
                     console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
                 }
             );
-            */
         }
+
+
 
 }
 ]);
