@@ -60,16 +60,18 @@ nel server in locale.
 Configuration
 ------------
  
- Per configurare il database bisogna utilizzare le seguenti credenziali:
+Per configurare il database bisogna utilizzare le seguenti credenziali:
  - username: root
  - password: root
+ 
+Nella configurazione dell'IDE bisogna selezionare la versione 1.8 di JAVA.
  
 Built with
 ----------
 
-* [Spring](https://spring.io) - framwork utilizzato per backend e frontend
-* [Hibernate](https://hibernate.org) - framwork che fornisce un servizio di Object-relational mapping
-* [JPA](https://spring.io/projects/spring-data-jpa) - frameowrk utilizzato per la persistenza dei dati
+* [Spring](https://spring.io) - framework utilizzato per backend e frontend
+* [Hibernate](https://hibernate.org) - framework che fornisce un servizio di Object-relational mapping
+* [JPA](https://spring.io/projects/spring-data-jpa) - framework utilizzato per la persistenza dei dati
 * [Maven](https://maven.apache.org/) - strumento di gestione delle dipendenze
 
 Authors
