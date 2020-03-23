@@ -22,7 +22,11 @@ angular.module('crudApp').factory('AClassService',
                 // AFamily
                 setAFamily: setAFamily,
                 getAFamily: getAFamily,
+                getIdAFamily: getIdAFamily,
 
+                // AfObjectives
+                setAfObjectives: setAfObjectives,
+                getAfObjectives: getAfObjectives,
 
              }
              return factory;
@@ -112,12 +116,12 @@ angular.module('crudApp').factory('AClassService',
                 return $localStorage.acintroductions;
             }
             function setAcIntroduction (id) {
-                console.log('Fetching User with id :'+id);
+                console.log('Fetching AcIntroduction from AClass with id :'+id);
                 var deferred = $q.defer();
                 $http.get(urls.USER_SERVICE_API + 'acintroduction/' + id)
                 .then(
                     function (response) {
-                        console.log('Fetched successfully AcIntroduction with id :'+id);
+                        console.log('Fetched successfully AcIntroduction from AClass with id :'+id);
                         $localStorage.acintroductions = response.data;
                         deferred.resolve(response.data);
                     },
@@ -150,6 +154,33 @@ angular.module('crudApp').factory('AClassService',
                         }
                     );
                 return deferred.promise;
+            }
+            function getIdAFamily() {
+                return $localStorage.afamily[0].id_afamily;
+            }
+
+
+            // AfObjectives
+            function setAfObjectives(id) {
+                console.log("setAfObjectives id è " + id)
+                console.log('Fetching AfObjectives from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'afobjectives/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AfObjectives from AFamily with id :' + id);
+                            $localStorage.afobjectives = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AfObjectives from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+            function getAfObjectives() {
+                return $localStorage.afobjectives;
             }
     }
 ]);

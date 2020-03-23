@@ -4,6 +4,7 @@ angular.module('crudApp').controller('AClassController',
     ['AClassService', '$scope','$window',
     function(AClassService, $scope, $window ) {
         var self = this;
+
         // AClass
         self.aclass = {};
         self.aclasses = [];
@@ -14,6 +15,8 @@ angular.module('crudApp').controller('AClassController',
         // Drop list in editSAR
         self.searchAssuranceRequirements = searchAssuranceRequirements;
 
+        // click browse on aclassstructure
+        self.showAFamilyStructure = showAFamilyStructure;
 
         // AcIntroduction
         self.acintroduction = {};
@@ -24,6 +27,12 @@ angular.module('crudApp').controller('AClassController',
         // AFamily
         self.afamily = [];
         self.getAFamily = getAFamily;
+        self.getIdAFamily = getIdAFamily;
+
+
+        // AfObjectives
+        self.afobjectives = [];
+        self.getAfObjectives = getAfObjectives;
 
 
         self.successMessage = '';
@@ -96,10 +105,30 @@ angular.module('crudApp').controller('AClassController',
         function getAFamily() {
             return AClassService.getAFamily();
         }
+        function getIdAFamily() {
+            return AClassService.getIdAFamily();
+        }
+
+        //click browse aclassstructure
+        function showAFamilyStructure(id){
+            console.log("showAFamilyStructure id che ho passato: " + id);
+            $window.location.href = "http://localhost:8080/#/afamilystructure";
+            AClassService.setAfObjectives(id)
+            .then(
+                function () {
+                    console.log('ID '+ id + " è stato cliccato FfBehaviour");
+                },
+                function (errResponse) {
+                    console.error('Error FfBehaviour ' + id + ', Error :' + errResponse.data);
+                }
+            );
+        }
 
 
-
-
+        // AfObjectives
+        function getAfObjectives() {
+            return AClassService.getAfObjectives();
+        }
 
 
 

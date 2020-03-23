@@ -6,10 +6,11 @@ import java.util.List;
 import com.unicampania.ccwebapp.model.model_aclass.AClass;
 import com.unicampania.ccwebapp.model.model_aclass.AFamily;
 import com.unicampania.ccwebapp.model.model_aclass.AcIntroduction;
+import com.unicampania.ccwebapp.model.model_aclass.AfObjectives;
 import com.unicampania.ccwebapp.model.model_fclass.*;
-import com.unicampania.ccwebapp.repositories.repositories_aclass.AClassRepository;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AFamilyRepository;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AcIntroductionRepository;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.AfObjectivesRepository;
 import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
 import com.unicampania.ccwebapp.service.AClassService;
 import com.unicampania.ccwebapp.util.CustomErrorType;
@@ -18,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,11 +73,11 @@ public class RestApiController {
 
 	@RequestMapping(value = "/acintroduction/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAcIntroduction(@PathVariable("id") String id) {
-		logger.info("Fetching User with id {}", id);
+		logger.info("Fetching AcIntroduction from AClass with id {}", id);
 		List<AcIntroduction> acintroductions = acIntroductionRepository.AcIntroductionInAClass(id);
 		if (acintroductions.isEmpty() ) {
-			logger.error("User with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
+			logger.error("AcIntroduction from AClass with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcIntroduction from AClass with id " + id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		System.out.println(acintroductions);
@@ -90,15 +90,33 @@ public class RestApiController {
 
 	@RequestMapping(value = "/afamily/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAFamily(@PathVariable("id") String id) {
-		logger.info("Fetching AFamily with id {}", id);
+		logger.info("Fetching AFamily from AClass with id {}", id);
 		List<AFamily> aFamilies = aFamilyRepository.AFamilyInAClass(id);
 		if (aFamilies.isEmpty() ) {
-			logger.error("AFamily with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AFamily with id " + id
+			logger.error("AFamily from AClass with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AFamily from AClass with id " + id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AFamily>>(aFamilies , HttpStatus.OK);
 	}
+
+
+	// ------ Retrive AfObjectives
+	@Autowired
+	AfObjectivesRepository afObjectivesRepository;
+
+	@RequestMapping(value = "/afobjectives/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAfObjectives(@PathVariable("id") String id) {
+		logger.info("Fetching AfObjectives from AFamily with id {}", id);
+		List<AfObjectives> afObjectives = afObjectivesRepository.AfObjectivesInAFamily(id);
+		if (afObjectives.isEmpty() ) {
+			logger.error("AfObjectives from AFamily with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfObjectives from AFamily with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AfObjectives>>(afObjectives , HttpStatus.OK);
+	}
+
 //---
 
 

@@ -333,7 +333,6 @@ angular.module('crudApp').controller('UserController',
                  }
 //------------- Passa id dell'ffamily al Serivice per la richiesta di ffbehaivour e ffusernotes---------------
              function showFfamilyStructure(id){
-             $window.alert("prova");
                                  $window.location.href = "http://localhost:8080/#/ffamilystructure";
 
                UserService.setFfBehaviour(id).then(

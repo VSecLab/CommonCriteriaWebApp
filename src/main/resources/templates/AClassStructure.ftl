@@ -35,7 +35,7 @@
             <tr ng-repeat="f in ctrl.getAFamily()">
                 <td>{{f.id_afamily}}</td>
                 <td>{{f.name}}</td>
-                <td> <button type="button" ui-sref="ffamilystructure" ng-click="ctrl.showFfamilyStructure(f.id)" class="btn btn-success custom-width">Browse</button></td>
+                <td> <button type="button" ui-sref="AFamilyStructure" ng-click="ctrl.showAFamilyStructure(f.id_afamily)" class="btn btn-success custom-width">Browse</button></td>
             </tr>
         </tbody>
     </table>
