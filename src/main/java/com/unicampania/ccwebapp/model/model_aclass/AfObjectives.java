@@ -8,10 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "afobjectives")
-public class AfObjectives {
+public class AfObjectives implements Serializable {
 
     @Id
     @Setter

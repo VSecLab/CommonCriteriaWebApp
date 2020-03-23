@@ -32,6 +32,11 @@ angular.module('crudApp').factory('AClassService',
                 setAfLevellingCriteria: setAfLevellingCriteria,
                 getAfLevellingCriteria: getAfLevellingCriteria,
 
+
+                // AfApplicationNotes
+                setAfApplicationNotes: setAfApplicationNotes,
+                getAfApplicationNotes: getAfApplicationNotes,
+
              }
              return factory;
 
@@ -208,5 +213,28 @@ angular.module('crudApp').factory('AClassService',
             function getAfLevellingCriteria() {
                 return $localStorage.aflevellingcriteria;
             }
+
+
+            // AfApplicationNotes
+                        function setAfApplicationNotes(id) {
+                            console.log('Fetching AfApplicationNotes from AFamily with id :' + id);
+                            var deferred = $q.defer();
+                            $http.get(urls.USER_SERVICE_API + 'afapplicationnotes/' + id)
+                            .then(
+                                function(response) {
+                                    console.log('Fetched successfully AfApplicationNotes from AFamily with id :' + id);
+                                    $localStorage.afapplicationnotes = response.data;
+                                    deferred.resolve(response.data);
+                                },
+                                function(errResponse) {
+                                    console.error('Error while loading AfApplicationNotes from AFamily with id :' + id);
+                                    deferred.reject(errResponse);
+                                }
+                            );
+                            return deferred.promise;
+                        }
+                        function getAfApplicationNotes() {
+                            return $localStorage.afapplicationnotes;
+                        }
     }
 ]);

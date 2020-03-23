@@ -39,6 +39,13 @@ angular.module('crudApp').controller('AClassController',
         self.aflevellingcriteria = [];
         self.getAfLevellingCriteria = getAfLevellingCriteria;
 
+
+        // AfApplicationNotes
+        self.afapplicationnotes = [];
+        self.getAfApplicationNotes = getAfApplicationNotes;
+
+
+
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
@@ -134,6 +141,15 @@ angular.module('crudApp').controller('AClassController',
                     console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                 }
             );
+            AClassService.setAfApplicationNotes(id)
+                        .then(
+                            function () {
+                                console.log('ID '+ id + " è stato cliccato FfBehaviour");
+                            },
+                            function (errResponse) {
+                                console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                            }
+                        );
         }
 
 
@@ -147,6 +163,10 @@ angular.module('crudApp').controller('AClassController',
             return AClassService.getAfLevellingCriteria();
         }
 
+        // AfApplicationNotes
+        function getAfApplicationNotes() {
+            return AClassService.getAfApplicationNotes();
+        }
 
     }
 ]);

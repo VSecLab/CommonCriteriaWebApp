@@ -5,10 +5,7 @@ import java.util.List;
 
 import com.unicampania.ccwebapp.model.model_aclass.*;
 import com.unicampania.ccwebapp.model.model_fclass.*;
-import com.unicampania.ccwebapp.repositories.repositories_aclass.AFamilyRepository;
-import com.unicampania.ccwebapp.repositories.repositories_aclass.AcIntroductionRepository;
-import com.unicampania.ccwebapp.repositories.repositories_aclass.AfLevellingCriteriaRepository;
-import com.unicampania.ccwebapp.repositories.repositories_aclass.AfObjectivesRepository;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.*;
 import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
 import com.unicampania.ccwebapp.service.AClassService;
 import com.unicampania.ccwebapp.util.CustomErrorType;
@@ -129,6 +126,23 @@ public class RestApiController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AfLevellingCriteria>>(afLevellingCriteria , HttpStatus.OK);
+	}
+
+
+	// ------ Retrive AfApplicationNotes
+	@Autowired
+	AfApplicationNotesRepository afApplicationNotesRepository;
+
+	@RequestMapping(value = "/afapplicationnotes/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAfApplicationNotes(@PathVariable("id") String id) {
+		logger.info("Fetching AfApplicationNotes from AFamily with id {}", id);
+		List<AfApplicationNotes> afApplicationNotes = afApplicationNotesRepository.AfApplicationNotesInAFamily(id);
+		if (afApplicationNotes.isEmpty() ) {
+			logger.error("AfApplicationNotes from AFamily with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfApplicationNotes from AFamily with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AfApplicationNotes>>(afApplicationNotes , HttpStatus.OK);
 	}
 
 
