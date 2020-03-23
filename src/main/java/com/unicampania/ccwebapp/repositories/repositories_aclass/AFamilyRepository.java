@@ -13,10 +13,7 @@ public interface AFamilyRepository extends JpaRepository<AFamily, String> {
     Select all from afamily where ida = id
     ida is the foreign key for the aclass
      */
-    @Query(value = "" +
-            "SELECT * " +
-            "FROM afamily" +
-            "WHERE ida = :id",
+    @Query(value ="select * from afamily where ida = :id",
     nativeQuery = true)
     /*
     We can also pass method parameters to the query using named parameters.

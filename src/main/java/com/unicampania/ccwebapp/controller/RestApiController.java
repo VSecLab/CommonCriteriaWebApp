@@ -4,9 +4,11 @@ import java.util.List;
 
 
 import com.unicampania.ccwebapp.model.model_aclass.AClass;
+import com.unicampania.ccwebapp.model.model_aclass.AFamily;
 import com.unicampania.ccwebapp.model.model_aclass.AcIntroduction;
 import com.unicampania.ccwebapp.model.model_fclass.*;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AClassRepository;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.AFamilyRepository;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AcIntroductionRepository;
 import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
 import com.unicampania.ccwebapp.service.AClassService;
@@ -80,6 +82,22 @@ public class RestApiController {
 		}
 		System.out.println(acintroductions);
 		return new ResponseEntity<List<AcIntroduction>>(acintroductions, HttpStatus.OK);
+	}
+
+
+	@Autowired
+	AFamilyRepository aFamilyRepository;
+
+	@RequestMapping(value = "/afamily/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAFamily(@PathVariable("id") String id) {
+		logger.info("Fetching AFamily with id {}", id);
+		List<AFamily> aFamilies = aFamilyRepository.AFamilyInAClass(id);
+		if (aFamilies.isEmpty() ) {
+			logger.error("AFamily with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AFamily with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AFamily>>(aFamilies , HttpStatus.OK);
 	}
 //---
 

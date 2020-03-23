@@ -21,6 +21,11 @@ angular.module('crudApp').controller('AClassController',
         self.getAcIntroduction = getAcIntroduction;
 
 
+        // AFamily
+        self.afamily = [];
+        self.getAFamily = getAFamily;
+
+
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
@@ -52,6 +57,14 @@ angular.module('crudApp').controller('AClassController',
                     console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
                 }
             );
+            AClassService.setAFamily(id).then(
+                function () {
+                    console.log('ID '+id + " è stato cliccato setAFamily");
+                },
+                function (errResponse) {
+                    console.error('Error setAFamily ' + id + ', Error :' + errResponse.data);
+                }
+            );
         }
         function getIdaclass() {
             return AClassService.getIdaclass();
@@ -76,6 +89,14 @@ angular.module('crudApp').controller('AClassController',
                 }
             );
         }
+
+
+
+        // AFamily function
+        function getAFamily() {
+            return AClassService.getAFamily();
+        }
+
 
 
 

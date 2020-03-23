@@ -19,6 +19,11 @@ angular.module('crudApp').factory('AClassService',
                 getAcIntroduction: getAcIntroduction,
                 setAcIntroduction: setAcIntroduction,
 
+                // AFamily
+                setAFamily: setAFamily,
+                getAFamily: getAFamily,
+
+
              }
              return factory;
 
@@ -65,8 +70,7 @@ angular.module('crudApp').factory('AClassService',
                 $http.get(urls.USER_SERVICE_API + 'aclass/' + id)
                 .then(
                     function (response) {
-                        console.log('Fetched successfully User with id :'+id);
-                        console.log(response);
+                        console.log('Fetched successfully AClass with id :'+id);
                         $localStorage.aclasses = response.data;
                         deferred.resolve(response.data);
                     },
@@ -126,6 +130,26 @@ angular.module('crudApp').factory('AClassService',
             }
 
 
-
+            // AFamily
+            function getAFamily() {
+                return $localStorage.afamily;
+            }
+            function setAFamily(id){
+                console.log('Fetching AFamily from AClass with id :'+id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'afamily/' + id)
+                .then(
+                    function (response) {
+                        console.log('Fetched successfully AFamily from AClass with id :'+id);
+                        $localStorage.afamily = response.data;
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        console.error('Error while loading AFamily from AClass with id :'+id);
+                        deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
     }
 ]);

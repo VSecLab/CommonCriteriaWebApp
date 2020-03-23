@@ -128,7 +128,6 @@ angular.module('crudApp').factory('UserService',
                         return $localStorage.fcodipendencies[0].idf;
               }
               function getIdfclass() {
-                          console.log($localStorage.fcintroductions);
                         return $localStorage.fcintroductions[0].idf;
               }
 
