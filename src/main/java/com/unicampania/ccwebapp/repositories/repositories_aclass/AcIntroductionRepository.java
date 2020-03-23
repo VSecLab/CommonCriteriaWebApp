@@ -14,10 +14,7 @@ public interface AcIntroductionRepository extends JpaRepository<AcIntroduction, 
     Select all from acintroduction where ida = id
     ida is the foreign key for the aclass
      */
-    @Query(value = "" +
-            "SELECT * " +
-            "FROM acintroduction" +
-            "WHERE ida = :id",
+    @Query(value = "SELECT * FROM acintroduction WHERE ida =:id",
             nativeQuery = true)
     /*
     We can also pass method parameters to the query using named parameters.

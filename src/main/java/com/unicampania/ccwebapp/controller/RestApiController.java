@@ -4,8 +4,10 @@ import java.util.List;
 
 
 import com.unicampania.ccwebapp.model.model_aclass.AClass;
+import com.unicampania.ccwebapp.model.model_aclass.AcIntroduction;
 import com.unicampania.ccwebapp.model.model_fclass.*;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AClassRepository;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.AcIntroductionRepository;
 import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
 import com.unicampania.ccwebapp.service.AClassService;
 import com.unicampania.ccwebapp.util.CustomErrorType;
@@ -60,6 +62,25 @@ public class RestApiController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<AClass>(aClass, HttpStatus.OK);
+	}
+
+
+
+	@Autowired
+	AcIntroductionRepository acIntroductionRepository;
+
+	@RequestMapping(value = "/acintroduction/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAcIntroduction(@PathVariable("id") String id) {
+		logger.info("Fetching User with id {}", id);
+		List<AcIntroduction> acintroductions = acIntroductionRepository.AcIntroductionInAClass(id);
+		if (acintroductions.isEmpty() ) {
+			logger.error("User with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+
+		System.out.println(acintroductions);
+		return new ResponseEntity<List<AcIntroduction>>(acintroductions, HttpStatus.OK);
 	}
 //---
 

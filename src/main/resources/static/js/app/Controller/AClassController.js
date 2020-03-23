@@ -5,13 +5,20 @@ angular.module('crudApp').controller('AClassController',
     function(AClassService, $scope, $window ) {
         var self = this;
         // AClass
-        self.aClass = {};
-        self.aClasses = [];
+        self.aclass = {};
+        self.aclasses = [];
         self.getAllAClasses = getAllAClasses;
         self.selectAClass = selectAClass;
+        self.getIdaclass = getIdaclass;
 
         // Drop list in ediSAR
         self.searchAssuranceRequirements = searchAssuranceRequirements;
+
+
+        // AcIntroduction
+        self.acintroduction = {};
+        self.acintroductions = [];
+        self.getAcIntroduction = getAcIntroduction;
 
 
         self.successMessage = '';
@@ -23,7 +30,13 @@ angular.module('crudApp').controller('AClassController',
             return AClassService.getAllAClasses();
         }
 
+        function getAllAcIntroduction() {
+            return AClassService.getAllAcIntroduction();
+        }
 
+        function getAcIntroduction() {
+            return AClassService.getAcIntroduction();
+        }
         function searchAssuranceRequirements(id){
             AClassService.setAComponent(id)
             .then(
@@ -50,8 +63,24 @@ angular.module('crudApp').controller('AClassController',
                     console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
                 }
             );
+            AClassService.setAcIntroduction(id).then(
+                                    function (response) {
+
+                                      console.log('ID '+id + " è stato cliccato selectUser");
+                                        console.log(response);
+
+                                    },
+                                    function (errResponse) {
+                                        console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
+                                    }
+                                );
         }
 
+
+
+                    function getIdaclass(){
+                                        return AClassService.getIdaclass();
+                             }
 
 
 }

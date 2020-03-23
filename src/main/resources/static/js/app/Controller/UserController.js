@@ -7,7 +7,7 @@ angular.module('crudApp').controller('UserController',
         self.user = {};
         self.users=[];
         self.fcintroduction = {};
-        self.fcintroductions =[];
+        self.fcintroductions = [];
 
 
 

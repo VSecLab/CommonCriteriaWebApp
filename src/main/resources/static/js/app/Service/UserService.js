@@ -91,6 +91,7 @@ angular.module('crudApp').factory('UserService',
              function getFci(){
                 return $localStorage.fcintroductions;
               }
+
              function getListFcInformativeNotes(){
                        return $localStorage.fcinformationsnotes;
              }
@@ -127,6 +128,7 @@ angular.module('crudApp').factory('UserService',
                         return $localStorage.fcodipendencies[0].idf;
               }
               function getIdfclass() {
+                          console.log($localStorage.fcintroductions);
                         return $localStorage.fcintroductions[0].idf;
               }
 
@@ -156,6 +158,7 @@ angular.module('crudApp').factory('UserService',
                     .then(
                         function (response) {
                             console.log('Fetched successfully User with id :'+id);
+                            console.log(response);
                             $localStorage.fcintroductions = response.data;
 
 
