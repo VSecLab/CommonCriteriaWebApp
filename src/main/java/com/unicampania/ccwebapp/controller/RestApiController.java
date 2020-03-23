@@ -3,13 +3,11 @@ package com.unicampania.ccwebapp.controller;
 import java.util.List;
 
 
-import com.unicampania.ccwebapp.model.model_aclass.AClass;
-import com.unicampania.ccwebapp.model.model_aclass.AFamily;
-import com.unicampania.ccwebapp.model.model_aclass.AcIntroduction;
-import com.unicampania.ccwebapp.model.model_aclass.AfObjectives;
+import com.unicampania.ccwebapp.model.model_aclass.*;
 import com.unicampania.ccwebapp.model.model_fclass.*;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AFamilyRepository;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AcIntroductionRepository;
+import com.unicampania.ccwebapp.repositories.repositories_aclass.AfLevellingCriteriaRepository;
 import com.unicampania.ccwebapp.repositories.repositories_aclass.AfObjectivesRepository;
 import com.unicampania.ccwebapp.repositories.repositories_fclass.*;
 import com.unicampania.ccwebapp.service.AClassService;
@@ -116,6 +114,23 @@ public class RestApiController {
 		}
 		return new ResponseEntity<List<AfObjectives>>(afObjectives , HttpStatus.OK);
 	}
+
+	// ------ Retrive AfLevellingCriteria
+	@Autowired
+	AfLevellingCriteriaRepository afLevellingCriteriaRepository;
+
+	@RequestMapping(value = "/aflevellingcriteria/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAfLevelliingCriteria(@PathVariable("id") String id) {
+		logger.info("Fetching AfLevellingCriteria from AFamily with id {}", id);
+		List<AfLevellingCriteria> afLevellingCriteria = afLevellingCriteriaRepository.AfLevellingCriteriaInAFamily(id);
+		if (afLevellingCriteria.isEmpty() ) {
+			logger.error("AfLevellingCriteria from AFamily with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfLevellingCriteria from AFamily with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AfLevellingCriteria>>(afLevellingCriteria , HttpStatus.OK);
+	}
+
 
 //---
 

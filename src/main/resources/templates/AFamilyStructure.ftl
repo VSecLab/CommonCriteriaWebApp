@@ -26,8 +26,20 @@
     </table>
 
     <h3> Component Levelling </h3>
+    <table>
+            <thead>
+                <tr>
+                    <th width="100"></th>
+                    <th width="100"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
+                    <td>{{f.testo}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h2> COMPONENT (REQUIREMENTS) </h2>
 
     <table>
         <thead>

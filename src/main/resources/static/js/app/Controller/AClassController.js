@@ -35,6 +35,10 @@ angular.module('crudApp').controller('AClassController',
         self.getAfObjectives = getAfObjectives;
 
 
+        // AfLevellinCriteria
+        self.aflevellingcriteria = [];
+        self.getAfLevellingCriteria = getAfLevellingCriteria;
+
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
@@ -111,7 +115,6 @@ angular.module('crudApp').controller('AClassController',
 
         //click browse aclassstructure
         function showAFamilyStructure(id){
-            console.log("showAFamilyStructure id che ho passato: " + id);
             $window.location.href = "http://localhost:8080/#/afamilystructure";
             AClassService.setAfObjectives(id)
             .then(
@@ -122,6 +125,15 @@ angular.module('crudApp').controller('AClassController',
                     console.error('Error FfBehaviour ' + id + ', Error :' + errResponse.data);
                 }
             );
+            AClassService.setAfLevellingCriteria(id)
+            .then(
+                function () {
+                    console.log('ID '+ id + " è stato cliccato FfBehaviour");
+                },
+                function (errResponse) {
+                    console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                }
+            );
         }
 
 
@@ -130,6 +142,10 @@ angular.module('crudApp').controller('AClassController',
             return AClassService.getAfObjectives();
         }
 
+        // AfLevellingCriteria
+        function getAfLevellingCriteria() {
+            return AClassService.getAfLevellingCriteria();
+        }
 
 
     }

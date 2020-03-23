@@ -28,6 +28,10 @@ angular.module('crudApp').factory('AClassService',
                 setAfObjectives: setAfObjectives,
                 getAfObjectives: getAfObjectives,
 
+                // AfLevellingCriteria
+                setAfLevellingCriteria: setAfLevellingCriteria,
+                getAfLevellingCriteria: getAfLevellingCriteria,
+
              }
              return factory;
 
@@ -162,7 +166,6 @@ angular.module('crudApp').factory('AClassService',
 
             // AfObjectives
             function setAfObjectives(id) {
-                console.log("setAfObjectives id è " + id)
                 console.log('Fetching AfObjectives from AFamily with id :' + id);
                 var deferred = $q.defer();
                 $http.get(urls.USER_SERVICE_API + 'afobjectives/' + id)
@@ -181,6 +184,29 @@ angular.module('crudApp').factory('AClassService',
             }
             function getAfObjectives() {
                 return $localStorage.afobjectives;
+            }
+
+
+            // AfLevellingCriteria
+            function setAfLevellingCriteria(id) {
+                console.log('Fetching AfLevellingCriteria from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'aflevellingcriteria/' + id)
+                .then(
+                    function(response) {
+                        console.log('Fetched successfully AfLevellingCriteria from AFamily with id :' + id);
+                        $localStorage.aflevellingcriteria = response.data;
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        console.error('Error while loading AfLevellingCriteria from AFamily with id :' + id);
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+            }
+            function getAfLevellingCriteria() {
+                return $localStorage.aflevellingcriteria;
             }
     }
 ]);
