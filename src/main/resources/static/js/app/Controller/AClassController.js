@@ -11,7 +11,7 @@ angular.module('crudApp').controller('AClassController',
         self.selectAClass = selectAClass;
         self.getIdaclass = getIdaclass;
 
-        // Drop list in ediSAR
+        // Drop list in editSAR
         self.searchAssuranceRequirements = searchAssuranceRequirements;
 
 
@@ -26,30 +26,10 @@ angular.module('crudApp').controller('AClassController',
         self.done = false;
 
 
+        // funzioni aclass
         function getAllAClasses() {
             return AClassService.getAllAClasses();
         }
-
-        function getAllAcIntroduction() {
-            return AClassService.getAllAcIntroduction();
-        }
-
-        function getAcIntroduction() {
-            return AClassService.getAcIntroduction();
-        }
-        function searchAssuranceRequirements(id){
-            AClassService.setAComponent(id)
-            .then(
-                function () {
-                    $window.location.href = 'http://localhost:8080/#/acomponent';
-                    console.log('ID '+ id + " è stato cliccato setAComponent");
-                },
-                function (errResponse) {
-                    console.error('Error setFcomponent ' + id + ', Error :' + errResponse.data);
-                }
-            );
-        }
-
         function selectAClass(id) {
             self.successMessage='';
             self.errorMessage='';
@@ -63,25 +43,44 @@ angular.module('crudApp').controller('AClassController',
                     console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
                 }
             );
-            AClassService.setAcIntroduction(id).then(
-                                    function (response) {
+            AClassService.setAcIntroduction(id)
+            .then(
+                function (response) {
+                    console.log('ID '+id + " è stato cliccato selectUser");
+                },
+                function (errResponse) {
+                    console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
+                }
+            );
+        }
+        function getIdaclass() {
+            return AClassService.getIdaclass();
+        }
 
-                                      console.log('ID '+id + " è stato cliccato selectUser");
-                                        console.log(response);
 
-                                    },
-                                    function (errResponse) {
-                                        console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
-                                    }
-                                );
+        // funzioni AcIntroduction
+        function getAcIntroduction() {
+            return AClassService.getAcIntroduction();
+        }
+
+        // Droplist editSAR
+        function searchAssuranceRequirements(id){
+            AClassService.setAComponent(id)
+            .then(
+                function () {
+                    $window.location.href = 'http://localhost:8080/#/acomponent';
+                    console.log('ID '+ id + " è stato cliccato setAComponent");
+                },
+                function (errResponse) {
+                    console.error('Error setFcomponent ' + id + ', Error :' + errResponse.data);
+                }
+            );
         }
 
 
 
-                    function getIdaclass(){
-                                        return AClassService.getIdaclass();
-                             }
 
 
-}
+
+    }
 ]);

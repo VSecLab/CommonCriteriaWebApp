@@ -78,7 +78,6 @@ public class RestApiController {
 			return new ResponseEntity<CustomErrorType>(new CustomErrorType("User with id " + id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
-
 		System.out.println(acintroductions);
 		return new ResponseEntity<List<AcIntroduction>>(acintroductions, HttpStatus.OK);
 	}

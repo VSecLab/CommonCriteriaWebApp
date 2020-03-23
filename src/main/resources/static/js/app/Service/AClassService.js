@@ -22,6 +22,7 @@ angular.module('crudApp').factory('AClassService',
              }
              return factory;
 
+            // funzioni aclass
             function loadAllAClasses() {
                 console.log('Fetching all AClasses');
                 var deferred = $q.defer();
@@ -39,11 +40,9 @@ angular.module('crudApp').factory('AClassService',
                 );
                 return deferred.promise;
             }
-
             function getAllAClasses(){
                 return $localStorage.aclasses;
             }
-
             function getAClass(id) {
                 console.log('Fetching AClass with id :'+id);
                 var deferred = $q.defer();
@@ -60,9 +59,30 @@ angular.module('crudApp').factory('AClassService',
                 );
                 return deferred.promise;
             }
+            function setAClass (id) {
+                console.log('Fetching AClass with id :'+id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'aclass/' + id)
+                .then(
+                    function (response) {
+                        console.log('Fetched successfully User with id :'+id);
+                        console.log(response);
+                        $localStorage.aclasses = response.data;
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        console.error('Error while loading AClass with id :'+id);
+                        deferred.reject(errResponse);
+                    }
+                );
+                 return deferred.promise;
+            }
+            function getIdaclass() {
+                return $localStorage.aclasses.id;
+            }
 
 
-
+            //Acomponent function
             function setAComponent(id){
                 console.log('Fetching AComponent with id :'+ id);
                 var deferred = $q.defer();
@@ -81,19 +101,24 @@ angular.module('crudApp').factory('AClassService',
             }
 
 
-            function setAClass (id) {
-                console.log('Fetching AClass with id :'+id);
+
+
+            //ACintroduction function
+            function getAcIntroduction() {
+                return $localStorage.acintroductions;
+            }
+            function setAcIntroduction (id) {
+                console.log('Fetching User with id :'+id);
                 var deferred = $q.defer();
-                $http.get(urls.USER_SERVICE_API + 'aclass/' + id)
+                $http.get(urls.USER_SERVICE_API + 'acintroduction/' + id)
                 .then(
                     function (response) {
-                        console.log('Fetched successfully User with id :'+id);
-                        console.log(response);
-                        $localStorage.aclasses = response.data;
+                        console.log('Fetched successfully AcIntroduction with id :'+id);
+                        $localStorage.acintroductions = response.data;
                         deferred.resolve(response.data);
                     },
                     function (errResponse) {
-                        console.error('Error while loading AClass with id :'+id);
+                        console.error('Error while loading user with id :'+id);
                         deferred.reject(errResponse);
                     }
                 );
@@ -101,33 +126,6 @@ angular.module('crudApp').factory('AClassService',
             }
 
 
-            function getAcIntroduction() {
-                return $localStorage.acintroductions;
-            }
 
-
-            function setAcIntroduction (id) {
-                            console.log('Fetching User with id :'+id);
-                            var deferred = $q.defer();
-                            $http.get(urls.USER_SERVICE_API + 'acintroduction/' + id)
-                                .then(
-                                    function (response) {
-                                        console.log('Fetched successfully AcIntroduction with id :'+id);
-                                        $localStorage.acintroductions = response.data;
-
-
-                                        deferred.resolve(response.data);
-                                    },
-                                    function (errResponse) {
-                                        console.error('Error while loading user with id :'+id);
-                                        deferred.reject(errResponse);
-                                    }
-                                );
-                            return deferred.promise;
-                        }
-
-            function getIdaclass() {
-
-                                    return $localStorage.aclasses.id;
-                          }
-}]);
+    }
+]);
