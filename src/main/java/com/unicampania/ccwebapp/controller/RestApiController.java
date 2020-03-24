@@ -145,6 +145,21 @@ public class RestApiController {
 		return new ResponseEntity<List<AfApplicationNotes>>(afApplicationNotes , HttpStatus.OK);
 	}
 
+	// ------ Retrive AComponent
+	@Autowired
+	AComponentRepository aComponentRepository;
+
+	@RequestMapping(value = "/acomponent/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAComponent(@PathVariable("id") String id) {
+		logger.info("Fetching AComponent from AFamily with id {}", id);
+		List<AComponent> aComponents = aComponentRepository.AComponentInAFamily(id);
+		if (aComponents.isEmpty() ) {
+			logger.error("AComponent from AFamily with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AComponents from AFamily with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AComponent>>(aComponents , HttpStatus.OK);
+	}
 
 //---
 

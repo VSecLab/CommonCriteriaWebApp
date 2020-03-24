@@ -56,6 +56,11 @@
             </tbody>
         </table>
 
+
+
+
+
+
     <table>
         <thead>
             <tr>
@@ -66,7 +71,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="f in ctrl.getListFcomponent()">
+            <tr ng-repeat="f in ctrl.getAComponent()">
                 <td>{{f.id}}</td>
                 <td>{{f.name}}</td>
 
