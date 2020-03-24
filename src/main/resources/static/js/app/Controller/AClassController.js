@@ -138,15 +138,6 @@ angular.module('crudApp').controller('AClassController',
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
-                 AClassService.setAComponent(id)
-                     .then(
-                        function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                 function(errResponse) {
-                    console.error('Error AComponent from AFamily with ' + id + ', Error :' + errResponse.data);
-                    }
-              );
             }
 
 

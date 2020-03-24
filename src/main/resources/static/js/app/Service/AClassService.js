@@ -159,8 +159,8 @@ angular.module('crudApp').factory('AClassService',
                 return deferred.promise;
             }
 
-            function getIdAFamily() {
-                return $localStorage.afamily[0].id_afamily;
+            function getIdAFamily() {   // l'id della family lo devo prendere da qua perchè questo afobjective gia sta dentro, m so capit sul ij lass sta
+                return $localStorage.afobjectives[0].idf;
             }
 
 
