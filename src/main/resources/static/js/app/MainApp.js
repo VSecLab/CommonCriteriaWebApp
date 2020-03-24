@@ -100,6 +100,12 @@ app.config(function($routeProvider) {
             controllerAs: 'ctrl',
         })
 
+        .when('/afamilystructure/acomponentstructure', {
+                    templateUrl: 'partials/AComponentStructure',
+                    controller: 'UserController',
+                    controllerAs: 'ctrl',
+                })
+
         .otherwise({
             redirectTo: '/'
         });

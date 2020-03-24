@@ -16,6 +16,8 @@ angular.module('crudApp').controller('AClassController',
 
             // click browse on aclassstructure
             self.showAFamilyStructure = showAFamilyStructure;
+            // click browse on afamilystructure
+            self.showAComponentStructure = showAComponentStructure;
 
             // AcIntroduction
             self.acintroduction = {};
@@ -160,5 +162,15 @@ angular.module('crudApp').controller('AClassController',
             function getAComponent() {
                 return AClassService.getAComponent();
             }
+
+
+
+
+            //click browse aclassstructure
+            function showAComponentStructure(id) {
+                $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
+            }
+
+
         }
     ]);

@@ -10,7 +10,7 @@
 
     <span class="uppercase" style="color:#ff0000; text-transform:uppercase;"> <strong>  {{ ctrl.getIdAFamily() }} </strong></span>
 
-    <h3> Objectives </h3>
+    <h3> Dependencies </h3>
     <table>
         <thead>
             <tr>
@@ -25,24 +25,38 @@
         </tbody>
     </table>
 
-    <h3> Component Levelling </h3>
+    <h3> Objectives </h3>
     <table>
-            <thead>
-                <tr>
-                    <th width="100"></th>
-                    <th width="100"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
-                    <td>{{f.testo}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <thead>
+            <tr>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
+                <td>{{f.testo}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-
-<h3>  Application Notes </h3>
+    <h3>  Developer action elements </h3>
     <table>
+        <thead>
+            <tr>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
+                <td>{{f.testo}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>  Content and presentation elements </h3>
+        <table>
             <thead>
                 <tr>
                     <th width="100"></th>
@@ -56,10 +70,20 @@
             </tbody>
         </table>
 
-
-
-
-
+    <h3>  Evaluator action elements </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="100"></th>
+                        <th width="100"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
+                        <td>{{f.testo}}</td>
+                    </tr>
+                </tbody>
+            </table>
 
     <table>
         <thead>
