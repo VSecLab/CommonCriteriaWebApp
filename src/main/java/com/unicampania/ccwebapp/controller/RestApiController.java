@@ -105,9 +105,11 @@ public class RestApiController {
 		logger.info("Fetching AfObjectives from AFamily with id {}", id);
 		List<AfObjectives> afObjectives = afObjectivesRepository.AfObjectivesInAFamily(id);
 		if (afObjectives.isEmpty() ) {
-			logger.error("AfObjectives from AFamily with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfObjectives from AFamily with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AfObjectives c = new AfObjectives();
+			c.setTesto("There are no objectives");
+			c.setIdf(id);
+			afObjectives.add(c);
+			return new ResponseEntity<List<AfObjectives>>(afObjectives , HttpStatus.OK);
 		}
 		return new ResponseEntity<List<AfObjectives>>(afObjectives , HttpStatus.OK);
 	}
@@ -121,9 +123,11 @@ public class RestApiController {
 		logger.info("Fetching AfLevellingCriteria from AFamily with id {}", id);
 		List<AfLevellingCriteria> afLevellingCriteria = afLevellingCriteriaRepository.AfLevellingCriteriaInAFamily(id);
 		if (afLevellingCriteria.isEmpty() ) {
-			logger.error("AfLevellingCriteria from AFamily with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfLevellingCriteria from AFamily with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AfLevellingCriteria c = new AfLevellingCriteria();
+			c.setTesto("There are no component levelling");
+			c.setIdf(id);
+			afLevellingCriteria.add(c);
+			return new ResponseEntity<List<AfLevellingCriteria>>(afLevellingCriteria , HttpStatus.OK);
 		}
 		return new ResponseEntity<List<AfLevellingCriteria>>(afLevellingCriteria , HttpStatus.OK);
 	}
@@ -138,9 +142,11 @@ public class RestApiController {
 		logger.info("Fetching AfApplicationNotes from AFamily with id {}", id);
 		List<AfApplicationNotes> afApplicationNotes = afApplicationNotesRepository.AfApplicationNotesInAFamily(id);
 		if (afApplicationNotes.isEmpty() ) {
-			logger.error("AfApplicationNotes from AFamily with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AfApplicationNotes from AFamily with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AfApplicationNotes c = new AfApplicationNotes();
+			c.setTesto("There are no application notes");
+			c.setIdf(id);
+			afApplicationNotes.add(c);
+			return new ResponseEntity<List<AfApplicationNotes>>(afApplicationNotes , HttpStatus.OK);
 		}
 		return new ResponseEntity<List<AfApplicationNotes>>(afApplicationNotes , HttpStatus.OK);
 	}
@@ -159,6 +165,87 @@ public class RestApiController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<AComponent>>(aComponents , HttpStatus.OK);
+	}
+
+	// ------ Retrive AcoDependsOnComponent
+	@Autowired
+	AcoDependsOnComponentRepository acoDependsOnComponentRepository;
+
+	@RequestMapping(value = "/acodependsoncomponent/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAcoDependsOnComponent(@PathVariable("id") String id) {
+		logger.info("Fetching AcoDependsOnComponent from AComponent with id {}", id);
+		List<AcoDependsOnComponent> acoDependsOnComponents = acoDependsOnComponentRepository.AcoDependsOnComponentInAComponent(id);
+		if (acoDependsOnComponents.isEmpty() ) {
+			logger.error("AcoDependsOnComponent from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoDependsOnComponent from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AcoDependsOnComponent>>(acoDependsOnComponents , HttpStatus.OK);
+	}
+
+	// ------ Retrive AcoObjectives
+	@Autowired
+	AcoObjectivesRepository acoObjectivesRepository;
+
+	@RequestMapping(value = "/acobjectives/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAcoObjectives(@PathVariable("id") String id) {
+		logger.info("Fetching AcoObjectives from AComponent with id {}", id);
+		List<AcoObjectives> acoObjectives = acoObjectivesRepository.AcoObjectivesInAComponent(id);
+		if (acoObjectives.isEmpty() ) {
+			logger.error("AcoObjectives from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoObjectives from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AcoObjectives>>(acoObjectives , HttpStatus.OK);
+	}
+
+	// ------ Retrive AeContent
+	@Autowired
+	AeContentRepository aeContentRepository;
+
+	@RequestMapping(value = "/aecontent/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAeContent(@PathVariable("id") String id) {
+		logger.info("Fetching AeContent from AComponent with id {}", id);
+		List<AeContent> aeContents = aeContentRepository.AeContentInAComponent(id);
+		if (aeContents.isEmpty() ) {
+			logger.error("AeContent from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoDependsOnComponent from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AeContent>>(aeContents , HttpStatus.OK);
+	}
+
+	// ------ Retrive AeDeveloper
+	@Autowired
+	AeDeveloperRepository aeDeveloperRepository;
+
+	@RequestMapping(value = "/aedeveloper/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAeDeveloper(@PathVariable("id") String id) {
+		logger.info("Fetching AeDeveloper from AComponent with id {}", id);
+		List<AeDeveloper> aeDevelopers = aeDeveloperRepository.AeDeveloperInAComponent(id);
+		if (aeDevelopers.isEmpty() ) {
+			logger.error("AeDeveloper from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AeDeveloper from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AeDeveloper>>(aeDevelopers , HttpStatus.OK);
+	}
+
+
+	// ------ Retrive AeEvaluator
+	@Autowired
+	AeEvaluatorRepository aeEvaluatorRepository;
+
+	@RequestMapping(value = "/aeevaluator/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAeEvaluator(@PathVariable("id") String id) {
+		logger.info("Fetching AeEvaluator from AComponent with id {}", id);
+		List<AeEvaluator> aeEvaluators = aeEvaluatorRepository.AeEvaluatorInAComponent(id);
+		if (aeEvaluators.isEmpty() ) {
+			logger.error("AeEvaluator from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AeEvaluator from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AeEvaluator>>(aeEvaluators , HttpStatus.OK);
 	}
 
 //---
