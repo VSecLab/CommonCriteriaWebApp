@@ -194,7 +194,7 @@ angular.module('crudApp').controller('AClassController',
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
-                    
+
             }
 
 
