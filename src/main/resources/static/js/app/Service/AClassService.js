@@ -40,6 +40,11 @@ angular.module('crudApp').factory('AClassService',
                 //AComponent
                 setAComponent: setAComponent,
                 getAComponent: getAComponent,
+                getIdAComponent: getIdAComponent,
+
+                // AcoObjectives
+                setAcoObjectives: setAcoObjectives,
+                getAcoObjectives: getAcoObjectives,
 
             }
             return factory;
@@ -242,7 +247,7 @@ angular.module('crudApp').factory('AClassService',
                 $http.get(urls.USER_SERVICE_API + 'acomponent/' + id)
                 .then(
                     function(response) {
-                        console.log('Fetched successfully AComponent from AFamily with id :' + id);
+                        console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
                         $localStorage.acomponent = response.data;
                         deferred.resolve(response.data);
                     },
@@ -251,9 +256,39 @@ angular.module('crudApp').factory('AClassService',
                         deferred.reject(errResponse);
                     }
                 );
+                return deferred.promise;
             }
+
             function getAComponent() {
                 return $localStorage.acomponent;
             }
+
+            function getIdAComponent() {
+                return $localStorage.IdAComponent;
+            }
+
+
+function setAcoObjectives(id) {
+                $localStorage.IdAComponent = id;   //prendo l'id ro caz
+                console.log("setAcomponent" + $localStorage.IdAComponent);
+                console.log('Fetching AcoObjectives from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'acoobjectives/' + id)
+                .then(
+                    function(response) {
+                        console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                        $localStorage.acobjectives = response.data;
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        console.error('Error while loading AComponent from AFamily with id :' + id);
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+            }
+                        function getAcoObjectives() {
+                            return $localStorage.acobjectives;
+                        }
         }
     ]);

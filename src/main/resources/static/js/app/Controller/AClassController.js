@@ -10,10 +10,10 @@ angular.module('crudApp').controller('AClassController',
             self.aclass = {};
             self.aclasses = [];
             self.getAllAClasses = getAllAClasses;
-            self.selectAClass = selectAClass;
             self.getIdaclass = getIdaclass;
 
-
+            // click on element of list of assurance paradigm
+            self.showAClassStructure = showAClassStructure;
             // click browse on aclassstructure
             self.showAFamilyStructure = showAFamilyStructure;
             // click browse on afamilystructure
@@ -44,7 +44,12 @@ angular.module('crudApp').controller('AClassController',
             // AComponent
             self.acomponent = [];
             self.getAComponent = getAComponent;
+            self.IdAComponent = {};
+            self.getIdAComponent = getIdAComponent;
 
+            // AcoObjectives
+            self.acoobjectives = [];
+            self.getAcoObjectives = getAcoObjectives;
 
 
             self.successMessage = '';
@@ -52,12 +57,11 @@ angular.module('crudApp').controller('AClassController',
             self.done = false;
 
 
-            // funzioni aclass
+            // AClass functions
             function getAllAClasses() {
                 return AClassService.getAllAClasses();
             }
-
-            function selectAClass(id) {
+            function showAClassStructure(id) {
                 self.successMessage = '';
                 self.errorMessage = '';
                 AClassService.setAClass(id)
@@ -87,25 +91,22 @@ angular.module('crudApp').controller('AClassController',
                         console.error('Error setAFamily ' + id + ', Error :' + errResponse.data);
                     }
                 );
-            }
 
+            }
             function getIdaclass() {
                 return AClassService.getIdaclass();
             }
 
 
-            // funzioni AcIntroduction
+            //  AcIntroduction function
             function getAcIntroduction() {
                 return AClassService.getAcIntroduction();
             }
-
-
 
             // AFamily function
             function getAFamily() {
                 return AClassService.getAFamily();
             }
-
             function getIdAFamily() {
                 return AClassService.getIdAFamily();
             }
@@ -140,44 +141,60 @@ angular.module('crudApp').controller('AClassController',
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
-                AClassService.setAComponent(id)
+                AClassService.setAComponent(id).then(
+                    function() {
+                        console.log('ID ' + id + " è stato cliccato setAFamily");
+                    },
+                    function(errResponse) {
+                        console.error('Error setAFamily ' + id + ', Error :' + errResponse.data);
+                    }
+                );
+            }
+
+
+            // AfObjectives function
+            function getAfObjectives() {
+                return AClassService.getAfObjectives();
+            }
+
+            // AfLevellingCriteria function
+            function getAfLevellingCriteria() {
+                return AClassService.getAfLevellingCriteria();
+            }
+
+            // AfApplicationNotes function
+            function getAfApplicationNotes() {
+                return AClassService.getAfApplicationNotes();
+            }
+
+            // AComponent functions
+            function getAComponent() {
+                return AClassService.getAComponent();
+            }
+            function getIdAComponent() {
+                return AClassService.getIdAComponent();
+            }
+
+
+            // AcoObjectives function
+            function getAcoObjectives() {
+                return AClassService.getAcoObjectives();
+            }
+
+
+            //click browse aclassstructure
+            function showAComponentStructure(id) {
+                AClassService.setAcoObjectives(id)
                     .then(
                         function() {
+                            $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
                             console.log('ID ' + id + " è stato cliccato FfBehaviour");
                         },
                         function(errResponse) {
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
-            }
-
-
-            // AfObjectives
-            function getAfObjectives() {
-                return AClassService.getAfObjectives();
-            }
-
-            // AfLevellingCriteria
-            function getAfLevellingCriteria() {
-                return AClassService.getAfLevellingCriteria();
-            }
-
-            // AfApplicationNotes
-            function getAfApplicationNotes() {
-                return AClassService.getAfApplicationNotes();
-            }
-
-            // AComponent
-            function getAComponent() {
-                return AClassService.getAComponent();
-            }
-
-
-
-
-            //click browse aclassstructure
-            function showAComponentStructure(id) {
-                $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
+                    
             }
 
 

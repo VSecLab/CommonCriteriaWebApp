@@ -155,7 +155,7 @@ public class RestApiController {
 	@Autowired
 	AComponentRepository aComponentRepository;
 
-	@RequestMapping(value = "/acomponent/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/acomponent/{id:.+}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAComponent(@PathVariable("id") String id) {
 		logger.info("Fetching AComponent from AFamily with id {}", id);
 		List<AComponent> aComponents = aComponentRepository.AComponentInAFamily(id);
@@ -187,7 +187,7 @@ public class RestApiController {
 	@Autowired
 	AcoObjectivesRepository acoObjectivesRepository;
 
-	@RequestMapping(value = "/acobjectives/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/acoobjectives/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAcoObjectives(@PathVariable("id") String id) {
 		logger.info("Fetching AcoObjectives from AComponent with id {}", id);
 		List<AcoObjectives> acoObjectives = acoObjectivesRepository.AcoObjectivesInAComponent(id);

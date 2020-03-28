@@ -102,7 +102,7 @@ app.config(function($routeProvider) {
 
         .when('/afamilystructure/acomponentstructure', {
                     templateUrl: 'partials/AComponentStructure',
-                    controller: 'UserController',
+                    controller: 'AClassController',
                     controllerAs: 'ctrl',
                 })
 

@@ -45,7 +45,7 @@
                     <tr ng-repeat="a in ctrl.getAllAClasses()">
                         <td>{{a.id}}</td>
                     	<td>{{a.name}}</td>
-                    	<td> <button  ng-click="ctrl.selectAClass(a.id)" class="btn btn-success custom-width"><i class="fa fa-caret-right"></i></button></td>
+                    	<td> <button  ng-click="ctrl.showAClassStructure(a.id)" class="btn btn-success custom-width"><i class="fa fa-caret-right"></i></button></td>
                     </tr>
                 </tbody>
         </div>

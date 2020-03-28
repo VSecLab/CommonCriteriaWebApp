@@ -3,108 +3,16 @@
 <head>
     <title> Common Criteria | AFamily Structure</title>
     <link rel="shortcut icon" href="Images/favicon1.ico">
-    <link href="css/bootstrap.css" rel="stylesheet" />
 </head>
 
 <body>
 
-    <span class="uppercase" style="color:#ff0000; text-transform:uppercase;"> <strong>  {{ ctrl.getIdAFamily() }} </strong></span>
+    <span class="uppercase" style="color:#ff0000; text-transform:uppercase;"> <strong>  {{ ctrl.getIdAComponent() }} </strong></span>
 
-    <h3> Dependencies </h3>
-    <table>
-        <thead>
-            <tr>
-                <th width="100"></th>
-                <th width="100"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="f in ctrl.getAfObjectives()">
-                <td>{{f.testo}}</td>
-            </tr>
-        </tbody>
-    </table>
+        a bucchin e mammt
 
-    <h3> Objectives </h3>
-    <table>
-        <thead>
-            <tr>
-                <th width="100"></th>
-                <th width="100"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
-                <td>{{f.testo}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h5>{{ ctrl.getAcoObjectives() }}</h5>
 
-    <h3>  Developer action elements </h3>
-    <table>
-        <thead>
-            <tr>
-                <th width="100"></th>
-                <th width="100"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
-                <td>{{f.testo}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>  Content and presentation elements </h3>
-        <table>
-            <thead>
-                <tr>
-                    <th width="100"></th>
-                    <th width="100"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
-                    <td>{{f.testo}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-    <h3>  Evaluator action elements </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th width="100"></th>
-                        <th width="100"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
-                        <td>{{f.testo}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th width="100"></th>
-                <th width="100"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="f in ctrl.getAComponent()">
-                <td>{{f.id}}</td>
-                <td>{{f.name}}</td>
-
-                <td>
-                    <button type="button" ng-click="ctrl.showAComponentStructure(f.id)" class="btn btn-success custom-width">Browse</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
 </body>
 
