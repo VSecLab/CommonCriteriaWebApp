@@ -6,6 +6,7 @@ angular.module('crudApp').controller('AClassController',
         function(AClassService, $scope, $window) {
             var self = this;
 
+
             // AClass
             self.aclass = {};
             self.aclasses = [];
