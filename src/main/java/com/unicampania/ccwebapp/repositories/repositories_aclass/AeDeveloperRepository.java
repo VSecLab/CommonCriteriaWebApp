@@ -14,7 +14,7 @@ public interface AeDeveloperRepository extends JpaRepository<AeDeveloper, String
 Select all from aedeveloper where id_acomponent = id
 id_acomponent is a foreign key for acomponent
      */
-    @Query(value ="select * from acodependsoncomponent where id_acomponent = :id",
+    @Query(value ="select * from aedeveloper where id_acomponent = :id",
             nativeQuery = true)
     /*
     We can also pass method parameters to the query using named parameters.

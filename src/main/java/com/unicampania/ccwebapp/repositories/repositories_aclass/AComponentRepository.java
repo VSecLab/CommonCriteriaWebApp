@@ -14,10 +14,7 @@ public interface AComponentRepository extends JpaRepository<AComponent, String> 
     Select all from acomponent where ida = id
     ida is the foreign key for the aclass
      */
-    @Query(value = "" +
-            "SELECT * " +
-            "FROM acomponent" +
-            "WHERE ida = :id",
+    @Query(value = "select * from acomponent where ida = :id",
             nativeQuery = true)
     /*
     We can also pass method parameters to the query using named parameters.

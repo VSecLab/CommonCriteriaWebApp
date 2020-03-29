@@ -13,6 +13,8 @@ angular.module('crudApp').controller('AClassController',
             self.getAllAClasses = getAllAClasses;
             self.getIdaclass = getIdaclass;
 
+            // click lente di ingrandimento editSAR
+            self.showAssuranceRequirements = showAssuranceRequirements;
             // click on element of list of assurance paradigm
             self.showAClassStructure = showAClassStructure;
             // click browse on aclassstructure
@@ -47,10 +49,24 @@ angular.module('crudApp').controller('AClassController',
             self.getAComponent = getAComponent;
             self.IdAComponent = {};
             self.getIdAComponent = getIdAComponent;
+            self.acomponentinaclass = [];
+            self.getAComponentInAClass = getAComponentInAClass;
 
             // AcoObjectives
             self.acoobjectives = [];
             self.getAcoObjectives = getAcoObjectives;
+
+            // AeDeveloper
+            self.aedeveloper = [];
+            self.getAeDeveloper = getAeDeveloper;
+
+            // AeContent
+            self.aecontent = [];
+            self.getAeContent = getAeContent;
+
+            // AeEvaluator
+            self.aeevaluator = [];
+            self.getAeEvaluator = getAeEvaluator;
 
 
             self.successMessage = '';
@@ -62,6 +78,7 @@ angular.module('crudApp').controller('AClassController',
             function getAllAClasses() {
                 return AClassService.getAllAClasses();
             }
+
             function showAClassStructure(id) {
                 self.successMessage = '';
                 self.errorMessage = '';
@@ -94,6 +111,7 @@ angular.module('crudApp').controller('AClassController',
                 );
 
             }
+
             function getIdaclass() {
                 return AClassService.getIdaclass();
             }
@@ -108,6 +126,7 @@ angular.module('crudApp').controller('AClassController',
             function getAFamily() {
                 return AClassService.getAFamily();
             }
+
             function getIdAFamily() {
                 return AClassService.getIdAFamily();
             }
@@ -172,6 +191,11 @@ angular.module('crudApp').controller('AClassController',
             function getAComponent() {
                 return AClassService.getAComponent();
             }
+
+            function getAComponentInAClass() {
+                return AClassService.getAComponentInAClass();
+            }
+
             function getIdAComponent() {
                 return AClassService.getIdAComponent();
             }
@@ -183,12 +207,72 @@ angular.module('crudApp').controller('AClassController',
             }
 
 
+            // AeDeveloper function
+            function getAeDeveloper() {
+                return AClassService.getAeDeveloper();
+            }
+
+            // AeContent function
+            function getAeContent() {
+                return AClassService.getAeContent();
+            }
+
+
+            // AeEvaluator function
+            function getAeEvaluator() {
+                return AClassService.getAeEvaluator();
+            }
+
             //click browse aclassstructure
             function showAComponentStructure(id) {
+                $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
                 AClassService.setAcoObjectives(id)
                     .then(
                         function() {
-                            $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
+                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                        },
+                        function(errResponse) {
+                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                        }
+                    );
+                AClassService.setAeDeveloper(id)
+                    .then(
+                        function() {
+                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                        },
+                        function(errResponse) {
+                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                        }
+                    );
+                AClassService.setAeContent(id)
+                    .then(
+                        function() {
+                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                        },
+                        function(errResponse) {
+                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                        }
+                    );
+
+                AClassService.setAeEvaluator(id)
+                    .then(
+                        function() {
+                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                        },
+                        function(errResponse) {
+                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                        }
+                    );
+
+            }
+
+            //click lente di ingrandimento editSAR
+            function showAssuranceRequirements(id) {
+                console.log("assurance requirements id:" + id)
+                $window.location.href = "http://localhost:8080/#/assurancerequirementsstructure";
+                AClassService.setAComponentInAClass(id)
+                    .then(
+                        function() {
                             console.log('ID ' + id + " è stato cliccato FfBehaviour");
                         },
                         function(errResponse) {
@@ -196,7 +280,6 @@ angular.module('crudApp').controller('AClassController',
                         }
                     );
             }
-
 
         }
     ]);

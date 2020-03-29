@@ -1,15 +1,42 @@
 <html>
     <head>
         <title>Common Criteria | About</title>
-        <!-- CSS (load bootstrap) -->
 
      </head>
-<body class="aboutBody">
 
 
-<p>This thesis work, held at the University of Campania Luigi Vanvitelli, has as its object the development of a browsable catalog of the international standard on IT security ISO / IEC 15408.
-The first part of the work was carried out by Lorenzo Diana who took care of the design and implementation of the database containing information relating to a part of the standard: Security Functional Requirements.
-The second part was developed by Roberto Chello by analyzing the part relating to the Security Assurance Requirements.</p>
 
-</body>
+<body>
+        <center>
+        <div class="gfg">
+        The first part was created by Lorenzo Diana
+        , who proceeded to create the relational scheme
+         for the Functional Requirements. Later he created
+         the web application from which it was possible to
+         create and scroll through a catalog relating to the
+         Functional Requirements.
+        The second part of the project was created by Roberto
+         Chello, who created the relationship scheme, and
+          the related database, for the Assurance Requirements.
+        The web application created by Lorenzo Diana has been
+         modified to allow navigation of the catalog of Assurance Requirements.
+
+        </div>
+        </center>
+    </body>
+
+
+<style>
+                div.gfg {
+                    margin:5px;
+                    padding:5px;
+                    margin-right: auto;
+                    width: 500px;
+                    height: auto;
+                    overflow: auto;
+                    text-align:justify;
+                }
+            </style>
 </html>
+
+

@@ -19,7 +19,7 @@
                 <option ng-repeat="a in ctrl.getAllAClasses()" value="{{a.id}}"">{{a.name}} - {{a.id}}</option>
             </select>
             <br />
-            <button ng-click="ctrl.searchAssuranceRequirements(Name)" class="btn btn-success custom-width" ng-disabled="!Name || Name.length == 0"><i class="fa fa-search"></i></button>
+            <button ng-click="ctrl.showAssuranceRequirements(Name)" class="btn btn-success custom-width" ng-disabled="!Name || Name.length == 0"><i class="fa fa-search"></i></button>
             <br />
             <br />
 

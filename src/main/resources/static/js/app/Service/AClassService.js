@@ -41,11 +41,24 @@ angular.module('crudApp').factory('AClassService',
                 setAComponent: setAComponent,
                 getAComponent: getAComponent,
                 getIdAComponent: getIdAComponent,
+                setAComponentInAClass: setAComponentInAClass,
+                getAComponentInAClass: getAComponentInAClass,
 
                 // AcoObjectives
                 setAcoObjectives: setAcoObjectives,
                 getAcoObjectives: getAcoObjectives,
 
+                // AeDeveloper
+                setAeDeveloper: setAeDeveloper,
+                getAeDeveloper: getAeDeveloper,
+
+                // AeContent
+                setAeContent: setAeContent,
+                getAeContent: getAeContent,
+
+                // AeEvaluator
+                setAeEvaluator: setAeEvaluator,
+                getAeEvaluator: getAeEvaluator,
             }
             return factory;
 
@@ -114,9 +127,6 @@ angular.module('crudApp').factory('AClassService',
 
 
 
-
-
-
             //ACintroduction function
             function getAcIntroduction() {
                 return $localStorage.acintroductions;
@@ -164,7 +174,7 @@ angular.module('crudApp').factory('AClassService',
                 return deferred.promise;
             }
 
-            function getIdAFamily() {   // l'id della family lo devo prendere da qua perchè questo afobjective gia sta dentro, m so capit sul ij lass sta
+            function getIdAFamily() { // l'id della family lo devo prendere da qua perchè questo afobjective gia sta dentro, m so capit sul ij lass sta
                 return $localStorage.afobjectives[0].idf;
             }
 
@@ -245,17 +255,17 @@ angular.module('crudApp').factory('AClassService',
                 console.log('Fetching AComponent from AFamily with id :' + id);
                 var deferred = $q.defer();
                 $http.get(urls.USER_SERVICE_API + 'acomponent/' + id)
-                .then(
-                    function(response) {
-                        console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
-                        $localStorage.acomponent = response.data;
-                        deferred.resolve(response.data);
-                    },
-                    function(errResponse) {
-                        console.error('Error while loading AComponent from AFamily with id :' + id);
-                        deferred.reject(errResponse);
-                    }
-                );
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                            $localStorage.acomponent = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
                 return deferred.promise;
             }
 
@@ -267,28 +277,124 @@ angular.module('crudApp').factory('AClassService',
                 return $localStorage.IdAComponent;
             }
 
-
-function setAcoObjectives(id) {
-                $localStorage.IdAComponent = id;   //prendo l'id ro caz
+            // AcoObjectives
+            function setAcoObjectives(id) {
+                $localStorage.IdAComponent = id; //prendo l'id ro caz
                 console.log("setAcomponent" + $localStorage.IdAComponent);
                 console.log('Fetching AcoObjectives from AFamily with id :' + id);
                 var deferred = $q.defer();
                 $http.get(urls.USER_SERVICE_API + 'acoobjectives/' + id)
-                .then(
-                    function(response) {
-                        console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
-                        $localStorage.acobjectives = response.data;
-                        deferred.resolve(response.data);
-                    },
-                    function(errResponse) {
-                        console.error('Error while loading AComponent from AFamily with id :' + id);
-                        deferred.reject(errResponse);
-                    }
-                );
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                            $localStorage.acobjectives = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
                 return deferred.promise;
             }
-                        function getAcoObjectives() {
-                            return $localStorage.acobjectives;
+
+            function getAcoObjectives() {
+                return $localStorage.acobjectives;
+            }
+
+            // AeDeveloper
+            function setAeDeveloper(id) {
+                console.log('Fetching AcoObjectives from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'aedeveloper/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                            $localStorage.aedeveloper = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
                         }
+                    );
+                return deferred.promise;
+            }
+
+            function getAeDeveloper() {
+                return $localStorage.aedeveloper;
+            }
+
+            // AeContent
+            function setAeContent(id) {
+                console.log('Fetching AcoObjectives from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'aecontent/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                            $localStorage.aecontent = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function getAeContent() {
+                return $localStorage.aecontent;
+            }
+
+            // AeEvaluator
+            function setAeEvaluator(id) {
+                console.log('Fetching AcoObjectives from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'aeevaluator/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoObjectives from AComponent with id :' + id);
+                            $localStorage.aeevaluator = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function getAeEvaluator() {
+                return $localStorage.aeevaluator;
+            }
+
+
+
+            // AComponentInAClass
+            function setAComponentInAClass(id) {
+                console.log('Fetching AComponent from AClass with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'acomponentinaclass/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AComponent from AClass with id :' + id);
+                            $localStorage.acomponentinaclass = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function getAComponentInAClass() {
+                return $localStorage.acomponentinaclass;
+            }
+
         }
     ]);

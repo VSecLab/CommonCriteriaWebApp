@@ -30,7 +30,6 @@ public class RestApiController {
 	@Autowired
 	UserRepository userRepository; //Service which will do all data retrieval/manipulation work
 
-//---
 	@Autowired
 	AClassService aClassService;
 
@@ -46,9 +45,7 @@ public class RestApiController {
 		return new ResponseEntity<List<AClass>>(aClasses, HttpStatus.OK);
 	}
 
-
-	// -------------------Retrieve Single AClass------------------------------------------
-
+	// AClass
 	@RequestMapping(value = "/aclass/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAClass(@PathVariable("id") String id) {
 		logger.info("Fetching AClass with id {}", id);
@@ -62,7 +59,7 @@ public class RestApiController {
 	}
 
 
-
+	// AcIntroduction
 	@Autowired
 	AcIntroductionRepository acIntroductionRepository;
 
@@ -79,7 +76,7 @@ public class RestApiController {
 		return new ResponseEntity<List<AcIntroduction>>(acintroductions, HttpStatus.OK);
 	}
 
-	// --------- Retrive AFamily ---------
+	// AFamily
 	@Autowired
 	AFamilyRepository aFamilyRepository;
 
@@ -96,7 +93,7 @@ public class RestApiController {
 	}
 
 
-	// ------ Retrive AfObjectives
+	// AfObjectives
 	@Autowired
 	AfObjectivesRepository afObjectivesRepository;
 
@@ -114,7 +111,7 @@ public class RestApiController {
 		return new ResponseEntity<List<AfObjectives>>(afObjectives , HttpStatus.OK);
 	}
 
-	// ------ Retrive AfLevellingCriteria
+	// AfLevellingCriteria
 	@Autowired
 	AfLevellingCriteriaRepository afLevellingCriteriaRepository;
 
@@ -133,7 +130,7 @@ public class RestApiController {
 	}
 
 
-	// ------ Retrive AfApplicationNotes
+	// AfApplicationNotes
 	@Autowired
 	AfApplicationNotesRepository afApplicationNotesRepository;
 
@@ -151,7 +148,7 @@ public class RestApiController {
 		return new ResponseEntity<List<AfApplicationNotes>>(afApplicationNotes , HttpStatus.OK);
 	}
 
-	// ------ Retrive AComponent
+	// AComponent
 	@Autowired
 	AComponentRepository aComponentRepository;
 
@@ -167,7 +164,19 @@ public class RestApiController {
 		return new ResponseEntity<List<AComponent>>(aComponents , HttpStatus.OK);
 	}
 
-	// ------ Retrive AcoDependsOnComponent
+	@RequestMapping(value = "/acomponentinaclass/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAComponentInAClass(@PathVariable("id") String id) {
+		logger.info("Fetching AComponent from AClass with id {}", id);
+		List<AComponent> aComponents = aComponentRepository.AComponentInAClass(id);
+		if (aComponents.isEmpty() ) {
+			logger.error("AComponent from AClass with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AComponents from AClass with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AComponent>>(aComponents , HttpStatus.OK);
+	}
+
+	// AcoDependsOnComponent
 	@Autowired
 	AcoDependsOnComponentRepository acoDependsOnComponentRepository;
 
@@ -183,7 +192,7 @@ public class RestApiController {
 		return new ResponseEntity<List<AcoDependsOnComponent>>(acoDependsOnComponents , HttpStatus.OK);
 	}
 
-	// ------ Retrive AcoObjectives
+	// AcoObjectives
 	@Autowired
 	AcoObjectivesRepository acoObjectivesRepository;
 
@@ -199,11 +208,11 @@ public class RestApiController {
 		return new ResponseEntity<List<AcoObjectives>>(acoObjectives , HttpStatus.OK);
 	}
 
-	// ------ Retrive AeContent
+	// AeContent
 	@Autowired
 	AeContentRepository aeContentRepository;
 
-	@RequestMapping(value = "/aecontent/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/aecontent/{id:.+}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAeContent(@PathVariable("id") String id) {
 		logger.info("Fetching AeContent from AComponent with id {}", id);
 		List<AeContent> aeContents = aeContentRepository.AeContentInAComponent(id);
@@ -215,11 +224,11 @@ public class RestApiController {
 		return new ResponseEntity<List<AeContent>>(aeContents , HttpStatus.OK);
 	}
 
-	// ------ Retrive AeDeveloper
+	// AeDeveloper
 	@Autowired
 	AeDeveloperRepository aeDeveloperRepository;
 
-	@RequestMapping(value = "/aedeveloper/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/aedeveloper/{id:.+}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAeDeveloper(@PathVariable("id") String id) {
 		logger.info("Fetching AeDeveloper from AComponent with id {}", id);
 		List<AeDeveloper> aeDevelopers = aeDeveloperRepository.AeDeveloperInAComponent(id);
@@ -232,11 +241,11 @@ public class RestApiController {
 	}
 
 
-	// ------ Retrive AeEvaluator
+	// AeEvaluator
 	@Autowired
 	AeEvaluatorRepository aeEvaluatorRepository;
 
-	@RequestMapping(value = "/aeevaluator/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/aeevaluator/{id:.+}", method = RequestMethod.GET)
 	public ResponseEntity<?> getAeEvaluator(@PathVariable("id") String id) {
 		logger.info("Fetching AeEvaluator from AComponent with id {}", id);
 		List<AeEvaluator> aeEvaluators = aeEvaluatorRepository.AeEvaluatorInAComponent(id);
@@ -317,7 +326,7 @@ public class RestApiController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 
-        System.out.println(fcintroductions);
+		System.out.println(fcintroductions);
 		return new ResponseEntity<List<FcIntroduction>>(fcintroductions, HttpStatus.OK);
 	}
 
@@ -544,7 +553,7 @@ public class RestApiController {
 		return new ResponseEntity<List<ListFco>>( listfco, HttpStatus.OK);
 	}
 
-// -------------------elimina elemento listFclass (Selected Elements)-----------------------
+	// -------------------elimina elemento listFclass (Selected Elements)-----------------------
 	@RequestMapping(value = "/fco/{id:.+}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletelistFco(@PathVariable("id") String id) {
 

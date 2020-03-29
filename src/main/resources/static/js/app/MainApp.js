@@ -10,6 +10,8 @@ app.constant('urls', {
 // configure routes
 app.config(function($routeProvider) {
     $routeProvider
+
+        // root
         .when('/', {
             templateUrl: 'partials/list.ftl',
             controller: 'AClassController',
@@ -24,38 +26,65 @@ app.config(function($routeProvider) {
                 }
             }
         })
-
-
-        // route for the Contact Us page
+        // route for contactus
         .when('/prova', {
             templateUrl: '/partials/prova.ftl'
         })
-        // route for the about page
+        // route for about
         .when('/about', {
             templateUrl: '/partials/About.ftl'
         })
-        // route for the edit page of SFR
-        .when('/editSFR', {
-            templateUrl: '/partials/editSFR.ftl',
-            controller: 'UserController',
-            controllerAs: 'ctrl'
-        })
-        // route for the edit page of SAR
+
+        // -----------------------------Routes for Security Assurance Requirements-----------------------
+        // route for editSAR
         .when('/editSAR', {
             templateUrl: '/partials/editSAR.ftl',
             controller: 'AClassController',
             controllerAs: 'ctrl'
         })
-        // route for the fcomponent page
-        .when('/fcomponent', {
-            templateUrl: 'partials/fcomponent',
-            controller: 'UserController',
-            controllerAs: 'ctrl',
-        })
-        // route for the acomponent page
+        // route for acomponent
         .when('/acomponent', {
             templateUrl: 'partials/acomponent',
             controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for aclassstructure
+        .when('/aclassstructure', {
+            templateUrl: 'partials/aclassstructure',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for afamilystructure
+        .when('/afamilystructure', {
+            templateUrl: 'partials/afamilystructure',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for acomponentstructure
+        .when('/afamilystructure/acomponentstructure', {
+            templateUrl: 'partials/AComponentStructure',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for assurancerequirementsstructure
+        .when('/assurancerequirementsstructure', {
+            templateUrl: 'partials/AssuranceRequirementsStructure',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+
+
+
+        // -----------------------------Routes for Security Assurance Requirements-----------------------        // route for the Contact Us page
+
+        .when('/editSFR', {
+            templateUrl: '/partials/editSFR.ftl',
+            controller: 'UserController',
+            controllerAs: 'ctrl'
+        })
+        .when('/fcomponent', {
+            templateUrl: 'partials/fcomponent',
+            controller: 'UserController',
             controllerAs: 'ctrl',
         })
         .when('/selectedelements', {
@@ -79,33 +108,15 @@ app.config(function($routeProvider) {
             controller: 'UserController',
             controllerAs: 'ctrl',
         })
-
-        // route for aclassstructure page
-        .when('/aclassstructure', {
-            templateUrl: 'partials/aclassstructure',
-            controller: 'AClassController',
-            controllerAs: 'ctrl',
-        })
-
-        // route for afamilystructure page
-        .when('/afamilystructure', {
-            templateUrl: 'partials/afamilystructure',
-            controller: 'AClassController',
-            controllerAs: 'ctrl',
-        })
-
         .when('/ffamilystructure', {
             templateUrl: 'partials/ffamilystructure',
             controller: 'UserController',
             controllerAs: 'ctrl',
         })
 
-        .when('/afamilystructure/acomponentstructure', {
-                    templateUrl: 'partials/AComponentStructure',
-                    controller: 'AClassController',
-                    controllerAs: 'ctrl',
-                })
 
+
+        // redirect to the root for not found route
         .otherwise({
             redirectTo: '/'
         });
