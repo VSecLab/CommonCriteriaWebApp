@@ -11,43 +11,40 @@
     <div class="modifyDIV">
         <div id="leftSection">
             <h1> {{ ctrl.getIdAFamily() }}</h1>
-
+            </br>
             <h3> Objectives </h3>
-
             <table>
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfObjectives()">
                         <td>
-                            <center>
-                                <div class="gfg">
+                            <div class="gfg" style="text-align: left";>
                                     {{f.testo}}
                                 </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
+            </br>
             <h3> Component Levelling </h3>
             <table>
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
                         <td>
-                            <center>
-                                <div class="gfg">
+                            <div class="gfg" style="text-align: left";>
                                     {{f.testo}}
                                 </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
+            </br>
             <h3> Application Notes </h3>
             <table>
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
                         <td>
-                            <center>
-                                <div class="gfg">
+
+                            <div class="gfg" style="text-align: left";>
                                     {{f.testo}}
                                 </div>
                         </td>
