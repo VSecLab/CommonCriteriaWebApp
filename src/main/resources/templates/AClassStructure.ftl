@@ -44,7 +44,7 @@
                         <td>{{a.id_afamily}}</td>
                         <td>{{a.name}}</td>
                         <td>
-                            <button type="button " ui-sref="AFamilyStructure " ng-click="ctrl.showAFamilyStructure(f.id_afamily) " class="btn btn-success custom-width "><i class="fa fa-caret-right"></i></button>
+                            <button type="button " ui-sref="AFamilyStructure " ng-click="ctrl.showAFamilyStructure(a.id_afamily) " class="btn btn-success custom-width "><i class="fa fa-caret-right"></i></button>
                         </td>
 
                     </tr>

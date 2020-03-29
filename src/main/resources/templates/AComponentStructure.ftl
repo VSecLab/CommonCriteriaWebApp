@@ -17,7 +17,7 @@
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfObjectives()">
                         <td>
-                            <div class="gfg" style="text-align: left";>
+                            <div class="gfg" style="text-align: left" ;>
                                 {{f.testo}}
                             </div>
                         </td>
@@ -28,9 +28,9 @@
             <h3> Objectives </h3>
             <table>
                 <tbody>
-                    <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
+                    <tr ng-repeat="f in ctrl.getAcoObjectives()">
                         <td>
-                            <div class="gfg" style="text-align: left";>
+                            <div class="gfg" style="text-align: left" ;>
                                 {{f.testo}}
                             </div>
                         </td>
@@ -38,12 +38,13 @@
                 </tbody>
             </table>
             </br>
+
             <h3> Application Notes </h3>
             <table>
                 <tbody>
-                    <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
+                    <tr ng-repeat="f in ctrl.getAcoApplicationNotes()">
                         <td>
-                            <div class="gfg" style="text-align: left";>
+                            <div class="gfg" style="text-align: left" ;>
                                 {{f.testo}}
                             </div>
                         </td>
@@ -51,6 +52,11 @@
                 </tbody>
             </table>
             </br>
+
+        </div>
+
+        <div id="rightSection">
+
             <h3> Developer Action Elements </h3>
             <table>
                 <thead>
@@ -84,11 +90,8 @@
                     </tr>
                 </tbody>
             </table>
-
-        </div>
-
-        <div id="rightSection">
-
+            </br>
+            <h3> Evaluator action elements </h3>
             <table>
                 <thead>
                     <tr>

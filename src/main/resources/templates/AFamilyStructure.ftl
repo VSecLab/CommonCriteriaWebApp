@@ -17,9 +17,9 @@
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfObjectives()">
                         <td>
-                            <div class="gfg" style="text-align: left";>
-                                    {{f.testo}}
-                                </div>
+                            <div class="gfg" style="text-align: left" ;>
+                                {{f.testo}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -30,9 +30,9 @@
                 <tbody>
                     <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
                         <td>
-                            <div class="gfg" style="text-align: left";>
-                                    {{f.testo}}
-                                </div>
+                            <div class="gfg" style="text-align: left" ;>
+                                {{f.testo}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -44,9 +44,9 @@
                     <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
                         <td>
 
-                            <div class="gfg" style="text-align: left";>
-                                    {{f.testo}}
-                                </div>
+                            <div class="gfg" style="text-align: left" ;>
+                                {{f.testo}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -69,7 +69,7 @@
                         <td>{{a.id}}</td>
                         <td>{{a.name}}</td>
                         <td>
-                            <button type="button " " ng-click="ctrl.showAComponentStructure(f.id) " class="btn btn-success custom-width ">Browse</button>
+                            <button type="button " " ng-click="ctrl.showAComponentStructure(a.id) " class="btn btn-success custom-width ">Browse</button>
                        	</td>
 
                     </tr>

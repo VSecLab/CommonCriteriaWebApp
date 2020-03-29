@@ -208,6 +208,22 @@ public class RestApiController {
 		return new ResponseEntity<List<AcoObjectives>>(acoObjectives , HttpStatus.OK);
 	}
 
+	// AcoApplicatioNotes
+	@Autowired
+	AcoApplicationNotesRepository acoApplicationNotesRepository;
+
+	@RequestMapping(value = "/acoapplicationnotes/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAcoApplicationNotes(@PathVariable("id") String id) {
+		logger.info("Fetching AcoApplicationNotes from AComponent with id {}", id);
+		List<AcoApplicationNotes> acoApplicationNotes = acoApplicationNotesRepository.AcoApplicationNotesInAComponent(id);
+		if (acoApplicationNotes.isEmpty() ) {
+			logger.error("AcoApplicationNotes from AComponent with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoObjectives from AComponent with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<AcoApplicationNotes>>(acoApplicationNotes , HttpStatus.OK);
+	}
+
 	// AeContent
 	@Autowired
 	AeContentRepository aeContentRepository;

@@ -56,6 +56,10 @@ angular.module('crudApp').controller('AClassController',
             self.acoobjectives = [];
             self.getAcoObjectives = getAcoObjectives;
 
+            // AcoApplicationNotes
+            self.acoapplicationnotes = [];
+            self.getAcoApplicationNotes = getAcoApplicationNotes;
+
             // AeDeveloper
             self.aedeveloper = [];
             self.getAeDeveloper = getAeDeveloper;
@@ -206,6 +210,11 @@ angular.module('crudApp').controller('AClassController',
                 return AClassService.getAcoObjectives();
             }
 
+            // AcoApplicationNotes function
+            function getAcoApplicationNotes() {
+                return AClassService.getAcoApplicationNotes();
+            }
+
 
             // AeDeveloper function
             function getAeDeveloper() {
@@ -235,6 +244,15 @@ angular.module('crudApp').controller('AClassController',
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
+                AClassService.setAcoApplicationNotes(id)
+                    .then(
+                        function() {
+                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                        },
+                        function(errResponse) {
+                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                        }
+                    );
                 AClassService.setAeDeveloper(id)
                     .then(
                         function() {
@@ -253,7 +271,6 @@ angular.module('crudApp').controller('AClassController',
                             console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
                         }
                     );
-
                 AClassService.setAeEvaluator(id)
                     .then(
                         function() {

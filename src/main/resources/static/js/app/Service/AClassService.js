@@ -48,6 +48,10 @@ angular.module('crudApp').factory('AClassService',
                 setAcoObjectives: setAcoObjectives,
                 getAcoObjectives: getAcoObjectives,
 
+                // AcoApplicationNotes
+                setAcoApplicationNotes: setAcoApplicationNotes,
+                getAcoApplicationNotes: getAcoApplicationNotes,
+
                 // AeDeveloper
                 setAeDeveloper: setAeDeveloper,
                 getAeDeveloper: getAeDeveloper,
@@ -300,6 +304,31 @@ angular.module('crudApp').factory('AClassService',
 
             function getAcoObjectives() {
                 return $localStorage.acobjectives;
+            }
+
+            // AcoApplicationNotes
+            function setAcoApplicationNotes(id) {
+                $localStorage.IdAComponent = id; //prendo l'id ro caz
+                console.log("setAcomponent" + $localStorage.IdAComponent);
+                console.log('Fetching AcoApplicationNotes from AFamily with id :' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'acoapplicationnotes/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoApplicationNotes from AComponent with id :' + id);
+                            $localStorage.acoapplicationnotes = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AComponent from AFamily with id :' + id);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function getAcoApplicationNotes() {
+                return $localStorage.acoapplicationnotes;
             }
 
             // AeDeveloper
