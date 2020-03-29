@@ -2,10 +2,10 @@
     <head>
         <title> Common Criteria | Security Assurance Requirements</title>
         <link rel="shortcut icon" href="Images/favicon1.ico">
-        <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/editSAR.css" rel="stylesheet"/>
     </head>
     <body>
+            <div class="modifyDIV">
         <div id="leftSection">
             <p><strong>CC Part 3 </strong>catalogues the set of functional components
             and organises them in families and classes.</p>
@@ -26,12 +26,12 @@
 
 
 
-            <h3>Selected Elements</h3>
+            <h3 class="nona">Selected Elements</h3>
             <input type="button" class="btn btn-success custom-width" value="Show" ng-click="ctrl.setListFco()"/>
         </div>
 
         <div id="rightSection">
-            <h3> List of Assurance Paradigm</h3>
+            <h3>List of Assurance Paradigm</h3>
             <br />
             <table>
                 <thead>
@@ -48,7 +48,12 @@
                     	<td> <button  ng-click="ctrl.showAClassStructure(a.id)" class="btn btn-success custom-width"><i class="fa fa-caret-right"></i></button></td>
                     </tr>
                 </tbody>
+                </table>
         </div>
+</div>
+
 
     </body>
+
+
 </html>

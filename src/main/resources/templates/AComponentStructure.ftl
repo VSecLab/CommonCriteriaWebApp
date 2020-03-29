@@ -1,109 +1,119 @@
+
 <html>
 
 <head>
     <title> Common Criteria | AComponent Structure</title>
     <link rel="shortcut icon" href="Images/favicon1.ico">
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/editSAR.css" rel="stylesheet" />
 </head>
 
 <body>
 
-    <h1 class="uppercase" style="color:#ff0000; text-transform:uppercase;"> <strong>  {{ ctrl.getIdAComponent() }} </strong></h1>
+    <div class="modifyDIV">
+        <div id="leftSection">
+            <h1> {{ ctrl.getIdAComponent() }}</h1>
+</br>
+            <h3> Dependency </h3>
 
-
-    <h2> DEPENDENCY </h2>
-    <h2> OBJECTIVES </h2>
-
-    <h2> APPLICATION NOTES </h2>
-
-    <h2> DEVELOPER ACTION ELEMENTS </h2>
-    <table>
-            <thead>
-                <tr>
-                    <th width="100"></th>
-                    <th width="100"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="f in ctrl.getAeDeveloper()">
-                    <td>{{f.id}}</td>
-                    <td>{{f.testo}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-<h2> CONTENT AND PRESENTATION ELEMENTS</h2>
-    <table>
-                <thead>
-                    <tr>
-                        <th width="100"></th>
-                        <th width="100"></th>
-                    </tr>
-                </thead>
+            <table>
                 <tbody>
-                    <tr ng-repeat="f in ctrl.getAeContent()">
-                        <td>{{f.id}}</td>
-                        <td>{{f.testo}}</td>
+                    <tr ng-repeat="f in ctrl.getAfObjectives()">
+                        <td>
+                                <div class="gfg">
+                                    {{f.testo}}
+                                </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+</br>
+            <h3> Objectives </h3>
+            <table>
+                <tbody>
+                    <tr ng-repeat="f in ctrl.getAfLevellingCriteria()">
+                        <td>
 
-<h2> EVALUATOR ACTION ELEMENTS</h2>
-    <table class="fixed_header">
+                                <div class="gfg">
+                                    {{f.testo}}
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+</br>
+            <h3> Application Notes </h3>
+            <table>
+                <tbody>
+                    <tr ng-repeat="f in ctrl.getAfApplicationNotes()">
+                        <td>
+
+                                <div class="gfg">
+                                    {{f.testo}}
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+</br>
+            <h3> Developer Action Elements </h3>
+            <table>
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> TEXT </th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in ctrl.getAeDeveloper()">
+                                    <td>{{a.id}}</td>
+                                    <td>{{a.testo}}</td>
+                                </tr>
+                           </tbody>
+                 		</table>
+</br>
+                <h3> Content and presentation elements </h3>
+                            <table>
+                                            <thead>
+                                                <tr>
+                                                    <th> ID </th>
+                                                    <th> TEXT </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="a in ctrl.getAeContent()">
+                                                    <td>{{a.id}}</td>
+                                                    <td>{{a.testo}}</td>
+                                                </tr>
+                                           </tbody>
+                                 		</table>
+
+        </div>
+
+        <div id="rightSection">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> TEXT </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="a in ctrl.getAeEvaluator()">
+                        <td>{{a.id}}</td>
+                        <td>{{a.testo}}</td>
 
 
-            <tbody >
-                <tr ng-repeat="f in ctrl.getAeEvaluator() ">
+                    </tr>
+               </tbody>
+     		</table>
 
-                    <td>{{f.id}}</td>
-                    <td>{{f.testo}}</td>
-
-
-                </tr>
-            </tbody>
-
-        </table>
-
-<style> div.gfg {
-     margin:5px;
-     padding:5px;
-     width: auto;
-     height: 300px;
-     overflow: auto;
-     text-align:justify;
-}
- .fixed_header{
-     margin:5px;
-     padding:5px;
-     width: 400px;
-     table-layout: fixed;
-     border-collapse: collapse;
-}
- .fixed_header tbody{
-     margin:5px;
-     padding:5px;
-     display:block;
-     width: 100%;
-     overflow: auto;
-     height: 100px;
-}
- .fixed_header thead tr {
-     margin:5px;
-     padding:5px;
-     display: block;
-}
- .fixed_header thead {
-     background: red;
-     color:#fff;
-}
- .fixed_header th, .fixed_header td {
-     margin:5px;
-     padding:5px;
-     padding: 5px;
-     text-align: left;
-     width: 200px;
-}
- </style>
+		</div>
+	</div>
 
 </body>
+
 </html>

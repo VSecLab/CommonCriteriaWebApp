@@ -26,6 +26,16 @@ html,
     float: right;
 }
 
+h3 {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: red;
+}
 table {
     color: #333; /* Lighten up font color */
     font-family: Helvetica, Arial, sans-serif; /* Nicer font */
@@ -49,6 +59,18 @@ td {
     text-align: center; /* Center our text */
     border: none;
 }
+
+
+
+div.modifyDIV {
+                        padding:15px;
+                        margin-right: auto;
+                        margin-left: auto;
+                        width: auto;
+                        height: 660px;
+                        overflow: auto;
+                        text-align:justify;
+                    }
 
 
 /* Cells in even rows (2,4,6...) are one color */
