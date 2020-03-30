@@ -69,6 +69,8 @@ app.config(function($routeProvider) {
 
 
 
+
+
         // -----------------------------Routes for Security Assurance Requirements-----------------------        // route for the Contact Us page
 
         .when('/editSFR', {
