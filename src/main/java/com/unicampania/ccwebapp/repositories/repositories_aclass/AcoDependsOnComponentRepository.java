@@ -14,7 +14,7 @@ public interface AcoDependsOnComponentRepository extends JpaRepository<AcoDepend
     Select all from acodependsoncomponent where acomponent = id
     acomponent "is" a foreign key for acomponent table
          */
-    @Query(value ="select * from acodependsoncomponent where acomponent = :id",
+    @Query(value ="select * from acodependsoncomponent where idf = :id",
             nativeQuery = true)
     /*
     We can also pass method parameters to the query using named parameters.

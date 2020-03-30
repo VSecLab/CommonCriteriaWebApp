@@ -42,12 +42,6 @@ app.config(function($routeProvider) {
             controller: 'AClassController',
             controllerAs: 'ctrl'
         })
-        // route for acomponent
-        .when('/acomponent', {
-            templateUrl: 'partials/acomponent',
-            controller: 'AClassController',
-            controllerAs: 'ctrl',
-        })
         // route for aclassstructure
         .when('/aclassstructure', {
             templateUrl: 'partials/aclassstructure',

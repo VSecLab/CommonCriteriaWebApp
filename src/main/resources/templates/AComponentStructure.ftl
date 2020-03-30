@@ -15,10 +15,10 @@
             <h3> Dependency </h3>
             <table>
                 <tbody>
-                    <tr ng-repeat="f in ctrl.getAfObjectives()">
+                    <tr ng-repeat="f in ctrl.getAcoDependsOnComponent()">
                         <td>
                             <div class="gfg" style="text-align: left" ;>
-                                {{f.testo}}
+                                {{f.acomponent}}
                             </div>
                         </td>
                     </tr>

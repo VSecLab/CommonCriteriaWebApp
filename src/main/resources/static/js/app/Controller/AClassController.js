@@ -56,6 +56,10 @@ angular.module('crudApp').controller('AClassController',
             self.acoobjectives = [];
             self.getAcoObjectives = getAcoObjectives;
 
+            // AcoDependsOnComponent
+            self.acodependsoncomponent = [];
+            self.getAcoDependsOnComponent = getAcoDependsOnComponent;
+
             // AcoApplicationNotes
             self.acoapplicationnotes = [];
             self.getAcoApplicationNotes = getAcoApplicationNotes;
@@ -90,27 +94,26 @@ angular.module('crudApp').controller('AClassController',
                     .then(
                         function(response) {
                             $window.location.href = 'http://localhost:8080/#/aclassstructure';
-                            console.log('ID ' + id + " è stato cliccato selectAClass");
+                            console.log("showAClassStructure, selected AClass with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
+                            console.log("showAClassStructure, ERROR AClass with id: " + id + "ERROR: " + errResponse.data);
                         }
                     );
                 AClassService.setAcIntroduction(id)
                     .then(
                         function(response) {
-                            console.log('ID ' + id + " è stato cliccato selectUser");
+                            console.log("showAClassStructure, selected AcIntroduction from AClass with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error selectUser ' + id + ', Error :' + errResponse.data);
-                        }
+                            console.log("showAClassStructure, ERROR AcIntroduction from AClass with id: " + id + "ERROR: " + errResponse.data);                        }
                     );
                 AClassService.setAFamily(id).then(
                     function() {
-                        console.log('ID ' + id + " è stato cliccato setAFamily");
+                            console.log("showAClassStructure, selected AFamily from AClass with id: " + id);
                     },
                     function(errResponse) {
-                        console.error('Error setAFamily ' + id + ', Error :' + errResponse.data);
+                            console.log("showAClassStructure, ERROR AFamily from AClass with id: " + id + "ERROR: " + errResponse.data);
                     }
                 );
 
@@ -141,38 +144,62 @@ angular.module('crudApp').controller('AClassController',
                 AClassService.setAfObjectives(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                            console.log("showAFamilyStrucutre, selected AfObjectives from AFamily with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error FfBehaviour ' + id + ', Error :' + errResponse.data);
+                            console.log("showAFamilyStructure, ERROR AfObjectives from AFamily with id: " + id + "ERROR: " + errResponse.data);
                         }
                     );
                 AClassService.setAfLevellingCriteria(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                            console.log("showAFamilyStrucutre, selected AfLevellingCriteria from AFamily with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                            console.log("showAFamilyStructure, ERROR AfLevellingCriteria from AFamily with id: " + id + "ERROR: " + errResponse.data);
                         }
                     );
                 AClassService.setAfApplicationNotes(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                            console.log("showAFamilyStrucutre, selected AfApplicationNotes from AFamily with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                            console.log("showAFamilyStructure, ERROR AfApplicationNotes from AFamily with id: " + id + "ERROR: " + errResponse.data);
                         }
                     );
-                AClassService.setAComponent(id).then(
-                    function() {
-                        console.log('ID ' + id + " è stato cliccato setAFamily");
-                    },
-                    function(errResponse) {
-                        console.error('Error setAFamily ' + id + ', Error :' + errResponse.data);
-                    }
-                );
+                AClassService.setAComponent(id)
+                    .then(
+                        function() {
+                            console.log("showAFamilyStrucutre, selected AComponent from AFamily with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAFamilyStructure, ERROR AComponent from AFamily with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
+                /*
+                AcoDependsOnComponent e AcoObjectives l'ho dovuto mettere qui perchè,
+                anche se è di AComponent, mi serviva l'id della AFamily per fare
+                la query.. perchè ho sbagliato nel backend
+                */
+                AClassService.setAcoDependsOnComponent(id)
+                    .then(
+                        function() {
+                            console.log("showAFamilyStrucutre, selected AcoDependsOnComponent from AFamily with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAFamilyStructure, ERROR AcoDependsOnComponent from AFamily with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
+                AClassService.setAcoObjectives(id)
+                    .then(
+                        function() {
+                            console.log("showAFamilyStrucutre, selected AcoObjectives from AFamily with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAFamilyStructure, ERROR AcoObjectives from AFamily with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
             }
 
 
@@ -210,6 +237,11 @@ angular.module('crudApp').controller('AClassController',
                 return AClassService.getAcoObjectives();
             }
 
+            // AcoDependsOnComponent function
+            function getAcoDependsOnComponent() {
+                return AClassService.getAcoDependsOnComponent();
+            }
+
             // AcoApplicationNotes function
             function getAcoApplicationNotes() {
                 return AClassService.getAcoApplicationNotes();
@@ -235,50 +267,41 @@ angular.module('crudApp').controller('AClassController',
             //click browse aclassstructure
             function showAComponentStructure(id) {
                 $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
-                AClassService.setAcoObjectives(id)
-                    .then(
-                        function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                        function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
-                        }
-                    );
                 AClassService.setAcoApplicationNotes(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
+                            console.log("showAComponentStructure, selected AcoApplicationNotes from AComponent with id: " + id);
                         },
                         function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
+                            console.log("showAComponentStrucure, ERROR AcoApplicationNotes from AComponent with id: " + id + "ERROR: " + errResponse.data);
                         }
                     );
                 AClassService.setAeDeveloper(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                        function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
-                        }
+                             console.log("showAComponentStructure, selected AeDeveloper from AComponent with id: " + id);
+                         },
+                         function(errResponse) {
+                             console.log("showAComponentStrucure, ERROR AeDeveloper from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                         }
                     );
                 AClassService.setAeContent(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                        function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
-                        }
+                             console.log("showAComponentStructure, selected AeContent from AComponent with id: " + id);
+                         },
+                         function(errResponse) {
+                             console.log("showAComponentStrucure, ERROR AeContent from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                         }
                     );
                 AClassService.setAeEvaluator(id)
                     .then(
                         function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                        function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
-                        }
+                             console.log("showAComponentStructure, selected AeEvaluator from AComponent with id: " + id);
+                         },
+                         function(errResponse) {
+                             console.log("showAComponentStrucure, ERROR AeEvaluator from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                         }
                     );
 
             }
@@ -289,12 +312,12 @@ angular.module('crudApp').controller('AClassController',
                 $window.location.href = "http://localhost:8080/#/assurancerequirementsstructure";
                 AClassService.setAComponentInAClass(id)
                     .then(
-                        function() {
-                            console.log('ID ' + id + " è stato cliccato FfBehaviour");
-                        },
-                        function(errResponse) {
-                            console.error('Error AfLevellingCriteria ' + id + ', Error :' + errResponse.data);
-                        }
+                            function() {
+                                 console.log("showAssuranceRequirements, selected AComponent from AClass with id: " + id);
+                             },
+                             function(errResponse) {
+                                 console.log("showAComponentStrucure, ERROR AComponent from AClass with id: " + id + "ERROR: " + errResponse.data);
+                             }
                     );
             }
 

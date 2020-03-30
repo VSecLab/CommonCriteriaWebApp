@@ -185,9 +185,10 @@ public class RestApiController {
 		logger.info("Fetching AcoDependsOnComponent from AComponent with id {}", id);
 		List<AcoDependsOnComponent> acoDependsOnComponents = acoDependsOnComponentRepository.AcoDependsOnComponentInAComponent(id);
 		if (acoDependsOnComponents.isEmpty() ) {
-			logger.error("AcoDependsOnComponent from AComponent with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoDependsOnComponent from AComponent with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AcoDependsOnComponent c = new AcoDependsOnComponent();
+			c.setAcomponent("There are no dependencies");
+			c.setIdf(id);
+			acoDependsOnComponents.add(c);
 		}
 		return new ResponseEntity<List<AcoDependsOnComponent>>(acoDependsOnComponents , HttpStatus.OK);
 	}
@@ -201,10 +202,12 @@ public class RestApiController {
 		logger.info("Fetching AcoObjectives from AComponent with id {}", id);
 		List<AcoObjectives> acoObjectives = acoObjectivesRepository.AcoObjectivesInAComponent(id);
 		if (acoObjectives.isEmpty() ) {
-			logger.error("AcoObjectives from AComponent with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoObjectives from AComponent with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AcoObjectives c = new AcoObjectives();
+			c.setTesto("There are no objectives");
+			c.setIdf(id);
+			acoObjectives.add(c);
 		}
+
 		return new ResponseEntity<List<AcoObjectives>>(acoObjectives , HttpStatus.OK);
 	}
 
@@ -217,9 +220,10 @@ public class RestApiController {
 		logger.info("Fetching AcoApplicationNotes from AComponent with id {}", id);
 		List<AcoApplicationNotes> acoApplicationNotes = acoApplicationNotesRepository.AcoApplicationNotesInAComponent(id);
 		if (acoApplicationNotes.isEmpty() ) {
-			logger.error("AcoApplicationNotes from AComponent with id {} not found.", id);
-			return new ResponseEntity<CustomErrorType>(new CustomErrorType("AcoObjectives from AComponent with id " + id
-					+ " not found"), HttpStatus.NOT_FOUND);
+			AcoApplicationNotes c = new AcoApplicationNotes();
+			c.setTesto("There are no application notes");
+			c.setIdf(id);
+			acoApplicationNotes.add(c);
 		}
 		return new ResponseEntity<List<AcoApplicationNotes>>(acoApplicationNotes , HttpStatus.OK);
 	}
