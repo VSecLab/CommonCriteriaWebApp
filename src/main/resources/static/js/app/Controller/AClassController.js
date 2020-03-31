@@ -76,6 +76,16 @@ angular.module('crudApp').controller('AClassController',
             self.aeevaluator = [];
             self.getAeEvaluator = getAeEvaluator;
 
+            // ListAssuranceRequirements
+            self.listassurancerequirements = [];
+            self.showSelectedElementAssuranceRequirements = showSelectedElementAssuranceRequirements;
+            self.getListAssuranceRequirements = getListAssuranceRequirements;
+            self.addElementListAssuranceRequirements = addElementListAssuranceRequirements;
+            self.removeElementListAssuranceRequirements = removeElementListAssuranceRequirements;
+            self.downloadPDFSAR = downloadPDFSAR;
+
+
+
 
             self.successMessage = '';
             self.errorMessage = '';
@@ -106,14 +116,15 @@ angular.module('crudApp').controller('AClassController',
                             console.log("showAClassStructure, selected AcIntroduction from AClass with id: " + id);
                         },
                         function(errResponse) {
-                            console.log("showAClassStructure, ERROR AcIntroduction from AClass with id: " + id + "ERROR: " + errResponse.data);                        }
+                            console.log("showAClassStructure, ERROR AcIntroduction from AClass with id: " + id + "ERROR: " + errResponse.data);
+                        }
                     );
                 AClassService.setAFamily(id).then(
                     function() {
-                            console.log("showAClassStructure, selected AFamily from AClass with id: " + id);
+                        console.log("showAClassStructure, selected AFamily from AClass with id: " + id);
                     },
                     function(errResponse) {
-                            console.log("showAClassStructure, ERROR AFamily from AClass with id: " + id + "ERROR: " + errResponse.data);
+                        console.log("showAClassStructure, ERROR AFamily from AClass with id: " + id + "ERROR: " + errResponse.data);
                     }
                 );
 
@@ -245,23 +256,23 @@ angular.module('crudApp').controller('AClassController',
             function showAComponentStructure(id) {
                 $window.location.href = "http://localhost:8080/#/afamilystructure/acomponentstructure";
                 AClassService.setAcoObjectives(id)
-                        .then(
-                            function() {
-                                console.log("showAComponentStructure, selected AcoObjectives from AComponent with id: " + id);
-                            },
-                            function(errResponse) {
-                                console.log("showAComponentStructure, ERROR AcoObjectives from AComponent with id: " + id + "ERROR: " + errResponse.data);
-                            }
-                        );
+                    .then(
+                        function() {
+                            console.log("showAComponentStructure, selected AcoObjectives from AComponent with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AcoObjectives from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
                 AClassService.setAcoDependsOnComponent(id)
-                        .then(
-                            function() {
-                                console.log("showAComponentStructure, selected AcoDependsOnComponent from AComponent with id: " + id);
-                            },
-                            function(errResponse) {
-                                console.log("showAComponentStructure, ERROR AcoDependsOnComponent from AComponent with id: " + id + "ERROR: " + errResponse.data);
-                            }
-                        );
+                    .then(
+                        function() {
+                            console.log("showAComponentStructure, selected AcoDependsOnComponent from AComponent with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AcoDependsOnComponent from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
                 AClassService.setAcoApplicationNotes(id)
                     .then(
                         function() {
@@ -274,29 +285,29 @@ angular.module('crudApp').controller('AClassController',
                 AClassService.setAeDeveloper(id)
                     .then(
                         function() {
-                             console.log("showAComponentStructure, selected AeDeveloper from AComponent with id: " + id);
-                         },
-                         function(errResponse) {
-                             console.log("showAComponentStructure, ERROR AeDeveloper from AComponent with id: " + id + "ERROR: " + errResponse.data);
-                         }
+                            console.log("showAComponentStructure, selected AeDeveloper from AComponent with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AeDeveloper from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                        }
                     );
                 AClassService.setAeContent(id)
                     .then(
                         function() {
-                             console.log("showAComponentStructure, selected AeContent from AComponent with id: " + id);
-                         },
-                         function(errResponse) {
-                             console.log("showAComponentStructure, ERROR AeContent from AComponent with id: " + id + "ERROR: " + errResponse.data);
-                         }
+                            console.log("showAComponentStructure, selected AeContent from AComponent with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AeContent from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                        }
                     );
                 AClassService.setAeEvaluator(id)
                     .then(
                         function() {
-                             console.log("showAComponentStructure, selected AeEvaluator from AComponent with id: " + id);
-                         },
-                         function(errResponse) {
-                             console.log("showAComponentStructure, ERROR AeEvaluator from AComponent with id: " + id + "ERROR: " + errResponse.data);
-                         }
+                            console.log("showAComponentStructure, selected AeEvaluator from AComponent with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AeEvaluator from AComponent with id: " + id + "ERROR: " + errResponse.data);
+                        }
                     );
 
             }
@@ -307,15 +318,89 @@ angular.module('crudApp').controller('AClassController',
                 $window.location.href = "http://localhost:8080/#/assurancerequirementsstructure";
                 AClassService.setAComponentInAClass(id)
                     .then(
-                            function() {
-                                 console.log("showAssuranceRequirements, selected AComponent from AClass with id: " + id);
-                             },
-                             function(errResponse) {
-                                 console.log("showAComponentStructure, ERROR AComponent from AClass with id: " + id + "ERROR: " + errResponse.data);
-                             }
+                        function() {
+                            console.log("showAssuranceRequirements, selected AComponent from AClass with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showAComponentStructure, ERROR AComponent from AClass with id: " + id + "ERROR: " + errResponse.data);
+                        }
                     );
             }
 
+
+            // ListAssuranceRequirements
+            function showSelectedElementAssuranceRequirements() {
+                console.log('Fetching elements from List of Security Assurance Requirements');
+                $window.location.href = "http://localhost:8080/#/selectedelementassurancerequirements";
+                AClassService.readElementListAssuranceRequirements()
+                    .then(
+                        function(response) {
+                            console.log('Click on List of Security Assurance Requirements');
+                        },
+                        function(errResponse) {
+                            $window.alert('Empty List of Security Assurance Requirements');
+                            console.error('ERROR in List of Security Assurance Requirements');
+                        }
+                    );
+
+            }
+
+            function getListAssuranceRequirements() {
+                return AClassService.getListAssuranceRequirements();
+            }
+
+            function addElementListAssuranceRequirements(listassurancerequirements) {
+
+                console.log('Creating List of Security Assurance Requirements');
+                AClassService.createElementListAssuranceRequirements(listassurancerequirements)
+                    .then(
+                        function() {
+                            console.log('Element added to the List of Security Assurance Requirements');
+                            $window.alert('Element added to the List of Security Assurance Requirements');
+
+                        },
+                        function(errResponse) {
+
+                            console.error('Element already added to the List of Security Assurance Requirements');
+                            $window.alert('Element already added to the List of Security Assurance Requirements');
+
+                        }
+                    );
+            }
+
+
+            function removeElementListAssuranceRequirements(id) {
+                console.log('Removing ' + id + ' from the List of Security Assurance Requirements');
+                AClassService.removeElementListAssuranceRequirements(id)
+                    .then(
+                        function() {
+                            console.log(id + ' removed successfully from the List of Security Assurance Requirements');
+                        },
+                        function(errResponse) {
+                            console.error('ERROR while removing ' + id + ' from the List of Security Assurance Requirements. ERROR: ' + errResponse.data);
+                        }
+                    );
+
+            }
+
+
+
+            function downloadPDFSAR() {
+                console.log('Scarica PDF');
+                html2canvas(document.getElementById('download'), {
+                    onrendered: function(canvas) {
+                        var data = canvas.toDataURL();
+                        var docDefinition = {
+                            content: [{
+
+                                image: data,
+                                width: 500,
+                            }]
+                        };
+                        pdfMake.createPdf(docDefinition).download("CatalogueAssuranceRequirements.pdf");
+                    }
+                });
+            }
 
         }
     ]);

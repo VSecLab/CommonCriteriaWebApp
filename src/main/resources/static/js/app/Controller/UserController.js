@@ -315,7 +315,6 @@ angular.module('crudApp').controller('UserController',
             }
 //------------- Permette di scaricare il pdf della view SHOW  ---------------
             function downloadpdf(){
-                        $window.alert("ciao");
                         console.log('Scarica PDF');
                              html2canvas(document.getElementById('exportthis'), {
                                     onrendered: function (canvas) {

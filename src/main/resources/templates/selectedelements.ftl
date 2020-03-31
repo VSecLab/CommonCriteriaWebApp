@@ -2,7 +2,6 @@
     <head>
         <title> Common Criteria | Selected Elements</title>
         <link rel="shortcut icon" href="Images/favicon1.ico">
-        <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/editSAR.css" rel="stylesheet"/>
     </head>
     <body>

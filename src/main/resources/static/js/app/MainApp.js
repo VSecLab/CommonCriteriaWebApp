@@ -66,9 +66,15 @@ app.config(function($routeProvider) {
             controller: 'AClassController',
             controllerAs: 'ctrl',
         })
-        // route for assurancerequirementsstructure
+        // route for show  security assuracene requirements
         .when('/showSAR', {
             templateUrl: 'partials/showSAR',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for selected element assurance requirements
+        .when('/selectedelementassurancerequirements', {
+            templateUrl: 'partials/selectedelementassurancerequirements',
             controller: 'AClassController',
             controllerAs: 'ctrl',
         })

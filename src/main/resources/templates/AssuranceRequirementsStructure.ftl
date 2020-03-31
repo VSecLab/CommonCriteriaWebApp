@@ -28,7 +28,7 @@
                         <button type="button" ng-click="ctrl.showAComponentStructure(a.id)" class="btn btn-success custom-width"><i class="fa fa-list-alt"></i></button>
                     </td>
                     <td>
-                        <button type="button" ng-click="ctrl.addFco(f)" class="btn btn-danger custom-width"><i class="fa fa-plus"></i></button>
+                        <button type="button" ng-click="ctrl.addElementListAssuranceRequirements(a)" class="btn btn-danger custom-width"><i class="fa fa-plus"></i></button>
                     </td>
 
                 </tr>

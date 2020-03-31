@@ -33,6 +33,16 @@ public class RestApiController {
 	@Autowired
 	AClassService aClassService;
 
+
+	/**
+		================================================================================
+	   //	 																		  //
+	  //					Security Assurance Requirements							 //
+	 //																				//
+	 ================================================================================
+
+	 */
+
 	// -------------------Retrieve All AClasses---------------------------------------------
 
 	@RequestMapping(value = "/aclass/", method = RequestMethod.GET)
@@ -277,7 +287,63 @@ public class RestApiController {
 		return new ResponseEntity<List<AeEvaluator>>(aeEvaluators , HttpStatus.OK);
 	}
 
-//---
+
+
+	// create ListAssuranceRequirements
+	@Autowired
+	ListAssuranceRequirementsRepository listAssuranceRequirementsRepository;
+
+	@RequestMapping(value = "/listassurancerequirements/", method = RequestMethod.POST)
+	public ResponseEntity<?> createListAssuranceRequirements(@RequestBody ListAssuranceRequirements f, UriComponentsBuilder ucBuilder) {
+		logger.info("Creating ListAssuranceRequirements: {}", f);
+		List<ListAssuranceRequirements> listAssuranceRequirements = listAssuranceRequirementsRepository.ListAssuranceRequirementsQuery();
+		for (int i = 0; i < listAssuranceRequirements.size(); i++) {
+			if (listAssuranceRequirements.get(i).getId().equals(f.getId())) {
+				logger.error("Element already in ListAssuranceRequirements: ", f.getId());
+				return new ResponseEntity<CustomErrorType>(new CustomErrorType("Unable to element with name " +
+						f.getName() + ". Already exist."),HttpStatus.CONFLICT);
+			}
+		}
+
+		listAssuranceRequirementsRepository.save(f);
+		return new ResponseEntity<String>(HttpStatus.CREATED);
+	}
+
+	// get ListAssuranceRequirements
+	@RequestMapping(value = "/listassurancerequirements/", method = RequestMethod.GET)
+	public ResponseEntity<?> getListAssuranceRequirements() {
+		logger.info("Fetching ListAssuranceRequirements");
+		List<ListAssuranceRequirements> listAssuranceRequirements = listAssuranceRequirementsRepository.ListAssuranceRequirementsQuery();
+		if (listAssuranceRequirements.isEmpty() ) {
+			logger.error("ListAssuranceRequirements not found.");
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("ListAssuranceRequirements not found"), HttpStatus.OK);
+		}
+		return new ResponseEntity<List<ListAssuranceRequirements>>(listAssuranceRequirements, HttpStatus.OK);
+	}
+
+	// delete from ListAssuranceRequirements
+	@RequestMapping(value = "/delete/{id:.+}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteFromListAssuranceRequirements(@PathVariable("id") String id) {
+		logger.info("Deleting element from ListAssuranceRequirements with id: ", id);
+		ListAssuranceRequirements listAssuranceRequirements = listAssuranceRequirementsRepository.findOne(id);
+		if (listAssuranceRequirements  == null) {
+			logger.error("Unable to delete. Not found element from ListAssuranceRequirements with id: ", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("Unable to element from ListAssuranceRequirements with id " + id),
+					HttpStatus.NOT_FOUND);
+		}
+		listAssuranceRequirementsRepository.delete(id);
+		return new ResponseEntity<ListAssuranceRequirements>(HttpStatus.NO_CONTENT);
+	}
+	
+	/**
+
+		================================================================================
+	   //	 																		  //
+	  //					Security Functional Requirements						 //
+	 //																				//
+	 ================================================================================
+
+	 */
 
 
 	@Autowired
@@ -577,7 +643,7 @@ public class RestApiController {
 	@RequestMapping(value = "/fco/{id:.+}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletelistFco(@PathVariable("id") String id) {
 
-		logger.info("Fetching & Deleting User with id {}", id);
+		logger.info("Fetching & Deleting fco with id {}", id);
 
 		ListFco listFClass = listFClassRepository.findOne(id);
 		if (listFClass  == null) {

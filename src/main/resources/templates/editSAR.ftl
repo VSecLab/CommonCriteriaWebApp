@@ -27,7 +27,7 @@
 
 
             <h3>Selected Elements</h3>
-            <input type="button" class="btn btn-success custom-width" value="Show" ng-click="ctrl.setListFco()"/>
+            <input type="button" class="btn btn-success custom-width" value="Show" ng-click="ctrl.showSelectedElementAssuranceRequirements()"/>
         </div>
 
         <div id="rightSection">

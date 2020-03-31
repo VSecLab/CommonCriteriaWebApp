@@ -68,6 +68,13 @@ angular.module('crudApp').factory('AClassService',
                 // AeEvaluator
                 setAeEvaluator: setAeEvaluator,
                 getAeEvaluator: getAeEvaluator,
+
+                // ListAssuranceRequirements
+                createElementListAssuranceRequirements: createElementListAssuranceRequirements,
+                removeElementListAssuranceRequirements: removeElementListAssuranceRequirements,
+                readElementListAssuranceRequirements: readElementListAssuranceRequirements,
+                getListAssuranceRequirements: getListAssuranceRequirements,
+
             }
             return factory;
 
@@ -313,28 +320,28 @@ angular.module('crudApp').factory('AClassService',
 
 
             // AcoDependsOnComponent
-                        function setAcoDependsOnComponent(id) {
-                            $localStorage.IdAComponent = id; //prendo l'id ro caz
-                            console.log('Fetching AcoDependsOnComponent from AFamily with id: ' + id);
-                            var deferred = $q.defer();
-                            $http.get(urls.USER_SERVICE_API + 'acodependsoncomponent/' + id)
-                                .then(
-                                    function(response) {
-                                        console.log('Fetched successfully AcoDependsOnComponent from AFamily with id: ' + id);
-                                        $localStorage.acodependsoncomponent = response.data;
-                                        deferred.resolve(response.data);
-                                    },
-                                    function(errResponse) {
-                                        console.error('Error while loading AcoDependsOnComponent from AFamily with id: ' + id);
-                                        deferred.reject(errResponse);
-                                    }
-                                );
-                            return deferred.promise;
+            function setAcoDependsOnComponent(id) {
+                $localStorage.IdAComponent = id; //prendo l'id ro caz
+                console.log('Fetching AcoDependsOnComponent from AFamily with id: ' + id);
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'acodependsoncomponent/' + id)
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully AcoDependsOnComponent from AFamily with id: ' + id);
+                            $localStorage.acodependsoncomponent = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading AcoDependsOnComponent from AFamily with id: ' + id);
+                            deferred.reject(errResponse);
                         }
+                    );
+                return deferred.promise;
+            }
 
-                        function getAcoDependsOnComponent() {
-                            return $localStorage.acodependsoncomponent;
-                        }
+            function getAcoDependsOnComponent() {
+                return $localStorage.acodependsoncomponent;
+            }
 
 
             // AcoApplicationNotes
@@ -453,6 +460,64 @@ angular.module('crudApp').factory('AClassService',
 
             function getAComponentInAClass() {
                 return $localStorage.acomponentinaclass;
+            }
+
+            // ListAssuranceRequirements
+            function createElementListAssuranceRequirements(listassurancerequirements) {
+                var deferred = $q.defer();
+                $http.post(urls.USER_SERVICE_API + 'listassurancerequirements/', listassurancerequirements)
+                    .then(
+                        function(response) {
+                            readElementListAssuranceRequirements();
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('ERROR while creating List of Security Assurance Requirements: ' + errResponse.data.errorMessage);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+            function readElementListAssuranceRequirements() {
+                console.log('Fetching elements from the List of Security Assurance Requirements');
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + 'listassurancerequirements/')
+                    .then(
+                        function(response) {
+                            console.log('Fetched successfully List of Security Assurance Requirements:');
+                            $localStorage.listassurancerequirements = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while loading List of Security Assurance Requirements');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+
+            function removeElementListAssuranceRequirements(id) {
+                console.log("Delete element " + id + " from List of Security Assurance Requirements");
+                var deferred = $q.defer();
+                $http.delete(urls.USER_SERVICE_API + 'delete/' + id)
+                    .then(
+                        function(response) {
+                            readElementListAssuranceRequirements();
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            console.error('Error while removing element: ' + id + "from List of Security Assurance Requirements");
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+
+
+            function getListAssuranceRequirements() {
+                return $localStorage.listassurancerequirements;
             }
 
         }
