@@ -334,7 +334,7 @@ public class RestApiController {
 		listAssuranceRequirementsRepository.delete(id);
 		return new ResponseEntity<ListAssuranceRequirements>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	/**
 
 		================================================================================

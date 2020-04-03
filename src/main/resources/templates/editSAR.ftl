@@ -7,11 +7,9 @@
     <body>
             <div class="modifyDIV">
         <div id="leftSection">
-            <p><strong>CC Part 3 </strong>catalogues the set of functional components
-            and organises them in families and classes.</p>
-            <p>Security functional components establishes a set
-            of functional components that serve as standard templates
-            upon which to base functional requirements for TOEs.</p>
+            <p><strong>Security Assurance Components</strong>, as defined in CC Part 3, are
+            the basis for the security assurance requirements expressed in a Protection Profile (PP)
+            ora a Security Target (ST).</p>
 
 
             <h3>Search Assurance Requirements</h3>

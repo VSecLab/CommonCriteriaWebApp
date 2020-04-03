@@ -1,21 +1,30 @@
-<--! <div class="generic-container"
-                  <div class="panel panel-default">
-<h3 style="color: #ff0000"> <strong > CONTACT US </strong></h3>
-<h4>Web Application sviluppata all'Unversit&agrave;
- della Campania Luigi vanvitelli, Dipartimento di Ingegneria Informatica,
-  dedicato alla gestione dei Security Target Common Criteria</h4>
+<html>
+ <head>
+        <title>Common Criteria | Home</title>
+                <link href="css/editSAR.css" rel="stylesheet"/>
+     </head>
 
-        <h4><strong>Lorenzo Diana</strong></h4>
-        <h4>Computer engineer, lover of good music and good food.</h4>
-        <h4>Email: lorenzo.diana92@gmail.com</h4>
-
-        <h4><strong>Roberto Chello</strong></h4>
-                <h4>È impossibile</h4>
-                <h4>Email: robertochello@gmail.com</h4>
-
+<body>
+    <div class="modifyDIV">
+    <p>
+    Per gli sviluppi futuri è possibile implementare le altre sezioni all'interno dell'applicazione
+    che permettono di completare la documentazione di un TOE.
+    </p>
+    <br>
+    <p>
+    Questo progetto è stato realizzato da:
+    Lorenzo Diana e Roberto Chello, con la supervisione del Prof. Massimiliano Rak.
+    <a href="mailto:robertochello@gmail.com,lorenzo.diana92@gmail.com?subject=CommonCriteriaWebApplication%20info">Scrivi una mail</a>
+    </p>
+    <br>
+    <p>
+    Common Criteria Web Application è un progetto open-source disponibile su GitHub nella seguente
+    repository:
+    <a href="https://github.com/VSecLab/CommonCriteriaWebApp.git" target="_blank">https://github.com/VSecLab/CommonCriteriaWebApp.git</a>
+    <p>
 
     </div>
-</div>
--->
+</body>
+</html>
 
-<h1>CONTACT US</h1>
+

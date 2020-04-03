@@ -27,8 +27,8 @@ app.config(function($routeProvider) {
             }
         })
         // route for contactus
-        .when('/prova', {
-            templateUrl: '/partials/prova.ftl'
+        .when('/contactus', {
+            templateUrl: '/partials/Contactus.ftl'
         })
         // route for about
         .when('/about', {

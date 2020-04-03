@@ -35,7 +35,7 @@
                 <a class="active"> Common Criteria Web Application </a>
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
-                <a href="#prova">Contact Us</a>
+                <a href="#contactus">Contact Us</a>
             </header>
 
             <nav ui-view="nav">
@@ -77,7 +77,7 @@
             </nav>
             <div id="section">
                 <!-- where content will be injected -->
-                <div ng-view style="position: relative;">
+                <div ng-view style="position: static;">
                 </div>
             </div>
 
@@ -89,14 +89,7 @@
                             Copyright &copy; 2020 All Rights Reserved by Lorenzo Diana & Roberto Chello.
                         </p>
                       </div>
-                      <div class="col-md-4 col-sm-6 col-xs-12">
-                        <ul class="social-icons">
-                          <li><a href="#facebook" class="fa fa-facebook"></a></li>
-                          <li><a href="#linkedin" class="fa fa-linkedin"></a></li>
-                          <li><a href="#instagram" class="fa fa-instagram"></a></li>
-                          <li><a href="#github" class="fa fa-github"></a></li>
-                        </ul>
-                      </div>
+
                     </div>
                   </div>
             </footer>
