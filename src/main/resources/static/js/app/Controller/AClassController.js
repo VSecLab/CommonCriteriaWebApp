@@ -13,7 +13,9 @@ angular.module('crudApp').controller('AClassController',
             self.getAllAClasses = getAllAClasses;
             self.getIdaclass = getIdaclass;
 
-            // click lente di ingrandimento editSAR
+            // click lente di ingrandimento editSAR Evaluarion Assurance Level
+            self.showEvaluationAssuranceLevel = showEvaluationAssuranceLevel;
+            // click lente di ingrandimento editSAR Assurance Requirements
             self.showAssuranceRequirements = showAssuranceRequirements;
             // click on element of list of assurance paradigm
             self.showAClassStructure = showAClassStructure;
@@ -49,8 +51,11 @@ angular.module('crudApp').controller('AClassController',
             self.getAComponent = getAComponent;
             self.IdAComponent = {};
             self.getIdAComponent = getIdAComponent;
+            self.getNameAComponent
             self.acomponentinaclass = [];
             self.getAComponentInAClass = getAComponentInAClass;
+
+
 
             // AcoObjectives
             self.acoobjectives = [];
@@ -85,7 +90,23 @@ angular.module('crudApp').controller('AClassController',
             self.downloadPDFSAR = downloadPDFSAR;
 
 
+            // EvaluationAssuranceLevel
+            self.eal = [];
+            self.IdEAL = {};
+            self.getEal = getEal;
+            self.getIdEAL = getIdEAL;
 
+            // EalObjectives
+            self.ealobjectives = [];
+            self.getEalObjectives = getEalObjectives;
+
+            // EalAssuranceComponents
+            self.ealassurancecomponents = [];
+            self.getEalAssuranceComponents = getEalAssuranceComponents;
+
+            // EalComponent
+            self.ealcomponent = [];
+            self.getEalComponent = getEalComponent;
 
             self.successMessage = '';
             self.errorMessage = '';
@@ -144,7 +165,6 @@ angular.module('crudApp').controller('AClassController',
             function getAFamily() {
                 return AClassService.getAFamily();
             }
-
             function getIdAFamily() {
                 return AClassService.getIdAFamily();
             }
@@ -210,14 +230,13 @@ angular.module('crudApp').controller('AClassController',
             function getAComponent() {
                 return AClassService.getAComponent();
             }
-
             function getAComponentInAClass() {
                 return AClassService.getAComponentInAClass();
             }
-
             function getIdAComponent() {
                 return AClassService.getIdAComponent();
             }
+
 
 
             // AcoObjectives function
@@ -312,7 +331,40 @@ angular.module('crudApp').controller('AClassController',
 
             }
 
-            //click lente di ingrandimento editSAR
+            //click lente di ingrandimento editSAR Evaluation Assurance Level
+            function showEvaluationAssuranceLevel(id) {
+                console.log("Evaluation Assurance Level:" + id)
+                $window.location.href = "http://localhost:8080/#/evaluationassurancelevelstructure";
+                AClassService.setEalObjectives(id)
+                    .then(
+                        function() {
+                            console.log("showEvaluationAssuranceLevel, selected EalObjectives from EAL with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showEvaluationAssuranceLevel, ERROR EalObjectives from EAL with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
+                    AClassService.setEalAssuranceComponents(id)
+                    .then(
+                        function() {
+                            console.log("showEvaluationAssuranceLevel, selected EalAssuranceComponents from EAL with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showEvaluationAssuranceLevel, ERROR EalAssuranceComponents from EAL with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
+                    AClassService.setEalComponent(id)
+                    .then(
+                        function() {
+                            console.log("showEvaluationAssuranceLevel, selected EalComponent from EAL with id: " + id);
+                        },
+                        function(errResponse) {
+                            console.log("showEvaluationAssuranceLevel, ERROR EalComponent from EAL with id: " + id + "ERROR: " + errResponse.data);
+                        }
+                    );
+            }
+
+            //click lente di ingrandimento editSAR Assurance Requirements
             function showAssuranceRequirements(id) {
                 console.log("assurance requirements id:" + id)
                 $window.location.href = "http://localhost:8080/#/assurancerequirementsstructure";
@@ -402,5 +454,30 @@ angular.module('crudApp').controller('AClassController',
                 });
             }
 
+
+
+
+            // EvaluationAssuranceLevel
+            function getEal() {
+                return AClassService.getEal();
+            }
+            function getIdEAL() {
+                return AClassService.getIdEAL();
+            }
+
+            // EalObjectives
+            function getEalObjectives() {
+                return AClassService.getEalObjectives();
+            }
+
+            // EalAssuranceComponents
+            function getEalAssuranceComponents() {
+                return AClassService.getEalAssuranceComponents();
+            }
+
+            // EalComponent
+            function getEalComponent() {
+                return AClassService.getEalComponent();
+            }
         }
     ]);

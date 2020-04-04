@@ -44,6 +44,7 @@ angular.module('crudApp').factory('AClassService',
                 setAComponentInAClass: setAComponentInAClass,
                 getAComponentInAClass: getAComponentInAClass,
 
+
                 // AcoObjectives
                 setAcoObjectives: setAcoObjectives,
                 getAcoObjectives: getAcoObjectives,
@@ -74,6 +75,23 @@ angular.module('crudApp').factory('AClassService',
                 removeElementListAssuranceRequirements: removeElementListAssuranceRequirements,
                 readElementListAssuranceRequirements: readElementListAssuranceRequirements,
                 getListAssuranceRequirements: getListAssuranceRequirements,
+
+                // EvaluationAssuranceLevel
+                setEal: setEal,
+                getEal: getEal,
+                getIdEAL: getIdEAL,
+
+                // EalObjectives
+                setEalObjectives: setEalObjectives,
+                getEalObjectives: getEalObjectives,
+
+                // EalAssuranceComponents
+                setEalAssuranceComponents: setEalAssuranceComponents,
+                getEalAssuranceComponents: getEalAssuranceComponents,
+
+                // EalComponent
+                setEalComponent: setEalComponent,
+                getEalComponent: getEalComponent,
 
             }
             return factory;
@@ -293,6 +311,8 @@ angular.module('crudApp').factory('AClassService',
                 return $localStorage.IdAComponent;
             }
 
+
+
             // AcoObjectives
             function setAcoObjectives(id) {
                 $localStorage.IdAComponent = id; //prendo l'id ro caz
@@ -321,6 +341,7 @@ angular.module('crudApp').factory('AClassService',
 
             // AcoDependsOnComponent
             function setAcoDependsOnComponent(id) {
+            console.log("acodependsoncomponent: " + id);
                 $localStorage.IdAComponent = id; //prendo l'id ro caz
                 console.log('Fetching AcoDependsOnComponent from AFamily with id: ' + id);
                 var deferred = $q.defer();
@@ -519,6 +540,101 @@ angular.module('crudApp').factory('AClassService',
             function getListAssuranceRequirements() {
                 return $localStorage.listassurancerequirements;
             }
+
+
+                // EvaluationAssuranceLevels
+                function setEal() {
+                    console.log('Fetching all Evaluation Assurance Level');
+                    var deferred = $q.defer();
+                    $http.get(urls.USER_SERVICE_API + 'eal/')
+                        .then(
+                            function(response) {
+                                console.log('Fetched successfully all Evaluation Assurance Level');
+                                $localStorage.eal = response.data;
+                                deferred.resolve(response.data);
+                            },
+                            function(errResponse) {
+                                console.error('Error while loading Evaluation Assurance Level');
+                                deferred.reject(errResponse);
+                            }
+                        );
+                    return deferred.promise;
+                }
+                function getEal() {
+                    return $localStorage.eal;
+                }
+                function getIdEAL() {
+                    return $localStorage.IdEAL;
+                }
+
+
+                // EalObjectives
+                function setEalObjectives(id) {
+                    console.log('Fetching EalObjectives form EAl with id: ' + id);
+                    $localStorage.IdEAL = id;
+                    var deferred = $q.defer();
+                    $http.get(urls.USER_SERVICE_API + 'ealobjectives/' + id)
+                        .then(
+                            function(response) {
+                                console.log('Fetched successfully EalObjectives from EAL with id: ' + id);
+                                $localStorage.ealobjectives = response.data;
+                                deferred.resolve(response.data);
+                            },
+                            function(errResponse) {
+                                console.error('Error while loading EalObjectives form EAL with id: ' + id);
+                                deferred.reject(errResponse);
+                            }
+                        );
+                    return deferred.promise;
+                }
+                function getEalObjectives() {
+                    return $localStorage.ealobjectives;
+                }
+
+
+                // EalAssuranceComponents
+                function setEalAssuranceComponents(id) {
+                    console.log('Fetching EalAssuranceComponents form EAl with id: ' + id);
+                    var deferred = $q.defer();
+                    $http.get(urls.USER_SERVICE_API + 'ealassurancecomponents/' + id)
+                        .then(
+                            function(response) {
+                                console.log('Fetched successfully EalAssuranceComponents from EAL with id: ' + id);
+                                $localStorage.ealassurancecomponents = response.data;
+                                deferred.resolve(response.data);
+                            },
+                            function(errResponse) {
+                                console.error('Error while loading EalAssuranceComponents form EAL with id: ' + id);
+                                deferred.reject(errResponse);
+                            }
+                        );
+                    return deferred.promise;
+                }
+                function getEalAssuranceComponents() {
+                    return $localStorage.ealassurancecomponents;
+                }
+
+                // EalComponent
+                function setEalComponent(id) {
+                    console.log('Fetching EalComponent form EAl with id: ' + id);
+                    var deferred = $q.defer();
+                    $http.get(urls.USER_SERVICE_API + 'ealcomponent/' + id)
+                        .then(
+                            function(response) {
+                                console.log('Fetched successfully EalComponent from EAL with id: ' + id);
+                                $localStorage.ealcomponent = response.data;
+                                deferred.resolve(response.data);
+                            },
+                            function(errResponse) {
+                                console.error('Error while loading EalComponent form EAL with id: ' + id);
+                                deferred.reject(errResponse);
+                            }
+                        );
+                    return deferred.promise;
+                }
+                function getEalComponent() {
+                    return $localStorage.ealcomponent;
+                }
 
         }
     ]);

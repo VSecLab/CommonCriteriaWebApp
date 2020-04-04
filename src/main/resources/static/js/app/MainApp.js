@@ -23,6 +23,13 @@ app.config(function($routeProvider) {
                     AClassService.loadAllAClasses()
                         .then(deferred.resolve, deferred.resolve);
                     return deferred.promise;
+                },
+                eal: function($q, AClassService) {
+                    console.log('Load all eal');
+                    var deferred = $q.defer();
+                    AClassService.setEal()
+                        .then(deferred.resolve, deferred.resolve);
+                    return deferred.promise;
                 }
             }
         })
@@ -57,6 +64,12 @@ app.config(function($routeProvider) {
         // route for acomponentstructure
         .when('/afamilystructure/acomponentstructure', {
             templateUrl: 'partials/AComponentStructure',
+            controller: 'AClassController',
+            controllerAs: 'ctrl',
+        })
+        // route for evaluationassurancelevelstructure
+        .when('/evaluationassurancelevelstructure', {
+            templateUrl: 'partials/EvaluationAssuranceLevelStructure',
             controller: 'AClassController',
             controllerAs: 'ctrl',
         })

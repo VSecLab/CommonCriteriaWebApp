@@ -38,4 +38,21 @@ public interface AComponentRepository extends JpaRepository<AComponent, String> 
     string matching the corresponding JPQL or SQL query parameter name
      */
     List<AComponent> AComponentInAFamily(@Param("id") String id);
+
+
+    // faccio questa query perchp non saprei come prendermi il nome
+
+    /*
+    Select name from acomponent where id_acomponent = id
+    idf is the foreign key for the afamily
+     */
+    @Query(value = "select name from acomponent where id_acomponent = :id",
+            nativeQuery = true)
+    /*
+    We can also pass method parameters to the query using named parameters.
+    We define these using the @Param annotation inside our repository method declaration.
+    Each parameter annotated with @Param must have a value
+    string matching the corresponding JPQL or SQL query parameter name
+     */
+    String AComponentName(@Param("id") String id);
 }

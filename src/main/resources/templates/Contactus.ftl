@@ -7,19 +7,20 @@
 <body>
     <div class="modifyDIV">
     <p>
-    Per gli sviluppi futuri è possibile implementare le altre sezioni all'interno dell'applicazione
-    che permettono di completare la documentazione di un TOE.
+    For future developments it is possible to implement the other sections
+    within the application that allow you to complete the documentation of a TOE.
     </p>
     <br>
     <p>
     Questo progetto è stato realizzato da:
-    Lorenzo Diana e Roberto Chello, con la supervisione del Prof. Massimiliano Rak.
-    <a href="mailto:robertochello@gmail.com,lorenzo.diana92@gmail.com?subject=CommonCriteriaWebApplication%20info">Scrivi una mail</a>
+    This project was created by: Lorenzo Diana and Roberto Chello, under the supervision of Prof. Massimiliano Rak.
+    <a href="mailto:robertochello@gmail.com,lorenzo.diana92@gmail.com?subject=CommonCriteriaWebApplication%20info">
+    <br>
+    Send an email for more information </a>
     </p>
     <br>
     <p>
-    Common Criteria Web Application è un progetto open-source disponibile su GitHub nella seguente
-    repository:
+    Common Criteria Web Application is an open-source project available on GitHub:
     <a href="https://github.com/VSecLab/CommonCriteriaWebApp.git" target="_blank">https://github.com/VSecLab/CommonCriteriaWebApp.git</a>
     <p>
 

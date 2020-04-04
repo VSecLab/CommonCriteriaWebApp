@@ -186,6 +186,15 @@ public class RestApiController {
 		return new ResponseEntity<List<AComponent>>(aComponents , HttpStatus.OK);
 	}
 
+
+	@RequestMapping(value = "/acomponentname/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getAComponentName(@PathVariable("id") String id) {
+		logger.info("Fetching AComponent name from AClass with id {}", id);
+		String aComponentName = aComponentRepository.AComponentName(id);
+		return new ResponseEntity<String>(aComponentName, HttpStatus.OK);
+	}
+
+
 	// AcoDependsOnComponent
 	@Autowired
 	AcoDependsOnComponentRepository acoDependsOnComponentRepository;
@@ -333,6 +342,66 @@ public class RestApiController {
 		}
 		listAssuranceRequirementsRepository.delete(id);
 		return new ResponseEntity<ListAssuranceRequirements>(HttpStatus.NO_CONTENT);
+	}
+
+	// EvaluationAssuranceLevel
+	@Autowired
+	EvaluationAssuranceLevelRepository evaluationAssuranceLevelRepository;
+	@RequestMapping(value = "/eal/", method = RequestMethod.GET)
+	public ResponseEntity<List<EvaluationAssuranceLevel>> listAllEAL() {
+		List<EvaluationAssuranceLevel> evaluationAssuranceLevels = evaluationAssuranceLevelRepository.ListEvaluationAssuranceLevelQuery();
+		if (evaluationAssuranceLevels.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			// You many decide to return HttpStatus.NOT_FOUND
+		}
+		return new ResponseEntity<List<EvaluationAssuranceLevel>>(evaluationAssuranceLevels, HttpStatus.OK);
+	}
+
+
+	// EalObjectives
+	@Autowired
+	EalObjectivesRepository ealObjectivesRepository;
+	@RequestMapping(value = "/ealobjectives/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getEalObjectives(@PathVariable("id") String id) {
+		logger.info("Fetching EalObjectives from EAL with id {}", id);
+		List<EalObjectives> ealObjectives = ealObjectivesRepository.EalObjectivesInEal(id);
+		if (ealObjectives.isEmpty() ) {
+			logger.error("EalObjectives from EAL with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("EalObjectives from EAL with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<EalObjectives>>(ealObjectives , HttpStatus.OK);
+	}
+
+
+	// EalAssuranceComponents
+	@Autowired
+	EalAssuranceComponentsRepository ealAssuranceComponentsRepository;
+	@RequestMapping(value = "/ealassurancecomponents/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getEalAssuranceComponents(@PathVariable("id") String id) {
+		logger.info("Fetching EalAssuranceComponents from EAL with id {}", id);
+		List<EalAssuranceComponents> ealAssuranceComponents = ealAssuranceComponentsRepository.EalAssuranceComponentsInEal(id);
+		if (ealAssuranceComponents.isEmpty() ) {
+			logger.error("EalAssurance from EAL with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("EalAssurance from EAL with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<EalAssuranceComponents>>(ealAssuranceComponents , HttpStatus.OK);
+	}
+
+	// EalAssuranceComponents
+	@Autowired
+	EalComponentRepository ealComponentRepository;
+	@RequestMapping(value = "/ealcomponent/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getEalComponent(@PathVariable("id") String id) {
+		logger.info("Fetching EalComponent from EAL with id {}", id);
+		List<EalComponent> ealComponents = ealComponentRepository.EalComponentInEal(id);
+		if (ealComponents.isEmpty() ) {
+			logger.error("EalComponent from EAL with id {} not found.", id);
+			return new ResponseEntity<CustomErrorType>(new CustomErrorType("EalComponent from EAL with id " + id
+					+ " not found"), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<EalComponent>>(ealComponents , HttpStatus.OK);
 	}
 
 	/**
